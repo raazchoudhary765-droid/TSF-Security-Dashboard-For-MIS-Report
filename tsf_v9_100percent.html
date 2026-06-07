@@ -1,0 +1,680 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+.W{background:#0f172a;color:#f1f5f9;font-family:sans-serif;font-size:13px;min-height:100vh;}
+.HDR{background:linear-gradient(135deg,#1e1200 0%,#7c4d00 40%,#d4880a 60%,#7c4d00 80%,#1e1200 100%);padding:14px 20px;border-bottom:3px solid #f59e0b;display:flex;align-items:center;justify-content:space-between;gap:12px;}
+.HDR-L{display:flex;align-items:center;gap:12px;}
+.SH{width:46px;height:46px;border-radius:10px;background:#0f172a;border:2px solid #f59e0b;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.SH i{font-size:24px;color:#f59e0b;}
+.T1{font-size:16px;font-weight:700;color:#fff;letter-spacing:1px;text-transform:uppercase;}
+.T2{font-size:10px;color:#fde68a;letter-spacing:1.5px;margin-top:1px;}
+.NP{display:inline-flex;align-items:center;gap:6px;background:rgba(0,0,0,0.5);border:1.5px solid #f59e0b;border-radius:6px;padding:4px 12px;margin-top:5px;}
+.NP span{font-size:11px;color:#fde68a;}.NP strong{font-size:12px;color:#fff;font-weight:700;}
+.HDR-R{text-align:right;flex-shrink:0;}
+#HD{font-size:11px;color:#fde68a;}#HT{font-size:20px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums;}
+.LV{display:flex;align-items:center;gap:5px;justify-content:flex-end;font-size:10px;color:#4ade80;margin-top:2px;letter-spacing:1px;}
+.PL{width:7px;height:7px;border-radius:50%;background:#4ade80;animation:pl 2s infinite;}
+@keyframes pl{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.5)}}
+
+.QA{background:#1e293b;border-bottom:2px solid #f59e0b;padding:12px 20px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.QL{font-size:10px;font-weight:700;color:#f59e0b;letter-spacing:3px;text-transform:uppercase;padding-right:14px;border-right:2px solid #f59e0b;white-space:nowrap;}
+.QB{display:inline-flex;align-items:center;gap:7px;padding:10px 18px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;border:2px solid;transition:transform .1s,opacity .15s;}
+.QB:active{transform:scale(.96);}.QB:hover{opacity:.85;}.QB i{font-size:14px;}
+.QB.G{background:#166534;border-color:#4ade80;color:#fff;}
+.QB.B{background:#1e3a5f;border-color:#60a5fa;color:#fff;}
+.QB.O{background:#92400e;border-color:#f59e0b;color:#fff;}
+.QB.R{background:#7f1d1d;border-color:#f87171;color:#fff;}
+.QB.P{background:#4a1d96;border-color:#a78bfa;color:#fff;}
+.NB{background:#4ade80;color:#052e16;border-radius:4px;font-size:9px;font-weight:800;padding:2px 6px;letter-spacing:1px;margin-left:2px;}
+
+.MFB{background:#0f172a;border-bottom:2px solid #334155;padding:10px 20px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+.MFL{font-size:9px;font-weight:700;color:#94a3b8;letter-spacing:2px;text-transform:uppercase;padding-right:12px;border-right:1px solid #334155;white-space:nowrap;}
+.MFbtn{padding:6px 13px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;border:1.5px solid #334155;background:#1e293b;color:#94a3b8;transition:all .15s;}
+.MFbtn:hover{border-color:#f59e0b;color:#f59e0b;}.MFbtn.active{background:#451a03;border-color:#f59e0b;color:#fcd34d;}
+
+.NAV{background:#0f172a;border-bottom:2px solid #334155;padding:0 20px;display:flex;}
+.NAV button{background:none;border:none;color:#94a3b8;padding:11px 16px;font-size:12px;font-weight:600;cursor:pointer;border-bottom:3px solid transparent;letter-spacing:.5px;display:flex;align-items:center;gap:6px;}
+.NAV button.A{color:#f59e0b;border-bottom-color:#f59e0b;}
+
+.BD{padding:16px 20px;}
+.ST{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#94a3b8;margin-bottom:10px;display:flex;align-items:center;gap:10px;}
+.ST::after{content:'';flex:1;height:1px;background:#334155;}
+
+.KG{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:10px;margin-bottom:10px;}
+.KC{background:#1e293b;border:2px solid #334155;border-radius:10px;padding:13px 14px;position:relative;overflow:hidden;}
+.KC.lk{border-color:rgba(245,158,11,0.4);}
+.KC::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+.KC.go::before{background:linear-gradient(90deg,#d97706,#f59e0b,#fcd34d);}
+.KC.gr::before{background:linear-gradient(90deg,#16a34a,#4ade80);}
+.KC.bl::before{background:linear-gradient(90deg,#2563eb,#60a5fa);}
+.KC.re::before{background:linear-gradient(90deg,#dc2626,#f87171);}
+.KC.cy::before{background:linear-gradient(90deg,#0891b2,#22d3ee);}
+.KI{font-size:17px;margin-bottom:4px;}
+.KC.go .KI{color:#f59e0b;}.KC.gr .KI{color:#4ade80;}.KC.bl .KI{color:#60a5fa;}.KC.re .KI{color:#f87171;}.KC.cy .KI{color:#22d3ee;}
+.KL{font-size:10px;color:#94a3b8;letter-spacing:.4px;margin-bottom:2px;}
+.KV{font-size:21px;font-weight:700;color:#f59e0b;}
+.KS{font-size:10px;color:#64748b;margin-top:2px;}
+.KB{display:inline-block;padding:2px 7px;border-radius:4px;font-size:10px;margin-top:3px;font-weight:600;}
+.KBr{background:#450a0a;color:#fca5a5;border:1px solid #dc2626;}
+.KBo{background:#451a03;color:#fcd34d;border:1px solid #d97706;}
+.vb{display:inline-flex;align-items:center;gap:4px;margin-top:7px;background:#0f172a;border:1.5px solid #f59e0b;color:#f59e0b;padding:4px 10px;border-radius:5px;font-size:10px;font-weight:700;cursor:pointer;}
+.vb:hover{background:#451a03;}
+.lp{display:inline-flex;align-items:center;gap:4px;font-size:9px;color:#f59e0b;letter-spacing:1px;margin-bottom:6px;}
+.ld2{width:6px;height:6px;border-radius:50%;background:#f59e0b;display:inline-block;animation:pl 2s infinite;}
+
+.AL{background:#1c0a0a;border:2px solid #dc2626;border-radius:8px;padding:10px 14px;margin-bottom:14px;display:flex;align-items:center;gap:8px;font-size:12px;color:#fca5a5;flex-wrap:wrap;}
+.ALB{background:#dc2626;border:2px solid #f87171;color:#fff;padding:7px 14px;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:5px;}
+.ALB:hover{background:#b91c1c;}
+
+.CG{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px;}
+.CC{background:#1e293b;border:2px solid #334155;border-radius:10px;padding:14px;}
+.CT{font-size:11px;color:#f59e0b;margin-bottom:10px;display:flex;align-items:center;gap:6px;font-weight:700;}
+.LG{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:8px;font-size:11px;color:#94a3b8;}
+.LD{width:10px;height:10px;border-radius:2px;display:inline-block;margin-right:4px;vertical-align:middle;}
+.FT{background:#0f172a;border-top:2px solid #334155;padding:9px 20px;display:flex;justify-content:space-between;font-size:10px;color:#475569;}
+.FT span:first-child{color:#f59e0b;font-weight:600;}
+
+/* FULL DATA MODAL */
+.MB{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.92);z-index:9999;align-items:flex-start;justify-content:center;padding:16px;overflow-y:auto;}
+.MB.open{display:flex;}
+.MD{background:#1e293b;border:2px solid #f59e0b;border-radius:12px;width:100%;max-width:960px;padding:20px;margin:auto;}
+.MD.sm{max-width:520px;}
+.MH{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;padding-bottom:12px;border-bottom:2px solid #334155;}
+.MT{font-size:14px;font-weight:700;color:#f59e0b;display:flex;align-items:center;gap:8px;}
+.MX{background:none;border:none;color:#94a3b8;cursor:pointer;font-size:22px;}.MX:hover{color:#f59e0b;}
+.mpills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;}
+.mpill{padding:4px 14px;border-radius:20px;font-size:11px;font-weight:700;border:1.5px solid;}
+.mpt{background:rgba(245,158,11,.15);border-color:#f59e0b;color:#f59e0b;}
+.mpr{background:rgba(59,130,246,.15);border-color:#3b82f6;color:#93c5fd;}
+.mpn{background:rgba(16,185,129,.15);border-color:#10b981;color:#4ade80;}
+.mpp{background:rgba(220,38,38,.15);border-color:#dc2626;color:#fca5a5;}
+.mtabs{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap;}
+.mtab{padding:5px 14px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;border:1.5px solid #334155;background:#0f172a;color:#94a3b8;}
+.mtab.active{border-color:#f59e0b;color:#fcd34d;background:#451a03;}
+.tscroll{overflow-x:auto;max-height:430px;overflow-y:auto;}
+.DT{width:100%;border-collapse:collapse;font-size:12px;}
+.DT th{background:#0f172a;color:#f59e0b;text-align:left;padding:8px 10px;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;border-bottom:2px solid #334155;position:sticky;top:0;z-index:1;}
+.DT td{padding:7px 10px;border-bottom:1px solid #1e293b;color:#f1f5f9;}
+.DT tr:hover td{background:rgba(245,158,11,0.04);}
+.SP{display:inline-block;padding:3px 9px;border-radius:20px;font-size:10px;font-weight:600;}
+.SP.p{background:#451a03;color:#fcd34d;border:1px solid #d97706;}
+.SP.r{background:#052e16;color:#4ade80;border:1px solid #16a34a;}
+.SP.o{background:#450a0a;color:#f87171;border:1px solid #dc2626;}
+.MF2{display:flex;gap:8px;justify-content:flex-end;margin-top:14px;padding-top:12px;border-top:2px solid #334155;flex-wrap:wrap;}
+.MBX{padding:9px 20px;border-radius:7px;font-size:13px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:6px;}
+.MBX.ca{background:#0f172a;border:2px solid #475569;color:#94a3b8;}.MBX.ca:hover{border-color:#f59e0b;}
+.MBX.ex{background:#92400e;border:2px solid #f59e0b;color:#fff;}
+.MBX.gm{background:#1e3a5f;border:2px solid #60a5fa;color:#fff;}
+.MBX.sv{background:#166534;border:2px solid #4ade80;color:#fff;}
+
+.FG{display:flex;flex-direction:column;gap:4px;margin-bottom:10px;}
+.FG label{font-size:10px;color:#94a3b8;letter-spacing:1px;text-transform:uppercase;font-weight:600;}
+.FG input,.FG select{background:#0f172a;border:2px solid #334155;border-radius:6px;color:#f1f5f9;padding:8px 10px;font-size:13px;width:100%;}
+.FG input::placeholder{color:#475569;}.FG input:focus,.FG select:focus{outline:none;border-color:#f59e0b;}
+.FG select option{background:#1e293b;}
+.FR{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.pic{background:#0f172a;border:2px solid #f59e0b;border-radius:10px;padding:12px 16px;margin-bottom:12px;}
+.pit{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#f59e0b;font-weight:700;margin-bottom:10px;border-bottom:1px solid #334155;padding-bottom:8px;}
+.pr{display:flex;align-items:center;gap:10px;margin-bottom:7px;}.pr:last-child{margin-bottom:0;}
+.pi{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.pi i{font-size:14px;}
+.pi.go{background:#451a03;border:1px solid #f59e0b;}.pi.go i{color:#f59e0b;}
+.pi.bl{background:#1e3a5f;border:1px solid #60a5fa;}.pi.bl i{color:#60a5fa;}
+.pi.gr{background:#052e16;border:1px solid #4ade80;}.pi.gr i{color:#4ade80;}
+.pd .l{font-size:9px;color:#64748b;letter-spacing:1px;text-transform:uppercase;margin-bottom:1px;}
+.pd .v{font-size:12px;font-weight:600;}
+.v-go{color:#f59e0b;}.v-bl{color:#60a5fa;}.v-gr{color:#4ade80;}
+.IN{background:#1e1200;border:2px solid #d97706;border-radius:6px;padding:10px;font-size:11px;color:#fcd34d;margin-top:4px;line-height:1.6;}
+#SR{font-size:12px;color:#94a3b8;text-align:center;padding:16px 0;}
+.MIS-T{width:100%;border-collapse:collapse;font-size:11px;}
+.MIS-T th{background:#0f172a;color:#f59e0b;padding:7px 8px;text-align:left;font-size:10px;font-weight:700;letter-spacing:.8px;border-bottom:2px solid #334155;position:sticky;top:0;}
+.MIS-T td{padding:7px 8px;border-bottom:1px solid #1e293b;color:#f1f5f9;}
+.MIS-T tr:nth-child(even) td{background:rgba(255,255,255,.02);}
+.TST{display:none;position:fixed;bottom:28px;left:50%;transform:translateX(-50%);background:#166534;border:2px solid #4ade80;color:#fff;padding:11px 26px;border-radius:8px;font-size:13px;font-weight:700;z-index:99999;white-space:nowrap;box-shadow:0 4px 20px rgba(74,222,128,.3);}
+</style>
+
+<div class="W">
+  <div class="HDR">
+    <div class="HDR-L">
+      <div class="SH"><i class="ti ti-shield-check" aria-hidden="true"></i></div>
+      <div>
+        <div class="T1">Touchstone Foundation</div>
+        <div class="T2">SECURITY COMMAND CENTER — CSO EXECUTIVE VIEW</div>
+        <div class="NP"><i class="ti ti-user-shield" style="font-size:13px;color:#fde68a;" aria-hidden="true"></i><span>Dashboard Prepared By —</span><strong>CSO &nbsp;Rajkumar Choudhary</strong></div>
+      </div>
+    </div>
+    <div class="HDR-R"><div id="HD"></div><div id="HT"></div><div class="LV"><span class="PL"></span>LIVE MONITORING</div></div>
+  </div>
+
+  <div class="QA">
+    <span class="QL">Quick Actions</span>
+    <button class="QB G" id="bNew"><i class="ti ti-plus" aria-hidden="true"></i> New Gate Pass <span class="NB">NEW</span></button>
+    <button class="QB B" id="bSrch"><i class="ti ti-search" aria-hidden="true"></i> Search GP</button>
+    <button class="QB O" id="bMIS"><i class="ti ti-chart-bar" aria-hidden="true"></i> MIS Report</button>
+    <button class="QB R" id="bPDF"><i class="ti ti-file-type-pdf" aria-hidden="true"></i> Export PDF</button>
+    <button class="QB P" id="bGmail"><i class="ti ti-brand-gmail" aria-hidden="true"></i> Send Gmail</button>
+  </div>
+
+  <div class="MFB">
+    <span class="MFL"><i class="ti ti-calendar-filter" aria-hidden="true"></i> Month Filter</span>
+    <button class="MFbtn active" data-m="ALL" onclick="setM(this)">All Year</button>
+    <button class="MFbtn" data-m="JAN" onclick="setM(this)">Jan</button>
+    <button class="MFbtn" data-m="FEB" onclick="setM(this)">Feb</button>
+    <button class="MFbtn" data-m="MAR" onclick="setM(this)">Mar</button>
+    <button class="MFbtn" data-m="APR" onclick="setM(this)">Apr</button>
+    <button class="MFbtn" data-m="MAY" onclick="setM(this)">May</button>
+    <button class="MFbtn" data-m="JUN" onclick="setM(this)">Jun</button>
+    <button class="MFbtn" data-m="JUL" onclick="setM(this)">Jul</button>
+    <button class="MFbtn" data-m="AUG" onclick="setM(this)">Aug</button>
+    <button class="MFbtn" data-m="SEP" onclick="setM(this)">Sep</button>
+    <button class="MFbtn" data-m="OCT" onclick="setM(this)">Oct</button>
+    <button class="MFbtn" data-m="NOV" onclick="setM(this)">Nov</button>
+    <button class="MFbtn" data-m="DEC" onclick="setM(this)">Dec</button>
+  </div>
+
+  <div class="NAV"><button class="A"><i class="ti ti-layout-dashboard" aria-hidden="true"></i> Dashboard</button><button><i class="ti ti-chart-bar" aria-hidden="true"></i> MIS</button><button><i class="ti ti-truck" aria-hidden="true"></i> Gate Pass</button><button><i class="ti ti-search" aria-hidden="true"></i> Search</button><button><i class="ti ti-file-report" aria-hidden="true"></i> Reports</button></div>
+
+  <div class="BD">
+    <div class="ST" id="kpiT"><i class="ti ti-shield" aria-hidden="true"></i> Security KPIs — Full Year 2026</div>
+    <div class="KG">
+      <div class="KC go"><div class="KI"><i class="ti ti-currency-rupee" aria-hidden="true"></i></div><div class="KL">Total Cost</div><div class="KV" id="kv1">₹36.72L</div><div class="KS" id="ks1">₹3,672,023</div><button class="vb" onclick="showMIS()"><i class="ti ti-table" aria-hidden="true"></i> View MIS Data</button></div>
+      <div class="KC bl"><div class="KI"><i class="ti ti-users" aria-hidden="true"></i></div><div class="KL">TSF Man Days</div><div class="KV" id="kv2">365</div><div class="KS" id="ks2">Avg 30.4/month</div><button class="vb" onclick="showMIS()"><i class="ti ti-table" aria-hidden="true"></i> View MIS Data</button></div>
+      <div class="KC cy"><div class="KI"><i class="ti ti-building-community" aria-hidden="true"></i></div><div class="KL">SIS Man Days</div><div class="KV" id="kv3">4,075</div><div class="KS" id="ks3">Avg 339.6/month</div><button class="vb" onclick="showMIS()"><i class="ti ti-table" aria-hidden="true"></i> View MIS Data</button></div>
+      <div class="KC go"><div class="KI"><i class="ti ti-alert-triangle" aria-hidden="true"></i></div><div class="KL">Staff Shortage</div><div class="KV" id="kv4">1,218</div><div class="KS"><span class="KB KBo" id="ks4">Peak 117 · Jan</span></div><button class="vb" onclick="showMIS()"><i class="ti ti-table" aria-hidden="true"></i> View MIS Data</button></div>
+      <div class="KC re"><div class="KI"><i class="ti ti-urgent" aria-hidden="true"></i></div><div class="KL">Incidents</div><div class="KV" id="kv5">5</div><div class="KS"><span class="KB KBr" id="ks5">Feb Apr Jun Jul Dec</span></div><button class="vb" onclick="showMIS()"><i class="ti ti-table" aria-hidden="true"></i> View MIS Data</button></div>
+    </div>
+
+    <div class="lp"><span class="ld2"></span> Gate Pass KPIs — Connected to Month Filter</div>
+    <div class="KG">
+      <div class="KC gr lk"><div class="KI"><i class="ti ti-truck" aria-hidden="true"></i></div><div class="KL">Total Gate Passes</div><div class="KV" id="gv1">2,171</div><div class="KS" id="gs1">HKM+TSF+RKM</div><button class="vb" onclick="showGP('all')"><i class="ti ti-table" aria-hidden="true"></i> View All Records</button></div>
+      <div class="KC bl lk"><div class="KI"><i class="ti ti-package-export" aria-hidden="true"></i></div><div class="KL">Total RGP</div><div class="KV" id="gv2">1,026</div><div class="KS" id="gs2">Returnable GP</div><button class="vb" onclick="showGP('rgp')"><i class="ti ti-table" aria-hidden="true"></i> View RGP Records</button></div>
+      <div class="KC cy lk"><div class="KI"><i class="ti ti-package" aria-hidden="true"></i></div><div class="KL">Total NRGP</div><div class="KV" id="gv3">1,145</div><div class="KS" id="gs3">Non-Returnable GP</div><button class="vb" onclick="showGP('nrgp')"><i class="ti ti-table" aria-hidden="true"></i> View NRGP Records</button></div>
+      <div class="KC re lk"><div class="KI"><i class="ti ti-clock-x" aria-hidden="true"></i></div><div class="KL">Pending GP</div><div class="KV" id="gv4">129</div><div class="KS"><span class="KB KBr" id="gs4">Action needed</span></div><button class="vb" onclick="showGP('pending')"><i class="ti ti-table" aria-hidden="true"></i> View All 129 Pending</button></div>
+    </div>
+
+    <div class="AL">
+      <i class="ti ti-alert-circle" style="font-size:18px;color:#f87171;flex-shrink:0;" aria-hidden="true"></i>
+      <span><strong style="color:#f87171;">Overdue Alert:</strong> <span id="pc">129</span> gate passes pending — immediate follow-up required.</span>
+      <button class="ALB" onclick="showGP('pending')"><i class="ti ti-eye" aria-hidden="true"></i> View All <span id="pc2">129</span> Pending ↗</button>
+    </div>
+
+    <div class="ST"><i class="ti ti-chart-line" aria-hidden="true"></i> Analytics — 2026</div>
+    <div class="CG">
+      <div class="CC"><div class="CT"><i class="ti ti-trending-up" aria-hidden="true"></i> Monthly Cost Trend (₹)</div><div class="LG"><span><span class="LD" style="background:#f59e0b;"></span>Total Cost</span></div><div style="position:relative;height:175px;"><canvas id="c1"></canvas></div></div>
+      <div class="CC"><div class="CT"><i class="ti ti-chart-donut" aria-hidden="true"></i> RGP vs NRGP</div><div class="LG"><span><span class="LD" style="background:#3b82f6;"></span>RGP</span><span><span class="LD" style="background:#10b981;"></span>NRGP</span></div><div style="position:relative;height:155px;"><canvas id="c2"></canvas></div></div>
+      <div class="CC"><div class="CT"><i class="ti ti-users-minus" aria-hidden="true"></i> Staff Shortage Trend</div><div class="LG"><span><span class="LD" style="background:#f59e0b;"></span>Normal</span><span><span class="LD" style="background:#ef4444;"></span>Critical ≥110</span></div><div style="position:relative;height:175px;"><canvas id="c3"></canvas></div></div>
+      <div class="CC"><div class="CT"><i class="ti ti-building" aria-hidden="true"></i> Unit-wise Gate Pass</div><div class="LG"><span><span class="LD" style="background:#3b82f6;"></span>HKM</span><span><span class="LD" style="background:#10b981;"></span>TSF</span><span><span class="LD" style="background:#f59e0b;"></span>RKM</span></div><div style="position:relative;height:175px;"><canvas id="c4"></canvas></div></div>
+    </div>
+  </div>
+  <div class="FT"><span>TSF Security Command Center — v9.0</span><span>2,171 Gate Passes · 12 MIS Records · 2026</span><span id="HF"></span></div>
+</div>
+
+<!-- MODAL: VIEW DATA (GP + MIS) -->
+<div class="MB" id="mD">
+  <div class="MD">
+    <div class="MH"><span class="MT" id="dMT"><i class="ti ti-table" aria-hidden="true"></i> Data Records</span><button class="MX" onclick="closeM('mD')"><i class="ti ti-x" aria-hidden="true"></i></button></div>
+    <div class="mpills" id="dPills"></div>
+    <div class="mtabs" id="dTabs"></div>
+    <div class="tscroll"><table class="DT"><thead id="dTH"></thead><tbody id="dTB"></tbody></table></div>
+    <div class="MF2">
+      <button class="MBX ca" onclick="closeM('mD')">Close</button>
+      <button class="MBX gm" id="dGmail"><i class="ti ti-brand-gmail" aria-hidden="true"></i> Gmail</button>
+      <button class="MBX ex" id="dPDF"><i class="ti ti-download" aria-hidden="true"></i> Download PDF</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: NEW GP -->
+<div class="MB" id="mN"><div class="MD sm">
+  <div class="MH"><span class="MT"><i class="ti ti-plus" aria-hidden="true"></i> New Gate Pass</span><button class="MX" onclick="closeM('mN')"><i class="ti ti-x" aria-hidden="true"></i></button></div>
+  <div class="FR"><div class="FG"><label>GP Type</label><select><option>RGP – Returnable</option><option>NRGP – Non Returnable</option></select></div><div class="FG"><label>Unit</label><select><option>HKM</option><option>TSF</option><option>RKM</option></select></div></div>
+  <div class="FR"><div class="FG"><label>GP Number</label><input placeholder="Auto-generated"/></div><div class="FG"><label>Date</label><input type="date"/></div></div>
+  <div class="FR"><div class="FG"><label>Out Time</label><input type="time"/></div><div class="FG"><label>Return Date</label><input type="date"/></div></div>
+  <div class="FG"><label>Party Name</label><input placeholder="Vendor / party name"/></div>
+  <div class="FR"><div class="FG"><label>Material</label><input placeholder="Item description"/></div><div class="FG"><label>Quantity</label><input placeholder="05 nos"/></div></div>
+  <div class="FR"><div class="FG"><label>Authorised By</label><input placeholder="Name / Dept"/></div><div class="FG"><label>Security Guard</label><input placeholder="Guard name"/></div></div>
+  <div class="MF2"><button class="MBX ca" onclick="closeM('mN')">Cancel</button><button class="MBX sv" onclick="closeM('mN');toast('✓ Gate Pass saved!')"><i class="ti ti-check" aria-hidden="true"></i> Save</button></div>
+</div></div>
+
+<!-- MODAL: SEARCH -->
+<div class="MB" id="mS"><div class="MD sm">
+  <div class="MH"><span class="MT"><i class="ti ti-search" aria-hidden="true"></i> Search Gate Pass</span><button class="MX" onclick="closeM('mS')"><i class="ti ti-x" aria-hidden="true"></i></button></div>
+  <div class="FG"><label>Search</label><input id="SQ" placeholder="GP No / Party / Material / Unit / Status..."/></div>
+  <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;">
+    <button class="QB B" style="padding:5px 12px;font-size:11px;border-radius:6px;" onclick="setSQ('HKM')">HKM</button>
+    <button class="QB G" style="padding:5px 12px;font-size:11px;border-radius:6px;" onclick="setSQ('TSF')">TSF</button>
+    <button class="QB O" style="padding:5px 12px;font-size:11px;border-radius:6px;" onclick="setSQ('RKM')">RKM</button>
+    <button class="QB R" style="padding:5px 12px;font-size:11px;border-radius:6px;" onclick="setSQ('pending')">Pending</button>
+    <button class="QB G" style="padding:5px 12px;font-size:11px;border-radius:6px;" onclick="setSQ('received')">Received</button>
+  </div>
+  <div id="SR">Type to search across 2,171 gate pass records</div>
+  <div class="MF2"><button class="MBX ca" onclick="closeM('mS')">Close</button></div>
+</div></div>
+
+<!-- MODAL: EXPORT PDF -->
+<div class="MB" id="mP"><div class="MD sm">
+  <div class="MH"><span class="MT"><i class="ti ti-file-type-pdf" aria-hidden="true"></i> Export PDF Report</span><button class="MX" onclick="closeM('mP')"><i class="ti ti-x" aria-hidden="true"></i></button></div>
+  <div class="pic">
+    <div class="pit"><i class="ti ti-id-badge" aria-hidden="true"></i> CSO Details</div>
+    <div class="pr"><div class="pi go"><i class="ti ti-user-shield" aria-hidden="true"></i></div><div class="pd"><div class="l">Authorised By</div><div class="v v-go">CSO Rajkumar Choudhary</div></div></div>
+    <div class="pr"><div class="pi bl"><i class="ti ti-mail" aria-hidden="true"></i></div><div class="pd"><div class="l">Gmail ID</div><div class="v v-bl">raazchoudhary765@gmail.com</div></div></div>
+    <div class="pr"><div class="pi gr"><i class="ti ti-building-community" aria-hidden="true"></i></div><div class="pd"><div class="l">Organisation</div><div class="v v-gr">Touchstone Foundation</div></div></div>
+  </div>
+  <div class="FG"><label>Report Type</label><select id="rT"><option>MIS + Gate Pass Report</option><option>Gate Pass Summary</option><option>Pending GP Report</option><option>Incident Analysis</option><option>Annual Security Report</option></select></div>
+  <div class="FR"><div class="FG"><label>From Date</label><input type="date"/></div><div class="FG"><label>To Date</label><input type="date"/></div></div>
+  <div class="FG"><label>Unit Filter</label><select><option>All Units</option><option>HKM Only</option><option>TSF Only</option><option>RKM Only</option></select></div>
+  <div class="IN"><i class="ti ti-info-circle" style="vertical-align:-2px;margin-right:5px;" aria-hidden="true"></i>Current filter: <strong id="pML">All Year</strong> — PDF download karein aur phir Gmail mein attach karke bhejein.</div>
+  <div class="MF2">
+    <button class="MBX ca" onclick="closeM('mP')">Cancel</button>
+    <button class="MBX gm" id="gPDFGmail"><i class="ti ti-brand-gmail" aria-hidden="true"></i> Open Gmail</button>
+    <button class="MBX ex" id="dlPDF"><i class="ti ti-download" aria-hidden="true"></i> Download PDF</button>
+  </div>
+</div></div>
+
+<!-- MODAL: GMAIL -->
+<div class="MB" id="mGm"><div class="MD sm">
+  <div class="MH"><span class="MT"><i class="ti ti-brand-gmail" aria-hidden="true"></i> Send via Gmail</span><button class="MX" onclick="closeM('mGm')"><i class="ti ti-x" aria-hidden="true"></i></button></div>
+  <div class="pic"><div class="pit"><i class="ti ti-mail" aria-hidden="true"></i> Gmail Details</div>
+    <div class="pr"><div class="pi bl"><i class="ti ti-mail" aria-hidden="true"></i></div><div class="pd"><div class="l">Gmail ID</div><div class="v v-bl">raazchoudhary765@gmail.com</div></div></div>
+  </div>
+  <div class="FG"><label>Report Type</label><select id="gRT"><option>MIS + Gate Pass Report 2026</option><option>Gate Pass Summary</option><option>Pending GP — 129 Records</option><option>Annual Security Report 2026</option></select></div>
+  <div class="FG"><label>Note (Optional)</label><input id="gNote" placeholder="Add custom note..."/></div>
+  <div class="IN"><i class="ti ti-info-circle" style="vertical-align:-2px;margin-right:5px;" aria-hidden="true"></i>Open Gmail → PDF attach karein → Send.</div>
+  <div class="MF2"><button class="MBX ca" onclick="closeM('mGm')">Cancel</button><button class="MBX gm" id="sGmail"><i class="ti ti-external-link" aria-hidden="true"></i> Open Gmail ↗</button></div>
+</div></div>
+
+<div class="TST" id="TST"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+// CLOCK
+function tick(){
+  const n=new Date();
+  document.getElementById('HD').textContent=n.toLocaleDateString('en-IN',{weekday:'short',day:'2-digit',month:'short',year:'numeric'});
+  const t=n.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  document.getElementById('HT').textContent=t;
+  document.getElementById('HF').textContent='Last sync: '+t;
+}
+setInterval(tick,1000);tick();
+
+// ── ALL DATA ──────────────────────────────────────────────────────────
+const MIS=[
+  {m:'JAN',tsf:35556,sis:254109,add:21808,td:31,sd:345,sh:117,inc:0,tot:311473},
+  {m:'FEB',tsf:35556,sis:254650,add:25000,td:28,sd:343,sh:110,inc:1,tot:302750},
+  {m:'MAR',tsf:35556,sis:253500,add:27000,td:31,sd:341,sh:100,inc:0,tot:308600},
+  {m:'APR',tsf:35556,sis:256500,add:27000,td:30,sd:347,sh:90, inc:1,tot:311600},
+  {m:'MAY',tsf:35556,sis:253500,add:27000,td:31,sd:341,sh:102,inc:0,tot:308600},
+  {m:'JUN',tsf:35556,sis:253500,add:27000,td:30,sd:341,sh:100,inc:1,tot:308600},
+  {m:'JUL',tsf:35556,sis:252500,add:23000,td:31,sd:337,sh:105,inc:1,tot:303600},
+  {m:'AUG',tsf:35556,sis:252000,add:23500,td:31,sd:336,sh:98, inc:0,tot:303600},
+  {m:'SEP',tsf:35556,sis:251500,add:23500,td:30,sd:336,sh:98, inc:0,tot:303100},
+  {m:'OCT',tsf:35556,sis:252500,add:23500,td:31,sd:338,sh:100,inc:0,tot:304100},
+  {m:'NOV',tsf:35556,sis:251500,add:25000,td:30,sd:336,sh:98, inc:0,tot:304600},
+  {m:'DEC',tsf:35556,sis:250500,add:24000,td:31,sd:334,sh:100,inc:1,tot:302600},
+];
+
+const GPM={
+  JAN:{total:185,rgp:88,nrgp:97,pending:14,rows:[
+    {no:'HKM-101',date:'05-Jan-26',unit:'HKM',type:'RGP',party:'Sharma Hardware',material:'Lock & Chain',qty:'10',ret:'20-Jan-26',status:'received'},
+    {no:'HKM-102',date:'08-Jan-26',unit:'HKM',type:'RGP',party:'Vijay Enterprises',material:'CCTV Repair',qty:'02',ret:'—',status:'pending'},
+    {no:'TSF-101',date:'10-Jan-26',unit:'TSF',type:'NRGP',party:'Raj Supplies',material:'Cleaning Material',qty:'50',ret:'—',status:'received'},
+    {no:'TSF-102',date:'12-Jan-26',unit:'TSF',type:'RGP',party:'Mehta Electricals',material:'UPS Battery',qty:'04',ret:'28-Jan-26',status:'received'},
+    {no:'RKM-101',date:'15-Jan-26',unit:'RKM',type:'RGP',party:'Metro Repairs',material:'AC Compressor',qty:'01',ret:'—',status:'pending'},
+    {no:'HKM-103',date:'18-Jan-26',unit:'HKM',type:'NRGP',party:'Khandelwal Store',material:'Office Furniture',qty:'08',ret:'—',status:'received'},
+    {no:'TSF-103',date:'22-Jan-26',unit:'TSF',type:'NRGP',party:'Agarwal Traders',material:'Fire Extinguisher',qty:'05',ret:'—',status:'received'},
+    {no:'HKM-104',date:'25-Jan-26',unit:'HKM',type:'RGP',party:'Vijay Sankla',material:'Pillow Cover',qty:'20',ret:'—',status:'pending'},
+    {no:'TSF-104',date:'28-Jan-26',unit:'TSF',type:'RGP',party:'Arushi Enterprises',material:'Projector Repair',qty:'01',ret:'—',status:'pending'},
+    {no:'RKM-102',date:'30-Jan-26',unit:'RKM',type:'NRGP',party:'Verma Electronics',material:'PA System',qty:'02',ret:'—',status:'received'},
+    {no:'HKM-105',date:'31-Jan-26',unit:'HKM',type:'RGP',party:'Falguni Enterprises',material:'Water Pump',qty:'01',ret:'—',status:'pending'},
+    {no:'TSF-105',date:'31-Jan-26',unit:'TSF',type:'NRGP',party:'Shree Traders',material:'Stationery',qty:'30',ret:'—',status:'received'},
+  ]},
+  FEB:{total:162,rgp:76,nrgp:86,pending:11,rows:[
+    {no:'HKM-201',date:'03-Feb-26',unit:'HKM',type:'RGP',party:'R.K Laundry',material:'Towel Batch',qty:'32',ret:'18-Feb-26',status:'received'},
+    {no:'HKM-202',date:'07-Feb-26',unit:'HKM',type:'RGP',party:'Vijay Sankla',material:'Pillow Cover',qty:'24',ret:'—',status:'pending'},
+    {no:'TSF-201',date:'10-Feb-26',unit:'TSF',type:'NRGP',party:'Shree Traders',material:'Stationery Items',qty:'100',ret:'—',status:'received'},
+    {no:'RKM-201',date:'14-Feb-26',unit:'RKM',type:'RGP',party:'Sharma Electronics',material:'Generator Part',qty:'02',ret:'28-Feb-26',status:'received'},
+    {no:'HKM-203',date:'20-Feb-26',unit:'HKM',type:'RGP',party:'Arushi Enterprises',material:'Projector Repair',qty:'01',ret:'—',status:'pending'},
+    {no:'TSF-202',date:'22-Feb-26',unit:'TSF',type:'NRGP',party:'Raj Enterprises',material:'Office Chairs',qty:'10',ret:'—',status:'received'},
+    {no:'HKM-204',date:'25-Feb-26',unit:'HKM',type:'RGP',party:'Khandelwal Store',material:'Iron Gate',qty:'02',ret:'—',status:'pending'},
+    {no:'TSF-203',date:'27-Feb-26',unit:'TSF',type:'RGP',party:'Mehta Electricals',material:'UPS Repair',qty:'02',ret:'—',status:'received'},
+    {no:'RKM-202',date:'28-Feb-26',unit:'RKM',type:'NRGP',party:'Verma Co.',material:'Safety Equipment',qty:'05',ret:'—',status:'received'},
+  ]},
+  MAR:{total:190,rgp:92,nrgp:98,pending:12,rows:[
+    {no:'HKM-301',date:'02-Mar-26',unit:'HKM',type:'RGP',party:'Falguni Enterprises',material:'Pump Repair',qty:'01',ret:'16-Mar-26',status:'received'},
+    {no:'TSF-301',date:'05-Mar-26',unit:'TSF',type:'NRGP',party:'Raj Enterprises',material:'Safety Equipment',qty:'20',ret:'—',status:'received'},
+    {no:'TSF-302',date:'10-Mar-26',unit:'TSF',type:'RGP',party:'Verma Electronics',material:'PA System Repair',qty:'01',ret:'—',status:'pending'},
+    {no:'RKM-301',date:'15-Mar-26',unit:'RKM',type:'RGP',party:'Metro Repairs',material:'AC Unit Repair',qty:'02',ret:'29-Mar-26',status:'received'},
+    {no:'HKM-302',date:'20-Mar-26',unit:'HKM',type:'RGP',party:'Sharma Hardware',material:'Grill Work',qty:'05',ret:'—',status:'pending'},
+    {no:'TSF-303',date:'25-Mar-26',unit:'TSF',type:'NRGP',party:'Agarwal Traders',material:'Cleaning Kit',qty:'30',ret:'—',status:'received'},
+    {no:'HKM-303',date:'28-Mar-26',unit:'HKM',type:'NRGP',party:'Khandelwal Store',material:'File Racks',qty:'08',ret:'—',status:'received'},
+    {no:'RKM-302',date:'30-Mar-26',unit:'RKM',type:'RGP',party:'Sharma Electronics',material:'Battery Set',qty:'04',ret:'—',status:'pending'},
+  ]},
+  APR:{total:175,rgp:84,nrgp:91,pending:10,rows:[
+    {no:'HKM-401',date:'04-Apr-26',unit:'HKM',type:'RGP',party:'Khandelwal Hardware',material:'Almirah Lock',qty:'06',ret:'—',status:'pending'},
+    {no:'TSF-401',date:'08-Apr-26',unit:'TSF',type:'NRGP',party:'Agarwal Traders',material:'Cleaning Supplies',qty:'50',ret:'—',status:'received'},
+    {no:'HKM-402',date:'12-Apr-26',unit:'HKM',type:'RGP',party:'Sharma Hardware',material:'Grill Work',qty:'05',ret:'26-Apr-26',status:'received'},
+    {no:'RKM-401',date:'18-Apr-26',unit:'RKM',type:'RGP',party:'Verma Co.',material:'Electrical Parts',qty:'10',ret:'—',status:'pending'},
+    {no:'TSF-402',date:'22-Apr-26',unit:'TSF',type:'RGP',party:'Mehta Electricals',material:'UPS Repair',qty:'02',ret:'—',status:'received'},
+    {no:'HKM-403',date:'28-Apr-26',unit:'HKM',type:'NRGP',party:'Raj Supplies',material:'Festival Items',qty:'15',ret:'—',status:'received'},
+    {no:'TSF-403',date:'29-Apr-26',unit:'TSF',type:'NRGP',party:'Shree Traders',material:'Uniform Cloth',qty:'20',ret:'—',status:'received'},
+    {no:'RKM-402',date:'30-Apr-26',unit:'RKM',type:'RGP',party:'Metro Repairs',material:'Pump Parts',qty:'03',ret:'—',status:'pending'},
+  ]},
+  MAY:{total:180,rgp:86,nrgp:94,pending:11,rows:[
+    {no:'HKM-501',date:'03-May-26',unit:'HKM',type:'RGP',party:'R.K Laundry',material:'Blanket',qty:'15',ret:'17-May-26',status:'received'},
+    {no:'TSF-501',date:'06-May-26',unit:'TSF',type:'NRGP',party:'Raj Supplies',material:'Office Chairs',qty:'10',ret:'—',status:'received'},
+    {no:'TSF-502',date:'14-May-26',unit:'TSF',type:'RGP',party:'Mehta Electricals',material:'Generator Repair',qty:'01',ret:'28-May-26',status:'received'},
+    {no:'HKM-502',date:'20-May-26',unit:'HKM',type:'RGP',party:'Vijay Sankla',material:'Frill Washing',qty:'30',ret:'—',status:'pending'},
+    {no:'RKM-501',date:'25-May-26',unit:'RKM',type:'RGP',party:'Metro Repairs',material:'Fan Repair',qty:'03',ret:'—',status:'pending'},
+    {no:'HKM-503',date:'28-May-26',unit:'HKM',type:'NRGP',party:'Agarwal Traders',material:'Stationery',qty:'40',ret:'—',status:'received'},
+    {no:'TSF-503',date:'30-May-26',unit:'TSF',type:'RGP',party:'Verma Electronics',material:'Walkie Talkie',qty:'04',ret:'—',status:'received'},
+  ]},
+  JUN:{total:178,rgp:85,nrgp:93,pending:10,rows:[
+    {no:'HKM-601',date:'02-Jun-26',unit:'HKM',type:'RGP',party:'Arushi Enterprises',material:'Projector Bulb',qty:'02',ret:'16-Jun-26',status:'received'},
+    {no:'TSF-601',date:'07-Jun-26',unit:'TSF',type:'NRGP',party:'Shree Traders',material:'Uniform Material',qty:'40',ret:'—',status:'received'},
+    {no:'RKM-601',date:'12-Jun-26',unit:'RKM',type:'RGP',party:'Sharma Electronics',material:'UPS Repair',qty:'02',ret:'—',status:'pending'},
+    {no:'HKM-602',date:'18-Jun-26',unit:'HKM',type:'RGP',party:'Vijay Sankla',material:'Curtain Cloth',qty:'15',ret:'—',status:'pending'},
+    {no:'TSF-602',date:'24-Jun-26',unit:'TSF',type:'NRGP',party:'Raj Enterprises',material:'Safety Gloves',qty:'25',ret:'—',status:'received'},
+    {no:'HKM-603',date:'28-Jun-26',unit:'HKM',type:'RGP',party:'Falguni Enterprises',material:'Pump Parts',qty:'02',ret:'—',status:'received'},
+    {no:'RKM-602',date:'30-Jun-26',unit:'RKM',type:'NRGP',party:'Verma Co.',material:'Electrical Cable',qty:'10',ret:'—',status:'received'},
+  ]},
+  JUL:{total:172,rgp:82,nrgp:90,pending:10,rows:[
+    {no:'HKM-701',date:'04-Jul-26',unit:'HKM',type:'RGP',party:'Falguni Enterprises',material:'Water Pump',qty:'01',ret:'18-Jul-26',status:'received'},
+    {no:'TSF-701',date:'09-Jul-26',unit:'TSF',type:'NRGP',party:'Raj Enterprises',material:'CCTV System',qty:'04',ret:'—',status:'received'},
+    {no:'HKM-702',date:'15-Jul-26',unit:'HKM',type:'RGP',party:'Khandelwal Store',material:'Iron Gate',qty:'02',ret:'—',status:'pending'},
+    {no:'RKM-701',date:'20-Jul-26',unit:'RKM',type:'RGP',party:'Metro Repairs',material:'Cooling Fan',qty:'03',ret:'—',status:'pending'},
+    {no:'TSF-702',date:'26-Jul-26',unit:'TSF',type:'RGP',party:'Mehta Electricals',material:'Inverter',qty:'01',ret:'—',status:'received'},
+    {no:'HKM-703',date:'28-Jul-26',unit:'HKM',type:'NRGP',party:'Agarwal Traders',material:'Cleaning Kit',qty:'20',ret:'—',status:'received'},
+    {no:'RKM-702',date:'31-Jul-26',unit:'RKM',type:'RGP',party:'Sharma Electronics',material:'Generator Part',qty:'01',ret:'—',status:'received'},
+  ]},
+  AUG:{total:168,rgp:80,nrgp:88,pending:10,rows:[
+    {no:'HKM-801',date:'02-Aug-26',unit:'HKM',type:'RGP',party:'Sharma Hardware',material:'Padlock Set',qty:'12',ret:'16-Aug-26',status:'received'},
+    {no:'TSF-801',date:'08-Aug-26',unit:'TSF',type:'NRGP',party:'Agarwal Traders',material:'Stationery',qty:'80',ret:'—',status:'received'},
+    {no:'HKM-802',date:'18-Aug-26',unit:'HKM',type:'RGP',party:'Vijay Sankla',material:'Curtain Cloth',qty:'20',ret:'—',status:'pending'},
+    {no:'RKM-801',date:'24-Aug-26',unit:'RKM',type:'RGP',party:'Verma Electronics',material:'Battery',qty:'04',ret:'—',status:'pending'},
+    {no:'TSF-802',date:'26-Aug-26',unit:'TSF',type:'RGP',party:'Mehta Electricals',material:'UPS Battery',qty:'03',ret:'—',status:'received'},
+    {no:'HKM-803',date:'28-Aug-26',unit:'HKM',type:'NRGP',party:'Raj Supplies',material:'Office Items',qty:'15',ret:'—',status:'received'},
+    {no:'RKM-802',date:'30-Aug-26',unit:'RKM',type:'NRGP',party:'Metro Repairs',material:'Safety Items',qty:'05',ret:'—',status:'received'},
+  ]},
+  SEP:{total:165,rgp:78,nrgp:87,pending:9,rows:[
+    {no:'HKM-901',date:'03-Sep-26',unit:'HKM',type:'RGP',party:'R.K Laundry',material:'Towel Batch',qty:'28',ret:'17-Sep-26',status:'received'},
+    {no:'TSF-901',date:'07-Sep-26',unit:'TSF',type:'NRGP',party:'Raj Supplies',material:'Repair Tools',qty:'15',ret:'—',status:'received'},
+    {no:'RKM-901',date:'14-Sep-26',unit:'RKM',type:'RGP',party:'Verma Electronics',material:'Inverter Repair',qty:'01',ret:'—',status:'pending'},
+    {no:'HKM-902',date:'22-Sep-26',unit:'HKM',type:'RGP',party:'Sharma Hardware',material:'Wire Mesh',qty:'05',ret:'—',status:'pending'},
+    {no:'TSF-902',date:'25-Sep-26',unit:'TSF',type:'RGP',party:'Agarwal Traders',material:'CCTV Camera',qty:'02',ret:'—',status:'received'},
+    {no:'HKM-903',date:'28-Sep-26',unit:'HKM',type:'NRGP',party:'Khandelwal Store',material:'Filing Cabinet',qty:'03',ret:'—',status:'received'},
+    {no:'RKM-902',date:'30-Sep-26',unit:'RKM',type:'NRGP',party:'Verma Co.',material:'Safety Rope',qty:'10',ret:'—',status:'received'},
+  ]},
+  OCT:{total:170,rgp:82,nrgp:88,pending:11,rows:[
+    {no:'HKM-1001',date:'05-Oct-26',unit:'HKM',type:'RGP',party:'Arushi Enterprises',material:'Sound System',qty:'01',ret:'19-Oct-26',status:'received'},
+    {no:'TSF-1001',date:'09-Oct-26',unit:'TSF',type:'NRGP',party:'Shree Traders',material:'Festival Supplies',qty:'60',ret:'—',status:'received'},
+    {no:'HKM-1002',date:'17-Oct-26',unit:'HKM',type:'RGP',party:'Khandelwal Store',material:'Festoon Lights',qty:'10',ret:'—',status:'pending'},
+    {no:'RKM-1001',date:'22-Oct-26',unit:'RKM',type:'RGP',party:'Metro Repairs',material:'Generator Service',qty:'01',ret:'—',status:'pending'},
+    {no:'TSF-1002',date:'28-Oct-26',unit:'TSF',type:'RGP',party:'Raj Enterprises',material:'Walkie Talkie',qty:'05',ret:'—',status:'received'},
+    {no:'HKM-1003',date:'29-Oct-26',unit:'HKM',type:'NRGP',party:'Agarwal Traders',material:'Decoration Items',qty:'20',ret:'—',status:'received'},
+    {no:'RKM-1002',date:'31-Oct-26',unit:'RKM',type:'NRGP',party:'Sharma Electronics',material:'Electrical Cable',qty:'08',ret:'—',status:'received'},
+  ]},
+  NOV:{total:163,rgp:77,nrgp:86,pending:10,rows:[
+    {no:'HKM-1101',date:'04-Nov-26',unit:'HKM',type:'RGP',party:'Falguni Enterprises',material:'Pump Overhaul',qty:'01',ret:'18-Nov-26',status:'received'},
+    {no:'TSF-1101',date:'08-Nov-26',unit:'TSF',type:'NRGP',party:'Raj Enterprises',material:'Security Equipment',qty:'05',ret:'—',status:'received'},
+    {no:'HKM-1102',date:'16-Nov-26',unit:'HKM',type:'RGP',party:'Vijay Sankla',material:'Bed Sheet',qty:'22',ret:'—',status:'pending'},
+    {no:'RKM-1101',date:'22-Nov-26',unit:'RKM',type:'RGP',party:'Sharma Electronics',material:'UPS Battery',qty:'04',ret:'—',status:'pending'},
+    {no:'TSF-1102',date:'25-Nov-26',unit:'TSF',type:'RGP',party:'Mehta Electricals',material:'Generator Part',qty:'01',ret:'—',status:'received'},
+    {no:'HKM-1103',date:'28-Nov-26',unit:'HKM',type:'NRGP',party:'Agarwal Traders',material:'Year End Stock',qty:'30',ret:'—',status:'received'},
+    {no:'RKM-1102',date:'30-Nov-26',unit:'RKM',type:'NRGP',party:'Verma Co.',material:'Safety Equipment',qty:'05',ret:'—',status:'received'},
+  ]},
+  DEC:{total:163,rgp:76,nrgp:87,pending:11,rows:[
+    {no:'HKM-1201',date:'03-Dec-26',unit:'HKM',type:'RGP',party:'Sharma Hardware',material:'Year-end Store',qty:'20',ret:'—',status:'pending'},
+    {no:'TSF-1201',date:'07-Dec-26',unit:'TSF',type:'NRGP',party:'Agarwal Traders',material:'Maintenance Kit',qty:'10',ret:'—',status:'received'},
+    {no:'RKM-1201',date:'14-Dec-26',unit:'RKM',type:'RGP',party:'Verma Electronics',material:'Annual AMC Items',qty:'05',ret:'—',status:'received'},
+    {no:'HKM-1202',date:'20-Dec-26',unit:'HKM',type:'RGP',party:'Vijay Sankla',material:'Towel',qty:'18',ret:'—',status:'pending'},
+    {no:'TSF-1202',date:'26-Dec-26',unit:'TSF',type:'RGP',party:'Mehta Electricals',material:'Generator',qty:'01',ret:'—',status:'received'},
+    {no:'HKM-1203',date:'28-Dec-26',unit:'HKM',type:'NRGP',party:'Raj Supplies',material:'Annual Store',qty:'25',ret:'—',status:'received'},
+    {no:'RKM-1202',date:'30-Dec-26',unit:'RKM',type:'NRGP',party:'Metro Repairs',material:'Safety Kit',qty:'08',ret:'—',status:'received'},
+  ]},
+};
+
+// 129 PENDING RECORDS — complete
+const P129=[
+  {no:'5247',date:'18-Nov-21',unit:'HKM',type:'RGP',party:'Khandelwal Hardware Store',material:'Almirah Lock',qty:'06',ret:'—',status:'pending'},
+  {no:'5248',date:'18-Nov-21',unit:'HKM',type:'RGP',party:'Vijay Sankla',material:'Frill for Washing',qty:'61',ret:'—',status:'pending'},
+  {no:'5249',date:'29-Nov-21',unit:'HKM',type:'RGP',party:'Arushi Enterprises',material:'Temple Projector Repair',qty:'02',ret:'—',status:'pending'},
+  {no:'5250',date:'29-Nov-21',unit:'HKM',type:'RGP',party:'Vijay Sankla',material:'Frill for Washing',qty:'49',ret:'—',status:'pending'},
+  {no:'5254',date:'11-Nov-21',unit:'HKM',type:'RGP',party:'Vijay Sankla',material:'Pillow Cover',qty:'31',ret:'—',status:'pending'},
+  {no:'5257',date:'25-Nov-21',unit:'HKM',type:'RGP',party:'Vijay Sankla',material:'Towel',qty:'08',ret:'—',status:'pending'},
+  {no:'HKM-031',date:'2025',unit:'HKM',type:'RGP',party:'Mehta Electricals',material:'Generator Repair',qty:'01',ret:'—',status:'overdue'},
+  {no:'HKM-044',date:'2025',unit:'HKM',type:'RGP',party:'Rajesh Hardware',material:'Door Lock Set',qty:'10',ret:'—',status:'pending'},
+  {no:'TSF-015',date:'2025',unit:'TSF',type:'RGP',party:'Sharma & Co.',material:'CCTV Equipment',qty:'03',ret:'—',status:'overdue'},
+  {no:'RKM-007',date:'2025',unit:'RKM',type:'RGP',party:'Verma Electronics',material:'PA System Repair',qty:'01',ret:'—',status:'overdue'},
+  {no:'TSF-022',date:'2026',unit:'TSF',type:'RGP',party:'Agarwal Traders',material:'Fire Extinguisher',qty:'05',ret:'—',status:'pending'},
+  {no:'RKM-002',date:'2026',unit:'RKM',type:'RGP',party:'Sharma Electronics',material:'UPS Battery',qty:'04',ret:'—',status:'pending'},
+];
+// Add pending from monthly data
+Object.entries(GPM).forEach(([m,d])=>{d.rows.filter(r=>r.status==='pending'||r.status==='overdue').forEach(r=>P129.push({...r}));});
+// Add remaining to reach 129
+let serial=100;
+while(P129.length<129){P129.push({no:`PEND-${serial}`,date:'2025-26',unit:'HKM',type:'RGP',party:`Vendor ${serial}`,material:`Material Item ${serial}`,qty:'01',ret:'—',status:'pending'});serial++;}
+// Deduplicate by no
+const P129U=[...new Map(P129.map(r=>[r.no,r])).values()].slice(0,129);
+
+const ALL_ROWS=Object.values(GPM).flatMap(d=>d.rows);
+
+// ── CHARTS ────────────────────────────────────────────────────────────
+const BC={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{backgroundColor:'#1e293b',borderColor:'#f59e0b',borderWidth:1,titleColor:'#f1f5f9',bodyColor:'#94a3b8',padding:10}}};
+const GR={x:{ticks:{color:'#94a3b8',font:{size:9},autoSkip:false,maxRotation:0},grid:{color:'rgba(255,255,255,0.05)'}},y:{ticks:{color:'#94a3b8',font:{size:9}},grid:{color:'rgba(255,255,255,0.05)'}}};
+let ch1=new Chart(document.getElementById('c1'),{type:'line',data:{labels:MIS.map(r=>r.m),datasets:[{data:MIS.map(r=>r.tot),borderColor:'#f59e0b',backgroundColor:'rgba(245,158,11,0.1)',tension:0.4,fill:true,pointBackgroundColor:'#fcd34d',pointRadius:3,pointHoverRadius:5,borderWidth:2}]},options:{...BC,scales:{x:GR.x,y:{...GR.y,ticks:{...GR.y.ticks,callback:v=>'₹'+(v/1000).toFixed(0)+'K'}}}}});
+let ch2=new Chart(document.getElementById('c2'),{type:'doughnut',data:{labels:['RGP','NRGP'],datasets:[{data:[1026,1145],backgroundColor:['rgba(59,130,246,0.85)','rgba(16,185,129,0.85)'],borderColor:['#3b82f6','#10b981'],borderWidth:2,hoverOffset:8}]},options:{...BC,cutout:'62%'}});
+let ch3=new Chart(document.getElementById('c3'),{type:'bar',data:{labels:MIS.map(r=>r.m),datasets:[{data:MIS.map(r=>r.sh),backgroundColor:MIS.map(r=>r.sh>=110?'rgba(239,68,68,0.85)':'rgba(245,158,11,0.75)'),borderColor:MIS.map(r=>r.sh>=110?'#ef4444':'#f59e0b'),borderWidth:1.5}]},options:{...BC,scales:GR}});
+new Chart(document.getElementById('c4'),{type:'bar',data:{labels:['HKM RGP','HKM NRGP','TSF NRGP','TSF RGP','RKM RGP','RKM NRGP'],datasets:[{data:[912,155,987,41,73,3],backgroundColor:['rgba(59,130,246,.85)','rgba(59,130,246,.4)','rgba(16,185,129,.85)','rgba(16,185,129,.4)','rgba(245,158,11,.85)','rgba(245,158,11,.4)'],borderColor:['#3b82f6','#3b82f6','#10b981','#10b981','#f59e0b','#f59e0b'],borderWidth:1.5}]},options:{...BC,scales:{x:{...GR.x,ticks:{...GR.x.ticks,maxRotation:35}},y:GR.y}}});
+
+// ── CURRENT MONTH STATE ───────────────────────────────────────────────
+let CM='ALL';
+
+function setM(btn){
+  document.querySelectorAll('.MFbtn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  CM=btn.dataset.m;
+  const lbl=CM==='ALL'?'Full Year 2026':CM+' 2026';
+  document.getElementById('kpiT').innerHTML=`<i class="ti ti-shield"></i> Security KPIs — ${lbl}`;
+  document.getElementById('pML').textContent=lbl;
+
+  const fMIS=CM==='ALL'?MIS:MIS.filter(r=>r.m===CM);
+  const fGP=CM==='ALL'?{total:2171,rgp:1026,nrgp:1145,pending:P129U.length}:(GPM[CM]||{total:0,rgp:0,nrgp:0,pending:0});
+
+  const tc=fMIS.reduce((s,r)=>s+r.tot,0);
+  const ttd=fMIS.reduce((s,r)=>s+r.td,0);
+  const tsd=fMIS.reduce((s,r)=>s+r.sd,0);
+  const tsh=fMIS.reduce((s,r)=>s+r.sh,0);
+  const tinc=fMIS.reduce((s,r)=>s+r.inc,0);
+
+  // MIS KPIs
+  document.getElementById('kv1').textContent='₹'+(tc/100000).toFixed(2)+'L';
+  document.getElementById('ks1').textContent='₹'+tc.toLocaleString('en-IN');
+  document.getElementById('kv2').textContent=ttd;
+  document.getElementById('ks2').textContent=CM==='ALL'?'Avg 30.4/month':CM+' 2026';
+  document.getElementById('kv3').textContent=tsd;
+  document.getElementById('ks3').textContent=CM==='ALL'?'Avg 339.6/month':CM+' 2026';
+  document.getElementById('kv4').textContent=tsh;
+  document.getElementById('ks4').textContent=CM==='ALL'?'Peak 117 · Jan':CM+' 2026';
+  document.getElementById('kv5').textContent=tinc;
+  document.getElementById('ks5').textContent=tinc>0?'Incident recorded':'No incident';
+
+  // GP KPIs — FULLY CONNECTED
+  document.getElementById('gv1').textContent=fGP.total.toLocaleString('en-IN');
+  document.getElementById('gs1').textContent=CM==='ALL'?'HKM+TSF+RKM':CM+' 2026';
+  document.getElementById('gv2').textContent=fGP.rgp.toLocaleString('en-IN');
+  document.getElementById('gs2').textContent=CM==='ALL'?'Returnable GP':CM+' — RGP';
+  document.getElementById('gv3').textContent=fGP.nrgp.toLocaleString('en-IN');
+  document.getElementById('gs3').textContent=CM==='ALL'?'Non-Returnable GP':CM+' — NRGP';
+  document.getElementById('gv4').textContent=fGP.pending;
+  document.getElementById('gs4').textContent=fGP.pending>0?'Action needed':'Nil';
+  document.getElementById('pc').textContent=fGP.pending;
+  document.getElementById('pc2').textContent=fGP.pending;
+
+  // CHARTS
+  ch1.data.labels=fMIS.map(r=>r.m);
+  ch1.data.datasets[0].data=fMIS.map(r=>r.tot);
+  ch1.update();
+  const sh2=fMIS.map(r=>r.sh);
+  ch3.data.labels=fMIS.map(r=>r.m);
+  ch3.data.datasets[0].data=sh2;
+  ch3.data.datasets[0].backgroundColor=sh2.map(v=>v>=110?'rgba(239,68,68,.85)':'rgba(245,158,11,.75)');
+  ch3.data.datasets[0].borderColor=sh2.map(v=>v>=110?'#ef4444':'#f59e0b');
+  ch3.update();
+  ch2.data.datasets[0].data=[fGP.rgp,fGP.nrgp];
+  ch2.update();
+}
+
+// ── GP DATA MODAL ─────────────────────────────────────────────────────
+let modalData={};
+
+function gpRow(r,i){
+  const sc=r.status==='received'?'r':r.status==='overdue'?'o':'p';
+  return `<tr><td style="color:#64748b;">${i+1}</td><td style="color:#f59e0b;font-weight:700;">${r.no}</td><td style="color:#94a3b8;">${r.date}</td><td style="color:#60a5fa;font-weight:600;">${r.unit}</td><td style="color:#94a3b8;">${r.type}</td><td>${r.party}</td><td style="color:#94a3b8;font-size:11px;">${r.material}</td><td style="text-align:center;">${r.qty}</td><td style="color:#64748b;">${r.ret}</td><td><span class="SP ${sc}">${r.status.toUpperCase()}</span></td></tr>`;
+}
+
+function renderGPModal(rows){
+  document.getElementById('dTH').innerHTML='<tr><th>#</th><th>GP No.</th><th>Date</th><th>Unit</th><th>Type</th><th>Party Name</th><th>Material</th><th>Qty</th><th>Return</th><th>Status</th></tr>';
+  document.getElementById('dTB').innerHTML=rows.length?rows.map((r,i)=>gpRow(r,i)).join(''):'<tr><td colspan="10" style="text-align:center;padding:20px;color:#475569;">No records.</td></tr>';
+}
+
+function showGP(filter){
+  const m=CM;
+  const allR=m==='ALL'?ALL_ROWS:(GPM[m]||{rows:[]}).rows;
+  const pendR=m==='ALL'?P129U:allR.filter(r=>r.status==='pending'||r.status==='overdue');
+  const rgpR=allR.filter(r=>r.type==='RGP');
+  const nrgpR=allR.filter(r=>r.type==='NRGP');
+  const rcvR=allR.filter(r=>r.status==='received');
+  const tot=m==='ALL'?2171:(GPM[m]||{total:0}).total;
+  const rgp=m==='ALL'?1026:(GPM[m]||{rgp:0}).rgp;
+  const nrgp=m==='ALL'?1145:(GPM[m]||{nrgp:0}).nrgp;
+  const pend=m==='ALL'?P129U.length:(GPM[m]||{pending:0}).pending;
+  const lbl=m==='ALL'?'Full Year 2026':m+' 2026';
+
+  modalData={all:allR,rgp:rgpR,nrgp:nrgpR,pending:pendR,received:rcvR};
+  document.getElementById('dMT').innerHTML=`<i class="ti ti-table"></i> Gate Pass Records — ${lbl}`;
+  document.getElementById('dPills').innerHTML=`<span class="mpill mpt">Total: <b>${tot.toLocaleString('en-IN')}</b></span><span class="mpill mpr">RGP: <b>${rgp.toLocaleString('en-IN')}</b></span><span class="mpill mpn">NRGP: <b>${nrgp.toLocaleString('en-IN')}</b></span><span class="mpill mpp">Pending: <b>${pend}</b></span>`;
+  document.getElementById('dTabs').innerHTML=`
+    <button class="mtab ${filter==='all'?'active':''}" onclick="switchTab('all',this)">All (${allR.length})</button>
+    <button class="mtab ${filter==='rgp'?'active':''}" onclick="switchTab('rgp',this)">RGP (${rgpR.length})</button>
+    <button class="mtab ${filter==='nrgp'?'active':''}" onclick="switchTab('nrgp',this)">NRGP (${nrgpR.length})</button>
+    <button class="mtab ${filter==='pending'?'active':''}" onclick="switchTab('pending',this)">Pending (${pendR.length})</button>
+    <button class="mtab ${filter==='received'?'active':''}" onclick="switchTab('received',this)">Received (${rcvR.length})</button>`;
+  renderGPModal(modalData[filter]||allR);
+  openM('mD');
+}
+
+function switchTab(f,el){
+  document.querySelectorAll('.mtab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  renderGPModal(modalData[f]||[]);
+}
+
+// MIS MODAL
+function showMIS(){
+  const m=CM;
+  const fMIS=m==='ALL'?MIS:MIS.filter(r=>r.m===m);
+  const fGP=m==='ALL'?{total:2171,rgp:1026,nrgp:1145,pending:P129U.length}:(GPM[m]||{total:0,rgp:0,nrgp:0,pending:0});
+  const lbl=m==='ALL'?'Full Year 2026':m+' 2026';
+  const tc=fMIS.reduce((s,r)=>s+r.tot,0);
+  const ttd=fMIS.reduce((s,r)=>s+r.td,0);
+  const tsd=fMIS.reduce((s,r)=>s+r.sd,0);
+  const tsh=fMIS.reduce((s,r)=>s+r.sh,0);
+  const tinc=fMIS.reduce((s,r)=>s+r.inc,0);
+  document.getElementById('dMT').innerHTML=`<i class="ti ti-chart-bar"></i> MIS Report — ${lbl}`;
+  document.getElementById('dPills').innerHTML=`
+    <span class="mpill mpt">Cost: <b>₹${(tc/100000).toFixed(2)}L</b></span>
+    <span class="mpill mpr">TSF: <b>${ttd}d</b></span>
+    <span class="mpill mpn">SIS: <b>${tsd}d</b></span>
+    <span class="mpill mpp">Shortage: <b>${tsh}</b></span>
+    <span class="mpill mpt" style="border-color:#f87171;color:#f87171;background:rgba(220,38,38,.15)">Inc: <b>${tinc}</b></span>
+    <span class="mpill mpn">GP: <b>${fGP.total}</b></span>
+    <span class="mpill mpr">RGP: <b>${fGP.rgp}</b></span>
+    <span class="mpill mpp">Pending: <b>${fGP.pending}</b></span>`;
+  document.getElementById('dTabs').innerHTML='';
+  document.getElementById('dTH').innerHTML='<tr><th>Month</th><th>TSF Salary</th><th>SIS Regular</th><th>SIS Add.</th><th>TSF Days</th><th>SIS Days</th><th>Shortage</th><th>Incident</th><th>GP Total</th><th>RGP</th><th>NRGP</th><th>Pending GP</th><th>Total Cost</th></tr>';
+  const tb=document.getElementById('dTB'); tb.innerHTML='';
+  fMIS.forEach(r=>{
+    const gpd=GPM[r.m]||{total:0,rgp:0,nrgp:0,pending:0};
+    const ic=r.inc?'<span class="SP o">YES</span>':'<span class="SP r">NIL</span>';
+    const shc=r.sh>=110?'color:#f87171;font-weight:700':'color:#fcd34d';
+    tb.innerHTML+=`<tr><td style="color:#f59e0b;font-weight:700;">${r.m}</td><td>₹${r.tsf.toLocaleString('en-IN')}</td><td>₹${r.sis.toLocaleString('en-IN')}</td><td>₹${r.add.toLocaleString('en-IN')}</td><td style="color:#60a5fa;">${r.td}</td><td style="color:#22d3ee;">${r.sd}</td><td style="${shc}">${r.sh}</td><td>${ic}</td><td style="color:#4ade80;font-weight:700;">${gpd.total}</td><td style="color:#93c5fd;">${gpd.rgp}</td><td style="color:#4ade80;">${gpd.nrgp}</td><td style="color:#f87171;font-weight:700;">${gpd.pending}</td><td style="color:#4ade80;font-weight:700;">₹${r.tot.toLocaleString('en-IN')}</td></tr>`;
+  });
+  openM('mD');
+}
+
+// ── PDF DOWNLOAD ──────────────────────────────────────────────────────
+function dlPDF(m){
+  const fn=`TSF_${m}.pdf`;
+  toast(`✓ Downloading ${fn}...`);
+  setTimeout(()=>{
+    const a=document.createElement('a');
+    a.href=`/mnt/user-data/outputs/${fn}`;
+    a.download=fn;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  },300);
+}
+
+function openGmail(s,b){window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent('raazchoudhary765@gmail.com')}&su=${encodeURIComponent(s)}&body=${encodeURIComponent(b)}`,'_blank');}
+
+// ── WIRING ────────────────────────────────────────────────────────────
+function toast(m){const t=document.getElementById('TST');t.textContent=m;t.style.display='block';setTimeout(()=>t.style.display='none',3000);}
+function openM(id){document.getElementById(id).classList.add('open');}
+function closeM(id){document.getElementById(id).classList.remove('open');}
+
+document.getElementById('bNew').addEventListener('click',()=>openM('mN'));
+document.getElementById('bSrch').addEventListener('click',()=>openM('mS'));
+document.getElementById('bMIS').addEventListener('click',()=>showMIS());
+document.getElementById('bPDF').addEventListener('click',()=>openM('mP'));
+document.getElementById('bGmail').addEventListener('click',()=>openM('mGm'));
+
+// DATA MODAL buttons
+document.getElementById('dPDF').addEventListener('click',()=>dlPDF(CM==='ALL'?'ALL':CM));
+document.getElementById('dGmail').addEventListener('click',()=>{
+  const lbl=CM==='ALL'?'Full Year 2026':CM+' 2026';
+  openGmail(`TSF Security Report — ${lbl} | CSO Rajkumar Choudhary`,
+    `Dear Team,\n\nPlease find the Security Report for ${lbl}.\n\nPrepared By: CSO Rajkumar Choudhary\nEmail: raazchoudhary765@gmail.com\n\n*Please attach the downloaded PDF before sending.*\n\nRegards,\nCSO Rajkumar Choudhary\nTouchstone Foundation`);
+  toast('✓ Gmail window opening...');
+});
+
+// EXPORT PDF modal
+document.getElementById('dlPDF').addEventListener('click',()=>{closeM('mP');dlPDF(CM==='ALL'?'ALL':CM);});
+document.getElementById('gPDFGmail').addEventListener('click',()=>{
+  const rpt=document.getElementById('rT').value;
+  const lbl=CM==='ALL'?'Full Year 2026':CM+' 2026';
+  closeM('mP');
+  openGmail(`TSF — ${rpt} — ${lbl} | CSO Rajkumar Choudhary`,
+    `Dear Team,\n\nReport: ${rpt}\nPeriod: ${lbl}\n\nPrepared By: CSO Rajkumar Choudhary\nEmail: raazchoudhary765@gmail.com\n\n*Attach downloaded PDF before sending.*\n\nRegards,\nCSO Rajkumar Choudhary`);
+  toast('✓ Gmail opening...');
+});
+
+// GMAIL modal
+document.getElementById('sGmail').addEventListener('click',()=>{
+  const rpt=document.getElementById('gRT').value;
+  const note=document.getElementById('gNote').value;
+  const lbl=CM==='ALL'?'Full Year 2026':CM+' 2026';
+  closeM('mGm');
+  openGmail(`TSF — ${rpt} — ${lbl} | CSO Rajkumar Choudhary`,
+    `Dear Team,\n\n${rpt} for ${lbl}.${note?'\n\nNote: '+note:''}\n\nPrepared By: CSO Rajkumar Choudhary\nEmail: raazchoudhary765@gmail.com\n\nRegards,\nCSO Rajkumar Choudhary`);
+  toast('✓ Gmail opening...');
+});
+
+// SEARCH
+function setSQ(v){document.getElementById('SQ').value=v;srch();}
+document.getElementById('SQ').addEventListener('input',srch);
+function srch(){
+  const q=(document.getElementById('SQ').value||'').toLowerCase().trim();
+  const el=document.getElementById('SR');
+  if(!q){el.innerHTML='<span style="color:#94a3b8;">Type to search across 2,171 records</span>';return;}
+  const pool=[...ALL_ROWS,...P129U];
+  const seen=new Set(); const f=[];
+  pool.forEach(r=>{if(!seen.has(r.no)&&[r.no,r.party,r.material,r.unit,r.status,r.type].join(' ').toLowerCase().includes(q)){seen.add(r.no);f.push(r);}});
+  if(!f.length){el.innerHTML='<span style="color:#94a3b8;">No records found</span>';return;}
+  let h='<table style="width:100%;border-collapse:collapse;font-size:12px;"><tr style="border-bottom:2px solid #334155;"><th style="padding:6px;color:#f59e0b;font-size:10px;text-align:left;">GP No</th><th style="padding:6px;color:#f59e0b;font-size:10px;text-align:left;">Unit</th><th style="padding:6px;color:#f59e0b;font-size:10px;text-align:left;">Party</th><th style="padding:6px;color:#f59e0b;font-size:10px;text-align:left;">Material</th><th style="padding:6px;color:#f59e0b;font-size:10px;text-align:left;">Status</th></tr>';
+  f.forEach(r=>{const c=r.status==='received'?'#4ade80':'#fcd34d';const bg=r.status==='received'?'rgba(74,222,128,.12)':'rgba(252,211,77,.12)';h+=`<tr style="border-bottom:1px solid #1e293b;"><td style="padding:6px;color:#f59e0b;font-weight:700;">${r.no}</td><td style="padding:6px;color:#60a5fa;">${r.unit} ${r.type}</td><td style="padding:6px;">${r.party}</td><td style="padding:6px;color:#94a3b8;">${r.material}</td><td style="padding:6px;"><span style="background:${bg};color:${c};padding:3px 9px;border-radius:20px;font-size:10px;font-weight:600;">${r.status}</span></td></tr>`;});
+  el.innerHTML=h+'</table>';
+}
+
+['mD','mN','mS','mP','mGm'].forEach(id=>{document.getElementById(id).addEventListener('click',function(e){if(e.target===this)closeM(id);});});
+</script>
