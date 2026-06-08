@@ -635,12 +635,17 @@ function showMIS(){
 }
 
 // ── PDF DOWNLOAD ──────────────────────────────────────────────────────
-alert("PDF Function Started");function dlPDF(m){
+function dlPDF(m){
+
+  alert("PDF Function Started");
+  alert(typeof window.jspdf);
 
   const { jsPDF } = window.jspdf;
 
   const pdf = new jsPDF();
 
+  ...
+}
   pdf.setFontSize(18);
   pdf.text("Touchstone Foundation", 20, 20);
 
