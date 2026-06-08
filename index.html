@@ -11,7 +11,6 @@
 <link rel="apple-touch-icon" href="icon-192.png">
  <meta name="mobile-web-app-capable" content="yes">
   <title>TSF Security Dashboard</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
 <style>
@@ -504,11 +503,7 @@ function setM(btn){
   document.getElementById('pML').textContent=lbl;
 
   const fMIS=CM==='ALL'?MIS:MIS.filter(r=>r.m===CM);
- 
-
-const fGP = CM==='ALL'
- ? LIVE_GP
- : (GPM[CM]||{total:0,rgp:0,nrgp:0,pending:0});
+  const fGP=CM==='ALL'?{total:2171,rgp:1026,nrgp:1145,pending:P129U.length}:(GPM[CM]||{total:0,rgp:0,nrgp:0,pending:0});
 
   const tc=fMIS.reduce((s,r)=>s+r.tot,0);
   const ttd=fMIS.reduce((s,r)=>s+r.td,0);
@@ -577,9 +572,7 @@ function showGP(filter){
   const tot=m==='ALL'?2171:(GPM[m]||{total:0}).total;
   const rgp=m==='ALL'?1026:(GPM[m]||{rgp:0}).rgp;
   const nrgp=m==='ALL'?1145:(GPM[m]||{nrgp:0}).nrgp;
-  const pend = CM==='ALL'
-  ? LIVE_GP.pending
-  : (GPM[m]||{pending:0}).pending;
+  const pend=m==='ALL'?P129U.length:(GPM[m]||{pending:0}).pending;
   const lbl=m==='ALL'?'Full Year 2026':m+' 2026';
 
   modalData={all:allR,rgp:rgpR,nrgp:nrgpR,pending:pendR,received:rcvR};
@@ -636,48 +629,16 @@ function showMIS(){
 
 // ── PDF DOWNLOAD ──────────────────────────────────────────────────────
 function dlPDF(m){
-
-  alert("PDF Function Started");
-  alert(typeof window.jspdf);
-
-  const { jsPDF } = window.jspdf;
-
-  const pdf = new jsPDF();
-
-  ...
-}
-  pdf.setFontSize(18);
-  pdf.text("Touchstone Foundation", 20, 20);
-
-  pdf.setFontSize(14);
-  pdf.text("Security Dashboard Report", 20, 35);
-
-  pdf.setFontSize(11);
-  pdf.text("Prepared By : CSO Rajkumar Choudhary", 20, 50);
-  pdf.text("Report Type : " + m, 20, 60);
-  pdf.text("Generated : " + new Date().toLocaleString(), 20, 70);
-
-  pdf.line(20, 80, 190, 80);
-
-  pdf.text("MIS REPORT",20,95);
-
-pdf.text("Total Cost : " + document.getElementById("kv1").innerText,20,110);
-pdf.text("TSF Days : " + document.getElementById("kv2").innerText,20,120);
-pdf.text("SIS Days : " + document.getElementById("kv3").innerText,20,130);
-pdf.text("Staff Shortage : " + document.getElementById("kv4").innerText,20,140);
-pdf.text("Incidents : " + document.getElementById("kv5").innerText,20,150);
-
-pdf.line(20,160,190,160);
-
-pdf.text("GATE PASS REPORT",20,175);
-
-pdf.text("Total Gate Passes : " + document.getElementById("gv1").innerText,20,190);
-pdf.text("Total RGP : " + document.getElementById("gv2").innerText,20,200);
-pdf.text("Total NRGP : " + document.getElementById("gv3").innerText,20,210);
-pdf.text("Pending GP : " + document.getElementById("gv4").innerText,20,220);
-  pdf.save(`TSF_${m}.pdf`);
-
-  toast("✓ PDF Downloaded Successfully");
+  const fn=`TSF_${m}.pdf`;
+  toast(`✓ Downloading ${fn}...`);
+  setTimeout(()=>{
+    const a=document.createElement('a');
+    a.href=`/mnt/user-data/outputs/${fn}`;
+    a.download=fn;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  },300);
 }
 
 function openGmail(s,b){window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent('raazchoudhary765@gmail.com')}&su=${encodeURIComponent(s)}&body=${encodeURIComponent(b)}`,'_blank');}
@@ -757,14 +718,7 @@ async function loadLiveDashboard() {
     );
 
     const data = await res.json();
-LIVE_GP = {
-  total:data.totalGP,
-  rgp:data.rgp,
-  nrgp:data.nrgp,
-  pending:data.pending
-};
 
-document.querySelector('[data-m="ALL"]').click();
     document.getElementById("gv1").textContent =
       data.totalGP.toLocaleString();
 
