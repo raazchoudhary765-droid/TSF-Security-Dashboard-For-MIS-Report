@@ -576,7 +576,9 @@ function showGP(filter){
   const tot=m==='ALL'?2171:(GPM[m]||{total:0}).total;
   const rgp=m==='ALL'?1026:(GPM[m]||{rgp:0}).rgp;
   const nrgp=m==='ALL'?1145:(GPM[m]||{nrgp:0}).nrgp;
-  const pend=m==='ALL'?P129U.length:(GPM[m]||{pending:0}).pending;
+  const pend = CM==='ALL'
+  ? LIVE_GP.pending
+  : (GPM[m]||{pending:0}).pending;
   const lbl=m==='ALL'?'Full Year 2026':m+' 2026';
 
   modalData={all:allR,rgp:rgpR,nrgp:nrgpR,pending:pendR,received:rcvR};
