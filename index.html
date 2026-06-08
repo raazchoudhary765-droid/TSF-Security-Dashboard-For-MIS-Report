@@ -636,16 +636,32 @@ function showMIS(){
 
 // ── PDF DOWNLOAD ──────────────────────────────────────────────────────
 function dlPDF(m){
-  const fn=`TSF_${m}.pdf`;
-  toast(`✓ Downloading ${fn}...`);
-  setTimeout(()=>{
-    const a=document.createElement('a');
-    a.href=`/mnt/user-data/outputs/${fn}`;
-    a.download=fn;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-  },300);
+
+  const { jsPDF } = window.jspdf;
+
+  const pdf = new jsPDF();
+
+  pdf.setFontSize(18);
+  pdf.text("Touchstone Foundation", 20, 20);
+
+  pdf.setFontSize(14);
+  pdf.text("Security Dashboard Report", 20, 35);
+
+  pdf.setFontSize(11);
+  pdf.text("Prepared By : CSO Rajkumar Choudhary", 20, 50);
+  pdf.text("Report Type : " + m, 20, 60);
+  pdf.text("Generated : " + new Date().toLocaleString(), 20, 70);
+
+  pdf.line(20, 80, 190, 80);
+
+  pdf.text("Total Gate Passes : " + document.getElementById("gv1").innerText, 20, 95);
+  pdf.text("Total RGP : " + document.getElementById("gv2").innerText, 20, 105);
+  pdf.text("Total NRGP : " + document.getElementById("gv3").innerText, 20, 115);
+  pdf.text("Pending GP : " + document.getElementById("gv4").innerText, 20, 125);
+
+  pdf.save(`TSF_${m}.pdf`);
+
+  toast("✓ PDF Downloaded Successfully");
 }
 
 function openGmail(s,b){window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent('raazchoudhary765@gmail.com')}&su=${encodeURIComponent(s)}&body=${encodeURIComponent(b)}`,'_blank');}
