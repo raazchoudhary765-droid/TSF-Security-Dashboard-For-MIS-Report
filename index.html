@@ -709,6 +709,51 @@ if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("./service-worker.js");
   });
 }
+// ===== LIVE GOOGLE SHEET API =====
+
+async function loadLiveDashboard() {
+  try {
+    const res = await fetch(
+      "https://script.google.com/macros/s/AKfycbyvEGDLNwQwdC8TWkUcmySdJtH2MHEuq7qTjYJ53pGT1Qdas4ziNhNPfQPx6LpApX3Lfw/exec"
+    );
+
+    const data = await res.json();
+
+    document.getElementById("gv1").textContent =
+      data.totalGP.toLocaleString();
+
+    document.getElementById("gv2").textContent =
+      data.rgp.toLocaleString();
+
+    document.getElementById("gv3").textContent =
+      data.nrgp.toLocaleString();
+
+    document.getElementById("gv4").textContent =
+      data.pending.toLocaleString();
+
+    document.getElementById("kv1").textContent =
+      "₹" + (data.totalCost / 100000).toFixed(2) + "L";
+
+    document.getElementById("kv2").textContent =
+      data.tsfDays.toLocaleString();
+
+    document.getElementById("kv3").textContent =
+      data.sisDays.toLocaleString();
+
+    document.getElementById("kv4").textContent =
+      data.shortage.toLocaleString();
+
+    document.getElementById("kv5").textContent =
+      data.incidents.toLocaleString();
+
+    console.log("Live Dashboard Loaded", data);
+
+  } catch (e) {
+    console.error("API Error", e);
+  }
+}
+
+window.addEventListener("load", loadLiveDashboard);
 </script>
 </body>
 </html>
