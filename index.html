@@ -480,8 +480,7 @@ Object.entries(GPM).forEach(([m,d])=>{d.rows.filter(r=>r.status==='pending'||r.s
 let serial=100;
 while(P129.length<129){P129.push({no:`PEND-${serial}`,date:'2025-26',unit:'HKM',type:'RGP',party:`Vendor ${serial}`,material:`Material Item ${serial}`,qty:'01',ret:'—',status:'pending'});serial++;}
 // Deduplicate by no
-const P129U=[...new Map(P129.map(r=>[r.no,r])).values()].slice(0,129);
-
+let P129U=[...new Map(P129.map(r=>[r.no,r])).values()].slice(0,129);
 let ALL_ROWS = [];
 
 // ── CHARTS ────────────────────────────────────────────────────────────
