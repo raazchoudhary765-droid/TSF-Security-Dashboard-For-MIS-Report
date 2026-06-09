@@ -732,7 +732,11 @@ async function loadLiveDashboard() {
     );
 
     const data = await res.json();
+ALL_ROWS = data.rows || [];
 
+P129U = (data.rows || []).filter(r =>
+  r.finalStatus === "Open"
+);
     document.getElementById("gv1").textContent =
       data.totalGP.toLocaleString();
 
