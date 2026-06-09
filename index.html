@@ -567,17 +567,34 @@ function showGP(filter){
   const allR=m==='ALL'?ALL_ROWS:(GPM[m]||{rows:[]}).rows;
  const pendR = m==='ALL'
  ? P129U
- : allR.filter(r => r.finalStatus === 'Open');
-  const rgpR = allR.filter(r => r.gpType === 'RGP');
+ : allR.filter(r =>
+      r.finalStatus === 'Open' ||
+      r.returnStatus === 'Pending' ||
+      r.status === 'pending' ||
+      r.status === 'overdue'
+   );
+
+const rgpR = allR.filter(r =>
+   (r.gpType || r.type) === 'RGP'
+);
+
+const rcvR = allR.filter(r =>
+   r.finalStatus === 'Closed' ||
+   r.returnStatus === 'Received' ||
+   r.status === 'received'
+);
+  const rgpR = allR.filter(r =>
+   (r.gpType || r.type) === 'RGP'
+);
   const tot = m==='ALL' ? ALL_ROWS.length : (GPM[m]||{total:0}).total;
 
 const rgp = m==='ALL'
-  ? ALL_ROWS.filter(r=>r.gpType==='RGP').length
-  : (GPM[m]||{rgp:0}).rgp;
+ ? ALL_ROWS.filter(r => (r.gpType || r.type) === 'RGP').length
+ : (GPM[m]||{rgp:0}).rgp;
 
 const nrgp = m==='ALL'
-  ? ALL_ROWS.filter(r=>r.gpType==='NRGP').length
-  : (GPM[m]||{nrgp:0}).nrgp;
+ ? ALL_ROWS.filter(r => (r.gpType || r.type) === 'NRGP').length
+ : (GPM[m]||{nrgp:0}).nrgp;
 
   const pend=m==='ALL'?P129U.length:(GPM[m]||{pending:0}).pending;
   const lbl=m==='ALL'?'Full Year 2026':m+' 2026';
