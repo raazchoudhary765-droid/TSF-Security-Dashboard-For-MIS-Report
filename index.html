@@ -583,9 +583,7 @@ const rcvR = allR.filter(r =>
    r.returnStatus === 'Received' ||
    r.status === 'received'
 );
-  const rgpR = allR.filter(r =>
-   (r.gpType || r.type) === 'RGP'
-);
+  
   const tot = m==='ALL' ? ALL_ROWS.length : (GPM[m]||{total:0}).total;
 
 const rgp = m==='ALL'
