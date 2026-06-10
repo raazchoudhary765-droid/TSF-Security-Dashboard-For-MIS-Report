@@ -789,7 +789,11 @@ P129U = (data.rows || []).filter(r =>
 
     document.getElementById("gv4").textContent =
       data.pending.toLocaleString();
+document.getElementById("pc").textContent =
+    data.pending.toLocaleString();
 
+document.getElementById("pc2").textContent =
+    data.pending.toLocaleString();
     document.getElementById("kv1").textContent =
       "₹" + (data.totalCost / 100000).toFixed(2) + "L";
 
