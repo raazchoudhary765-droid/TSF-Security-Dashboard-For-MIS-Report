@@ -731,7 +731,21 @@ function srch(){
   if(!q){el.innerHTML='<span style="color:#94a3b8;">Type to search across 2,171 records</span>';return;}
   const pool=[...ALL_ROWS,...P129U];
   const seen=new Set(); const f=[];
-  pool.forEach(r=>{if(!seen.has(r.no)&&[r.no,r.party,r.material,r.unit,r.status,r.type].join(' ').toLowerCase().includes(q)){seen.add(r.no);f.push(r);}});
+ pool.forEach(r=>{
+  if(!seen.has(r.gpNo || r.no)){
+    if([
+      r.gpNo,
+      r.party,
+      r.material,
+      r.uom,
+      r.finalStatus,
+      r.gpType
+    ].join(' ').toLowerCase().includes(q)){
+      seen.add(r.gpNo || r.no);
+      f.push(r);
+    }
+  }
+});
   if(!f.length){el.innerHTML='<span style="color:#94a3b8;">No records found</span>';return;}
   let h='<table style="width:100%;border-collapse:collapse;font-size:12px;"><tr style="border-bottom:2px solid #334155;"><th style="padding:6px;color:#f59e0b;font-size:10px;text-align:left;">GP No</th><th style="padding:6px;color:#f59e0b;font-size:10px;text-align:left;">Unit</th><th style="padding:6px;color:#f59e0b;font-size:10px;text-align:left;">Party</th><th style="padding:6px;color:#f59e0b;font-size:10px;text-align:left;">Material</th><th style="padding:6px;color:#f59e0b;font-size:10px;text-align:left;">Status</th></tr>';
   f.forEach(r=>{const c=r.status==='received'?'#4ade80':'#fcd34d';const bg=r.status==='received'?'rgba(74,222,128,.12)':'rgba(252,211,77,.12)';h+=`<tr style="border-bottom:1px solid #1e293b;"><td style="padding:6px;color:#f59e0b;font-weight:700;">${r.no}</td><td style="padding:6px;color:#60a5fa;">${r.unit} ${r.type}</td><td style="padding:6px;">${r.party}</td><td style="padding:6px;color:#94a3b8;">${r.material}</td><td style="padding:6px;"><span style="background:${bg};color:${c};padding:3px 9px;border-radius:20px;font-size:10px;font-weight:600;">${r.status}</span></td></tr>`;});
