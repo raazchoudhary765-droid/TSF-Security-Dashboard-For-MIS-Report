@@ -219,8 +219,8 @@ overflow:hidden;
 
     <div class="AL">
       <i class="ti ti-alert-circle" style="font-size:18px;color:#f87171;flex-shrink:0;" aria-hidden="true"></i>
-      <span><strong style="color:#f87171;">Overdue Alert:</strong> <span id="pc">129</span> gate passes pending — immediate follow-up required.</span>
-      <button class="ALB" onclick="showGP('pending')"><i class="ti ti-eye" aria-hidden="true"></i> View All <span id="pc2">129</span> Pending ↗</button>
+      <span><strong style="color:#f87171;">Overdue Alert:</strong> <span id="pc">0</span> gate passes pending — immediate follow-up required.</span>
+      <button class="ALB" onclick="showGP('pending')"><i class="ti ti-eye" aria-hidden="true"></i> View All <span id="pc">0</span> Pending ↗</button>
     </div>
 
     <div class="ST"><i class="ti ti-chart-line" aria-hidden="true"></i> Analytics — 2026</div>
@@ -773,7 +773,10 @@ async function loadLiveDashboard() {
 ALL_ROWS = data.rows || [];
 
 P129U = (data.rows || []).filter(r =>
-  r.finalStatus === "Open"
+    r.finalStatus === "Open" ||
+    r.returnStatus === "Pending" ||
+    r.status === "pending" ||
+    r.status === "overdue"
 );
     document.getElementById("gv1").textContent =
       data.totalGP.toLocaleString();
