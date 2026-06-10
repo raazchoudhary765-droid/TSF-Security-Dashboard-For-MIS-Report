@@ -252,12 +252,13 @@ overflow:hidden;
 <!-- MODAL: NEW GP -->
 <div class="MB" id="mN"><div class="MD sm">
   <div class="MH"><span class="MT"><i class="ti ti-plus" aria-hidden="true"></i> New Gate Pass</span><button class="MX" onclick="closeM('mN')"><i class="ti ti-x" aria-hidden="true"></i></button></div>
-  <div class="FR"><div class="FG"><label>GP Type</label><select><option>RGP – Returnable</option><option>NRGP – Non Returnable</option></select></div><div class="FG"><label>Unit</label><select><option>HKM</option><option>TSF</option><option>RKM</option></select></div></div>
-  <div class="FR"><div class="FG"><label>GP Number</label><input placeholder="Auto-generated"/></div><div class="FG"><label>Date</label><input type="date"/></div></div>
-  <div class="FR"><div class="FG"><label>Out Time</label><input type="time"/></div><div class="FG"><label>Return Date</label><input type="date"/></div></div>
-  <div class="FG"><label>Party Name</label><input placeholder="Vendor / party name"/></div>
-  <div class="FR"><div class="FG"><label>Material</label><input placeholder="Item description"/></div><div class="FG"><label>Quantity</label><input placeholder="05 nos"/></div></div>
-  <div class="FR"><div class="FG"><label>Authorised By</label><input placeholder="Name / Dept"/></div><div class="FG"><label>Security Guard</label><input placeholder="Guard name"/></div></div>
+  <div class="FR"><div class="FG"><label>GP Type</label>
+<select id="gpType"><option>RGP – Returnable</option><option>NRGP – Non Returnable</option></select></div><div class="FG"><label>Unit</label><select><option>HKM</option><option>TSF</option><option>RKM</option></select></div></div>
+  <div class="FR"><div class="FG"><label>GP Number</label><input id="gpNo" placeholder="Auto-generated"/></div><div class="FG"><label>Date</label><input id="gpDate" type="date"/></div></div>
+  <div class="FR"><div class="FG"><label>Out Time</label><input id="outTime" type="time"/></div><div class="FG"><label>Return Date</label><input id="returnDate" type="date"/></div></div>
+  <div class="FG"><label>Party Name</label><input id="partyName" placeholder="Vendor / party name"/></div>
+  <div class="FR"><div class="FG"><label>Material</label><input id="material" placeholder="Item description"/></div><div class="FG"><label>Quantity</label><input id="quantity" placeholder="05 nos"/></div></div>
+  <div class="FR"><div class="FG"><label>Authorised By</label><input id="authorisedBy" placeholder="Name / Dept"/></div><div class="FG"><label>Security Guard</label><input id="securityGuard" placeholder="Guard name"/></div></div>
   <div class="MF2"><button class="MBX ca" onclick="saveGP()"><i class="ti ti-check" aria-hidden="true"></i> Save</button></div>
 </div></div>
 
