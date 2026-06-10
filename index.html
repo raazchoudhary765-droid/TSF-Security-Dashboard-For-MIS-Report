@@ -477,9 +477,7 @@ const P129=[
 // Add pending from monthly data
 Object.entries(GPM).forEach(([m,d])=>{d.rows.filter(r=>r.status==='pending'||r.status==='overdue').forEach(r=>P129.push({...r}));});
 // Add remaining to reach 129
-let serial=100;
-while(P129.length<129){P129.push({no:`PEND-${serial}`,date:'2025-26',unit:'HKM',type:'RGP',party:`Vendor ${serial}`,material:`Material Item ${serial}`,qty:'01',ret:'—',status:'pending'});serial++;}
-// Deduplicate by no
+
 let P129U=[...new Map(P129.map(r=>[(r.gpNo || r.no),r])).values()];
 let ALL_ROWS = [];
 
