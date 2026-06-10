@@ -585,7 +585,9 @@ const rcvR = allR.filter(r =>
 );
   
   const tot = m==='ALL' ? ALL_ROWS.length : (GPM[m]||{total:0}).total;
-
+const nrgpR = allR.filter(r =>
+  (r.gpType || r.type) === 'NRGP'
+);
 const rgp = m==='ALL'
  ? ALL_ROWS.filter(r => (r.gpType || r.type) === 'RGP').length
  : (GPM[m]||{rgp:0}).rgp;
