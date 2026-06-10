@@ -258,7 +258,7 @@ overflow:hidden;
   <div class="FG"><label>Party Name</label><input placeholder="Vendor / party name"/></div>
   <div class="FR"><div class="FG"><label>Material</label><input placeholder="Item description"/></div><div class="FG"><label>Quantity</label><input placeholder="05 nos"/></div></div>
   <div class="FR"><div class="FG"><label>Authorised By</label><input placeholder="Name / Dept"/></div><div class="FG"><label>Security Guard</label><input placeholder="Guard name"/></div></div>
-  <div class="MF2"><button class="MBX ca" onclick="closeM('mN')">Cancel</button><button class="MBX sv" onclick="closeM('mN');toast('✓ Gate Pass saved!')"><i class="ti ti-check" aria-hidden="true"></i> Save</button></div>
+  <div class="MF2"><button class="MBX ca" onclick="saveGP()"><i class="ti ti-check" aria-hidden="true"></i> Save</button></div>
 </div></div>
 
 <!-- MODAL: SEARCH -->
@@ -814,8 +814,10 @@ document.getElementById("pc2").textContent =
   } catch (e) {
     console.error("API Error", e);
   }
+async function saveGP(){
+  alert("saveGP function working");
 }
-
+}
 window.addEventListener("load", loadLiveDashboard);
 </script>
 </body>
