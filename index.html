@@ -901,9 +901,25 @@ alert(JSON.stringify(data,null,2));
   const result = await res.json();
 
   if(result.success){
-    alert("✅ Gate Pass Saved");
+    alert(
+  "✅ Gate Pass Saved Successfully\n\n" +
+  "GP No : " + data.gpNo + "\n" +
+  "Party : " + data.party
+);
+  
+   document.getElementById("partyName").value = "";
+document.getElementById("securityGuard").value = "";
+
+const table = document.getElementById("materialTable");
+
+while(table.rows.length > 2){
+  table.deleteRow(2);
+}
+
+table.rows[1].querySelector(".matName").value = "";
+table.rows[1].querySelector(".matQty").value = "";
     closeM("mN");
-    loadLiveDashboard();
+   loadLiveDashboard();
   }else{
     alert("❌ Save Failed");
   }
