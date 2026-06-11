@@ -260,6 +260,17 @@ overflow:hidden;
   <div class="FR"><div class="FG"><label>GP Number</label><input id="gpNo" placeholder="Auto-generated"/></div><div class="FG"><label>Date</label><input id="gpDate" type="date"/></div></div>
   <div class="FR"><div class="FG"><label>Out Time</label><input id="outTime" type="time"/></div><div class="FG"><label>Return Date</label><input id="returnDate" type="date"/></div></div>
   <div class="FG"><label>Party Name</label><input id="partyName" placeholder="Vendor / party name"/></div>
+ <div class="FR">
+  <div class="FG">
+    <label>Driver Name</label>
+    <input id="driverName" placeholder="Driver Name">
+  </div>
+
+  <div class="FG">
+    <label>Vehicle No</label>
+    <input id="vehicleNo" placeholder="RJ14AB1234">
+  </div>
+</div>
   <div class="FG">
   <label>Materials</label>
 
@@ -923,15 +934,18 @@ for(const m of materials){
 
 }
   const data = {
-    gpType: document.getElementById("gpType").value,
-    gpNo: document.getElementById("gpNo").value,
-    date: document.getElementById("gpDate").value,
-    returnDate: document.getElementById("returnDate").value,
-    party: document.getElementById("partyName").value,
-    preparedBy: document.getElementById("securityGuard").value,
-    materials: materials
-  };
+  gpType: document.getElementById("gpType").value,
+  gpNo: document.getElementById("gpNo").value,
+  date: document.getElementById("gpDate").value,
+  returnDate: document.getElementById("returnDate").value,
+  party: document.getElementById("partyName").value,
 
+  driverName: document.getElementById("driverName").value,
+  vehicleNo: document.getElementById("vehicleNo").value,
+
+  preparedBy: document.getElementById("securityGuard").value,
+  materials: materials
+};
   const res = await fetch(
     "https://script.google.com/macros/s/AKfycbyvEGDLNwQwdC8TWkUcmySdJtH2MHEuq7qTjYJ53pGT1Qdas4ziNhNPfQPx6LpApX3Lfw/exec",
     {
