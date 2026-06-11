@@ -901,12 +901,7 @@ alert(JSON.stringify(data,null,2));
   const result = await res.json();
 
   if(result.success){
-    alert(
-  "✅ Gate Pass Saved Successfully\n\n" +
-  "GP No : " + data.gpNo + "\n" +
-  "Party : " + data.party
-);
-  
+      
    document.getElementById("partyName").value = "";
 document.getElementById("securityGuard").value = "";
 
