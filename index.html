@@ -892,7 +892,36 @@ function removeRow(btn){
     }
 
   });
+// Validation
 
+if(!document.getElementById("partyName").value.trim()){
+  alert("❌ Party Name Required");
+  return;
+}
+
+if(!document.getElementById("securityGuard").value.trim()){
+  alert("❌ Security Guard Required");
+  return;
+}
+
+if(materials.length === 0){
+  alert("❌ Add At Least One Material");
+  return;
+}
+
+for(const m of materials){
+
+  if(!m.material){
+    alert("❌ Material Name Required");
+    return;
+  }
+
+  if(!m.qty || Number(m.qty) <= 0){
+    alert("❌ Valid Qty Required");
+    return;
+  }
+
+}
   const data = {
     gpType: document.getElementById("gpType").value,
     gpNo: document.getElementById("gpNo").value,
