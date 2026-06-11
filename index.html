@@ -889,7 +889,7 @@ function removeRow(btn){
     preparedBy: document.getElementById("securityGuard").value,
     materials: materials
   };
-
+alert(JSON.stringify(data,null,2));
   const res = await fetch(
     "https://script.google.com/macros/s/AKfycbyvEGDLNwQwdC8TWkUcmySdJtH2MHEuq7qTjYJ53pGT1Qdas4ziNhNPfQPx6LpApX3Lfw/exec",
     {
