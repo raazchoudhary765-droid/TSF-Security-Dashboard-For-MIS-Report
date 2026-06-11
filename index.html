@@ -691,13 +691,22 @@ function dlPDF(m){
   pdf.text("Report Type : " + m,20,60);
   pdf.text("Generated : " + new Date().toLocaleString(),20,70);
 
-  pdf.line(20,80,190,80);
+  pdf.text("MIS REPORT",20,95);
 
-  pdf.text("Total Gate Passes : " + document.getElementById('gv1').innerText,20,95);
-  pdf.text("Total RGP : " + document.getElementById('gv2').innerText,20,105);
-  pdf.text("Total NRGP : " + document.getElementById('gv3').innerText,20,115);
-  pdf.text("Pending GP : " + document.getElementById('gv4').innerText,20,125);
+pdf.text("Total Cost : " + document.getElementById("kv1").innerText,20,110);
+pdf.text("TSF Days : " + document.getElementById("kv2").innerText,20,120);
+pdf.text("SIS Days : " + document.getElementById("kv3").innerText,20,130);
+pdf.text("Staff Shortage : " + document.getElementById("kv4").innerText,20,140);
+pdf.text("Incidents : " + document.getElementById("kv5").innerText,20,150);
 
+pdf.line(20,160,190,160);
+
+pdf.text("GATE PASS REPORT",20,175);
+
+pdf.text("Total Gate Passes : " + document.getElementById("gv1").innerText,20,190);
+pdf.text("Total RGP : " + document.getElementById("gv2").innerText,20,200);
+pdf.text("Total NRGP : " + document.getElementById("gv3").innerText,20,210);
+pdf.text("Pending GP : " + document.getElementById("gv4").innerText,20,220);
   pdf.save(`TSF_${m}.pdf`);
 }
 function openGmail(s,b){window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent('raazchoudhary765@gmail.com')}&su=${encodeURIComponent(s)}&body=${encodeURIComponent(b)}`,'_blank');}
