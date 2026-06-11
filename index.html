@@ -862,15 +862,32 @@ function removeRow(btn){
 }
  async function saveGP(){
 
+  const materials = [];
+
+  document.querySelectorAll("#materialTable tr").forEach((row,index)=>{
+
+    if(index === 0) return;
+
+    const mat = row.querySelector(".matName")?.value.trim();
+    const qty = row.querySelector(".matQty")?.value.trim();
+
+    if(mat && qty){
+      materials.push({
+        material: mat,
+        qty: qty
+      });
+    }
+
+  });
+
   const data = {
     gpType: document.getElementById("gpType").value,
     gpNo: document.getElementById("gpNo").value,
     date: document.getElementById("gpDate").value,
     returnDate: document.getElementById("returnDate").value,
     party: document.getElementById("partyName").value,
-    material: document.getElementById("material").value,
-    qty: document.getElementById("quantity").value,
-    preparedBy: document.getElementById("securityGuard").value
+    preparedBy: document.getElementById("securityGuard").value,
+    materials: materials
   };
 
   const res = await fetch(
@@ -891,7 +908,6 @@ function removeRow(btn){
     alert("❌ Save Failed");
   }
 }
-
 window.addEventListener("load", loadLiveDashboard);
 </script>
 </body>
