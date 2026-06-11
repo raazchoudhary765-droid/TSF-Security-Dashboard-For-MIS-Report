@@ -872,19 +872,7 @@ function removeRow(btn){
     row.remove();
   }
 }
- function generateGPNo(){
-
-  const gpType = document.getElementById("gpType").value;
-
-  if(gpType.includes("NRGP")){
-      document.getElementById("gpNo").value =
-      "NRGP-" + Date.now().toString().slice(-4);
-  }else{
-      document.getElementById("gpNo").value =
-      "RGP-" + Date.now().toString().slice(-4);
-  }
-
-}
+ 
  async function saveGP(){
 
   const materials = [];
@@ -944,10 +932,7 @@ table.rows[1].querySelector(".matQty").value = "";
     alert("❌ Save Failed");
   }
 }
-window.addEventListener("load", () => {
-  loadLiveDashboard();
-  generateGPNo();
-});
+window.addEventListener("load", loadLiveDashboard);
 </script>
 </body>
 </html>
