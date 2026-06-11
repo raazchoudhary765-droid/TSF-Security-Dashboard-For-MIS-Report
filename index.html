@@ -257,7 +257,30 @@ overflow:hidden;
   <div class="FR"><div class="FG"><label>GP Number</label><input id="gpNo" placeholder="Auto-generated"/></div><div class="FG"><label>Date</label><input id="gpDate" type="date"/></div></div>
   <div class="FR"><div class="FG"><label>Out Time</label><input id="outTime" type="time"/></div><div class="FG"><label>Return Date</label><input id="returnDate" type="date"/></div></div>
   <div class="FG"><label>Party Name</label><input id="partyName" placeholder="Vendor / party name"/></div>
-  <div class="FR"><div class="FG"><label>Material</label><input id="material" placeholder="Item description"/></div><div class="FG"><label>Quantity</label><input id="quantity" placeholder="05 nos"/></div></div>
+  <div class="FG">
+  <label>Materials</label>
+
+  <table id="materialTable" style="width:100%">
+    <tr>
+      <th>Material</th>
+      <th>Qty</th>
+      <th>Action</th>
+    </tr>
+
+    <tr>
+      <td><input class="matName" placeholder="Material Name"></td>
+      <td><input class="matQty" placeholder="Qty"></td>
+      <td><button type="button" onclick="removeRow(this)">❌</button></td>
+    </tr>
+  </table>
+
+  <button
+      type="button"
+      class="MBX gm"
+      onclick="addMaterialRow()">
+      ➕ Add Material
+  </button>
+</div>
   <div class="FR"><div class="FG"><label>Authorised By</label><input id="authorisedBy" placeholder="Name / Dept"/></div><div class="FG"><label>Security Guard</label><input id="securityGuard" placeholder="Guard name"/></div></div>
   <div class="MF2"><button class="MBX ca" onclick="saveGP()"><i class="ti ti-check" aria-hidden="true"></i> Save</button></div>
 </div></div>
@@ -816,7 +839,28 @@ document.getElementById("pc2").textContent =
     console.error("API Error", e);
   }
 }
-async function saveGP(){
+function addMaterialRow(){
+
+  const table = document.getElementById("materialTable");
+
+  const row = table.insertRow(-1);
+
+  row.innerHTML = `
+    <td><input class="matName" placeholder="Material Name"></td>
+    <td><input class="matQty" placeholder="Qty"></td>
+    <td><button type="button" onclick="removeRow(this)">❌</button></td>
+  `;
+}
+
+function removeRow(btn){
+
+  const row = btn.parentNode.parentNode;
+
+  if(document.querySelectorAll("#materialTable tr").length > 2){
+    row.remove();
+  }
+}
+ async function saveGP(){
 
   const data = {
     gpType: document.getElementById("gpType").value,
