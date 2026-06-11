@@ -253,7 +253,7 @@ overflow:hidden;
 <div class="MB" id="mN"><div class="MD sm">
   <div class="MH"><span class="MT"><i class="ti ti-plus" aria-hidden="true"></i> New Gate Pass</span><button class="MX" onclick="closeM('mN')"><i class="ti ti-x" aria-hidden="true"></i></button></div>
   <div class="FR"><div class="FG"><label>GP Type</label>
-<select id="gpType" onchange="generateGPNo()">
+<select id="gpType" onchange="fetchGPNo()">
   <option>RGP – Returnable</option>
   <option>NRGP – Non Returnable</option>
 </select></div><div class="FG"><label>Unit</label><select><option>HKM</option><option>TSF</option><option>RKM</option></select></div></div>
@@ -975,7 +975,23 @@ table.rows[1].querySelector(".matQty").value = "";
     alert("❌ Save Failed");
   }
 }
-window.addEventListener("load", loadLiveDashboard);
+ async function fetchGPNo(){
+
+  const gpType = document.getElementById("gpType").value;
+
+  const res = await fetch(
+    "https://script.google.com/macros/s/AKfycbyvEGDLNwQwdC8TWkUcmySdJtH2MHEuq7qTjYJ53pGT1Qdas4ziNhNPfQPx6LpApX3Lfw/exec?action=nextGPNo&gpType=" +
+    encodeURIComponent(gpType)
+  );
+
+  const gpNo = await res.text();
+
+  document.getElementById("gpNo").value = gpNo;
+}
+window.addEventListener("load", () => {
+  loadLiveDashboard();
+  fetchGPNo();
+});
 </script>
 </body>
 </html>
