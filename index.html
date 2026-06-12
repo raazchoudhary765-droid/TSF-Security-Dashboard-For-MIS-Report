@@ -256,7 +256,7 @@ overflow:hidden;
 <select id="gpType" onchange="fetchGPNo()">
   <option>RGP – Returnable</option>
   <option>NRGP – Non Returnable</option>
-</select></div><div class="FG"><label>Unit</label><select><option>HKM</option><option>TSF</option><option>RKM</option></select></div></div>
+</select></div><div class="FG"><label>Unit</label><select id="unit" onchange="fetchGPNo()"><option>HKM</option><option>TSF</option><option>RKM</option></select></div></div>
   <div class="FR"><div class="FG"><label>GP Number</label><input id="gpNo" placeholder="Auto-generated"/></div><div class="FG"><label>Date</label><input id="gpDate" type="date"/></div></div>
   <div class="FR"><div class="FG"><label>Out Time</label><input id="outTime" type="time"/></div><div class="FG"><label>Return Date</label><input id="returnDate" type="date"/></div></div>
   <div class="FG"><label>Party Name</label><input id="partyName" placeholder="Vendor / party name"/></div>
@@ -939,7 +939,7 @@ for(const m of materials){
   date: document.getElementById("gpDate").value,
   returnDate: document.getElementById("returnDate").value,
   party: document.getElementById("partyName").value,
-
+unit: document.getElementById("unit").value,
   driverName: document.getElementById("driverName").value,
   vehicleNo: document.getElementById("vehicleNo").value,
 
