@@ -600,6 +600,7 @@ function gpRow(r,i){
   <td style="color:#94a3b8;">${r.gpType || r.type || '-'}</td>
   <td>${r.party || '-'}</td>
   <td>${r.driverName || r.driver || '-'}</td>
+  <td>${r.vehicleNo || r.vehicle || '-'}</td>
   <td style="color:#94a3b8;font-size:11px;">${r.material || '-'}</td>
   <td style="text-align:center;">${r.qty || '-'}</td>
   <td style="color:#64748b;">${r.returnStatus || r.ret || '-'}</td>
@@ -609,12 +610,12 @@ function gpRow(r,i){
 
 function renderGPModal(rows){
   document.getElementById('dTH').innerHTML =
-  '<tr><th>#</th><th>GP No.</th><th>Date</th><th>Unit</th><th>Type</th><th>Party Name</th><th>Driver Name</th><th>Material</th><th>Qty</th><th>Return</th><th>Status</th></tr>';
+  '<tr><th>#</th><th>GP No.</th><th>Date</th><th>Unit</th><th>Type</th><th>Party Name</th><th>Driver Name</th><th>Vehicle No</th><th>Material</th><th>Qty</th><th>Return</th><th>Status</th></tr>';
 
   document.getElementById('dTB').innerHTML =
     rows.length
       ? rows.map((r,i)=>gpRow(r,i)).join('')
-      : '<tr><td colspan="11" style="text-align:center">No Data</td></tr>';
+      : '<tr><td colspan="12" style="text-align:center">No Data</td></tr>';
 }
 
 function showGP(filter){
