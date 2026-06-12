@@ -978,11 +978,13 @@ table.rows[1].querySelector(".matQty").value = "";
  async function fetchGPNo(){
 
   const gpType = document.getElementById("gpType").value;
-
+const unit = document.getElementById("unit").value;
   const res = await fetch(
-    "https://script.google.com/macros/s/AKfycbyvEGDLNwQwdC8TWkUcmySdJtH2MHEuq7qTjYJ53pGT1Qdas4ziNhNPfQPx6LpApX3Lfw/exec?action=nextGPNo&gpType=" +
-    encodeURIComponent(gpType)
-  );
+"https://script.google.com/macros/s/AKfycbyvEGDLNwQwdC8TWkUcmySdJtH2MHEuq7qTjYJ53pGT1Qdas4ziNhNPfQPx6LpApX3Lfw/exec?action=nextGPNo&gpType="
++ encodeURIComponent(gpType)
++ "&unit="
++ encodeURIComponent(unit)
+);
 
   const gpNo = await res.text();
 
