@@ -674,12 +674,7 @@ function gpRow(r,i){
 
 function renderGPModal(rows){
   document.getElementById('dTH').innerHTML =
-  '<tr><th>#</th><th>GP No.</th><th>Date</th><th>Unit</th><th>Type</th><th>Party Name</th><th>Driver Name</th><th>Vehicle No</th><th>Material</th<th>Qty</th>
-<th>Authorised By</th>
-<th>Security Guard</th>
-<th>Return</th>
-<th>Status</th>p</tr>';
-
+'<tr><th>#</th><th>GP No.</th><th>Date</th><th>Unit</th><th>Type</th><th>Party Name</th><th>Driver Name</th><th>Vehicle No</th><th>Material</th><th>Qty</th><th>Authorised By</th><th>Security Guard</th><th>Return</th><th>Status</th></tr>';
   document.getElementById('dTB').innerHTML =
     rows.length
       ? rows.map((r,i)=>gpRow(r,i)).join('')
