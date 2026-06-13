@@ -882,7 +882,13 @@ document.getElementById('dGmail').addEventListener('click',()=>{
 });
 
 // EXPORT PDF modal
-document.getElementById('dlPDF').addEventListener('click',()=>{closeM('mP');dlPDF(CM==='ALL'?'ALL':CM);});
+document.getElementById('d1PDF').addEventListener('click',()=>{
+   closeM('mP');
+
+   const rpt = document.getElementById('rT').value;
+
+   d1PDF(rpt);
+});
 document.getElementById('gPDFGmail').addEventListener('click',()=>{
   const rpt=document.getElementById('rT').value;
   const lbl=CM==='ALL'?'Full Year 2026':CM+' 2026';
