@@ -165,8 +165,41 @@ overflow:hidden;
 .MIS-T td{padding:7px 8px;border-bottom:1px solid #1e293b;color:#f1f5f9;}
 .MIS-T tr:nth-child(even) td{background:rgba(255,255,255,.02);}
 .TST{display:none;position:fixed;bottom:28px;left:50%;transform:translateX(-50%);background:#166534;border:2px solid #4ade80;color:#fff;padding:11px 26px;border-radius:8px;font-size:13px;font-weight:700;z-index:99999;white-space:nowrap;box-shadow:0 4px 20px rgba(74,222,128,.3);}
-</style>
+#loader{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#0f172a;
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:99999;
+}
 
+.loaderBox{
+text-align:center;
+}
+
+.loaderTitle{
+color:#f59e0b;
+font-size:28px;
+font-weight:700;
+margin-bottom:12px;
+}
+
+.loaderText{
+color:#f1f5f9;
+font-size:16px;
+}
+</style>
+<div id="loader">
+  <div class="loaderBox">
+    <div class="loaderTitle">TOUCHSTONE FOUNDATION</div>
+    <div class="loaderText">Loading Security Dashboard...</div>
+  </div>
+</div>
 <div class="W">
   <div class="HDR">
     <div class="HDR-L">
@@ -886,9 +919,11 @@ document.getElementById("pc2").textContent =
       data.incidents.toLocaleString();
 
     console.log("Live Dashboard Loaded", data);
+   document.getElementById('loader').style.display='none';
 document.querySelector('.W').style.opacity='1';
   } catch (e) {
     console.error("API Error", e);
+   document.getElementById('loader').style.display='none';
    document.querySelector('.W').style.opacity='1';
   }
 }
