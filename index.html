@@ -15,7 +15,16 @@
 <body>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
-.W{background:#0f172a;color:#f1f5f9;font-family:sans-serif;font-size:13px;min-height:100vh;}
+ .W{
+background:#0f172a;
+color:#f1f5f9;
+font-family:sans-serif;
+font-size:13px;
+min-height:100vh;
+
+opacity:0;
+transition:opacity .3s ease;
+}
 .HDR{background:linear-gradient(135deg,#1e1200 0%,#7c4d00 40%,#d4880a 60%,#7c4d00 80%,#1e1200 100%);padding:14px 20px;border-bottom:3px solid #f59e0b;display:flex;align-items:center;justify-content:space-between;gap:12px;}
 .HDR-L{display:flex;align-items:center;gap:12px;}
 .SH{
@@ -877,9 +886,10 @@ document.getElementById("pc2").textContent =
       data.incidents.toLocaleString();
 
     console.log("Live Dashboard Loaded", data);
-
+document.querySelector('.W').style.opacity='1';
   } catch (e) {
     console.error("API Error", e);
+   document.querySelector('.W').style.opacity='1';
   }
 }
 function addMaterialRow(){
