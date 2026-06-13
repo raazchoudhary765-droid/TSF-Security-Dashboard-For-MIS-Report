@@ -824,13 +824,20 @@ if(m==="NRGP"){
  rows = ALL_ROWS.filter(r => (r.gpType || r.type || "").includes("NRGP"));
 }
 
-if(m==="Pending"){
+if(m==="PENDING"){
  rows = ALL_ROWS.filter(r =>
-   r.finalStatus==="Open" ||
-   r.returnStatus==="Pending"
+   (r.status || "").toLowerCase() === "pending" ||
+   (r.status || "").toLowerCase() === "overdue"
  );
 }
-
+ if(m==="RECEIVED"){
+ rows = ALL_ROWS.filter(r =>
+   (r.status || "").toLowerCase() === "received"
+ );
+}
+console.log("REPORT=",m);
+console.log("ROWS AFTER FILTER=",rows.length);
+console.log(rows[0]);
 pdf.addPage();
 
 pdf.setFontSize(14);
