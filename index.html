@@ -890,6 +890,30 @@ alternateRowStyles:{
 });
 
 }
+const pageCount = pdf.internal.getNumberOfPages();
+
+for(let i=1;i<=pageCount;i++){
+
+  pdf.setPage(i);
+
+  pdf.setFontSize(8);
+  pdf.setTextColor(120);
+
+  pdf.text(
+    "Prepared By : CSO Rajkumar Choudhary",
+    14,
+    205
+  );
+
+  pdf.text(
+    `Page ${i} of ${pageCount}`,
+    260,
+    205
+  );
+
+}
+
+
  pdf.save(`TSF_${m}.pdf`);
 }
 function openGmail(s,b){window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent('raazchoudhary765@gmail.com')}&su=${encodeURIComponent(s)}&body=${encodeURIComponent(b)}`,'_blank');}
