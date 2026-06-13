@@ -929,10 +929,8 @@ document.querySelector('.W').style.opacity='1';
 }
 
 let autoRefreshTimer = setInterval(() => {
-   console.log("AUTO REFRESH RUNNING...");
- toast("🔄 Auto Refresh Running");
    loadLiveDashboard();
-}, 10000);
+}, 60000);
 
 function addMaterialRow(){
 
