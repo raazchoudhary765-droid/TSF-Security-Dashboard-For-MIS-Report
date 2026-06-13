@@ -772,8 +772,7 @@ function dlPDF(m){
 
   const { jsPDF } = window.jspdf;
 
-  const pdf = new jsPDF();
-
+  const pdf = new jsPDF("landscape","mm","a4");
   pdf.setFontSize(18);
   pdf.text("Touchstone Foundation",20,20);
 
