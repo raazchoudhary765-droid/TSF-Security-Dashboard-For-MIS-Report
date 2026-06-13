@@ -833,6 +833,24 @@ pdf.setFontSize(14);
 pdf.text("Gate Pass Register",14,15);
 
 pdf.autoTable({
+ styles:{
+  fontSize:8,
+  cellPadding:2,
+  overflow:'linebreak'
+},
+
+columnStyles:{
+  0:{cellWidth:10},   // #
+  1:{cellWidth:25},   // GP No
+  2:{cellWidth:22},   // Date
+  3:{cellWidth:25},   // Type
+  4:{cellWidth:40},   // Party
+  5:{cellWidth:28},   // Driver
+  6:{cellWidth:28},   // Vehicle
+  7:{cellWidth:35},   // Material
+  8:{cellWidth:15},   // Qty
+  9:{cellWidth:20}    // Status
+},
  startY:20,
  head:[[
    "#",
