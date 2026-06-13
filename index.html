@@ -927,6 +927,12 @@ document.querySelector('.W').style.opacity='1';
    document.querySelector('.W').style.opacity='1';
   }
 }
+ }
+
+let autoRefreshTimer = setInterval(() => {
+   loadLiveDashboard();
+}, 10000);
+
 function addMaterialRow(){
 
   const table = document.getElementById("materialTable");
