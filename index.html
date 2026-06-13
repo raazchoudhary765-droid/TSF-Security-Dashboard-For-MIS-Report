@@ -773,11 +773,17 @@ function dlPDF(m){
   const { jsPDF } = window.jspdf;
 
   const pdf = new jsPDF("landscape","mm","a4");
-  pdf.setFontSize(18);
-  pdf.text("Touchstone Foundation",20,20);
+  pdf.setFillColor(15,23,42);
+pdf.rect(0,0,297,25,'F');
 
-  pdf.setFontSize(14);
-  pdf.text("Security Dashboard Report",20,35);
+pdf.setTextColor(255,255,255);
+pdf.setFontSize(18);
+pdf.text("TOUCHSTONE FOUNDATION",14,12);
+
+pdf.setFontSize(10);
+pdf.text("Security Dashboard Register Report",14,20);
+
+pdf.setTextColor(0,0,0);
 
   pdf.setFontSize(11);
   pdf.text("Prepared By : CSO Rajkumar Choudhary",20,50);
