@@ -893,7 +893,7 @@ alternateRowStyles:{
 const pageCount = pdf.internal.getNumberOfPages();
 
 for(let i=1;i<=pageCount;i++){
-
+const pageHeight = pdf.internal.pageSize.getHeight();
   pdf.setPage(i);
 
   pdf.setFontSize(8);
@@ -901,14 +901,14 @@ for(let i=1;i<=pageCount;i++){
 
   pdf.text(
     "Prepared By : CSO Rajkumar Choudhary",
-    14,
-    205
+    12,
+pageHeight - 12
   );
 
   pdf.text(
     `Page ${i} of ${pageCount}`,
     260,
-    205
+pageHeight - 12
   );
 
 }
