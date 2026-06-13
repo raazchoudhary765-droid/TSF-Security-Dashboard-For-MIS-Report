@@ -409,6 +409,7 @@ font-size:16px;
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
  <script>
 // CLOCK
 function tick(){
@@ -800,7 +801,63 @@ pdf.text("Total Gate Passes : " + document.getElementById("gv1").innerText,20,19
 pdf.text("Total RGP : " + document.getElementById("gv2").innerText,20,200);
 pdf.text("Total NRGP : " + document.getElementById("gv3").innerText,20,210);
 pdf.text("Pending GP : " + document.getElementById("gv4").innerText,20,220);
-  pdf.save(`TSF_${m}.pdf`);
+ // FULL GATE PASS REGISTER
+
+if (window.jspdf && pdf.autoTable && ALL_ROWS && ALL_ROWS.length){
+
+let rows = ALL_ROWS;
+
+if(m==="RGP"){
+ rows = ALL_ROWS.filter(r => (r.gpType || r.type || "").includes("RGP"));
+}
+
+if(m==="NRGP"){
+ rows = ALL_ROWS.filter(r => (r.gpType || r.type || "").includes("NRGP"));
+}
+
+if(m==="Pending"){
+ rows = ALL_ROWS.filter(r =>
+   r.finalStatus==="Open" ||
+   r.returnStatus==="Pending"
+ );
+}
+
+pdf.addPage();
+
+pdf.setFontSize(14);
+pdf.text("Gate Pass Register",14,15);
+
+pdf.autoTable({
+ startY:20,
+ head:[[
+   "#",
+   "GP No",
+   "Date",
+   "Type",
+   "Party",
+   "Driver",
+   "Vehicle",
+   "Material",
+   "Qty",
+   "Status"
+ ]],
+
+ body: rows.map((r,i)=>[
+   i+1,
+   r.gpNo || "-",
+   (r.date || "").toString().split("T")[0],
+   r.gpType || r.type || "-",
+   r.party || "-",
+   r.driverName || r.driver || "-",
+   r.vehicleNo || r.vehicle || "-",
+   r.material || "-",
+   r.qty || "-",
+   r.finalStatus || r.status || "OPEN"
+ ])
+});
+
+}
+ pdf.save(`TSF_${m}.pdf`);
 }
 function openGmail(s,b){window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent('raazchoudhary765@gmail.com')}&su=${encodeURIComponent(s)}&body=${encodeURIComponent(b)}`,'_blank');}
 
