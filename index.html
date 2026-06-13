@@ -789,16 +789,44 @@ pdf.setTextColor(0,0,0);
   pdf.text("Prepared By : CSO Rajkumar Choudhary",20,50);
   pdf.text("Report Type : " + m,20,60);
   pdf.text("Generated : " + new Date().toLocaleString(),20,70);
-
+/*
   pdf.text("MIS REPORT",20,95);
 
 pdf.text("Total Cost : " + document.getElementById("kv1").innerText,20,110);
 pdf.text("TSF Days : " + document.getElementById("kv2").innerText,20,120);
 pdf.text("SIS Days : " + document.getElementById("kv3").innerText,20,130);
 pdf.text("Staff Shortage : " + document.getElementById("kv4").innerText,20,140);
-pdf.text("Incidents : " + document.getElementById("kv5").innerText,20,150);
+pdf.text("Incidents : " + document.getElementById("kv5").innerText,20,150); 
+*/
+pdf.setFontSize(16);
+pdf.setTextColor(31,119,180);
+pdf.text("MIS SUMMARY",20,95);
 
-pdf.line(20,160,190,160);
+pdf.setTextColor(255,255,255);
+pdf.setFillColor(31,119,180);
+
+pdf.roundedRect(20,105,45,20,3,3,'F');
+pdf.text("Cost",25,113);
+pdf.text(document.getElementById("kv1").innerText,25,121);
+
+pdf.roundedRect(75,105,45,20,3,3,'F');
+pdf.text("TSF Days",80,113);
+pdf.text(document.getElementById("kv2").innerText,80,121);
+
+pdf.roundedRect(130,105,45,20,3,3,'F');
+pdf.text("SIS Days",135,113);
+pdf.text(document.getElementById("kv3").innerText,135,121);
+
+pdf.roundedRect(185,105,45,20,3,3,'F');
+pdf.text("Shortage",190,113);
+pdf.text(document.getElementById("kv4").innerText,190,121);
+
+pdf.roundedRect(240,105,45,20,3,3,'F');
+pdf.text("Incidents",245,113);
+pdf.text(document.getElementById("kv5").innerText,245,121);
+
+pdf.setTextColor(0,0,0);
+ pdf.line(20,160,190,160);
 
 pdf.text("GATE PASS REPORT",20,175);
 
