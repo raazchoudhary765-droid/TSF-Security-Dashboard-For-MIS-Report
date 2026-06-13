@@ -825,10 +825,10 @@ if(m==="NRGP"){
 }
 
 if(m==="PENDING"){
- rows = ALL_ROWS.filter(r =>
-   (r.status || "").toLowerCase() === "pending" ||
-   (r.status || "").toLowerCase() === "overdue"
- );
+ rows = ALL_ROWS.filter(r => {
+   console.log("STATUS=", r.status);
+   return true;
+ });
 }
  if(m==="RECEIVED"){
  rows = ALL_ROWS.filter(r =>
