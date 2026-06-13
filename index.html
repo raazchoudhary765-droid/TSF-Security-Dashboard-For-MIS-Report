@@ -825,10 +825,12 @@ if(m==="NRGP"){
 }
 
 if(m==="PENDING"){
- rows = ALL_ROWS.filter(r => {
-   console.log("STATUS=", r.status);
-   return true;
- });
+  console.log("ALL_ROWS SAMPLE=", ALL_ROWS.slice(0,10));
+
+  rows = ALL_ROWS.filter(r =>
+    (r.status || "").toLowerCase() === "pending" ||
+    (r.status || "").toLowerCase() === "overdue"
+  );
 }
  if(m==="RECEIVED"){
  rows = ALL_ROWS.filter(r =>
