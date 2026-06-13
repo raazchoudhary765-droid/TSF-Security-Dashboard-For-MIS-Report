@@ -1160,11 +1160,13 @@ for(const m of materials){
   date: document.getElementById("gpDate").value,
   returnDate: document.getElementById("returnDate").value,
   party: document.getElementById("partyName").value,
-unit: document.getElementById("unit").value,
+  unit: document.getElementById("unit").value,
   driverName: document.getElementById("driverName").value,
   vehicleNo: document.getElementById("vehicleNo").value,
 
-  preparedBy: document.getElementById("securityGuard").value,
+  authorisedBy: document.getElementById("authorisedBy").value,
+  securityGuard: document.getElementById("securityGuard").value,
+
   materials: materials
 };
   const res = await fetch(
@@ -1177,9 +1179,10 @@ unit: document.getElementById("unit").value,
 
   const result = await res.json();
 
-  if(result.success){
-      
-   document.getElementById("partyName").value = "";
+ if(result.success){
+
+document.getElementById("partyName").value = "";
+document.getElementById("authorisedBy").value = "";
 document.getElementById("securityGuard").value = "";
 
 const table = document.getElementById("materialTable");
