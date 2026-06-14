@@ -647,7 +647,12 @@ function setM(btn){
 
 // ── GP DATA MODAL ─────────────────────────────────────────────────────
 let modalData={};
+function formatDT(v){
+  if(!v) return '-';
 
+  return new Date(v).toLocaleString('en-IN');
+}
+}
 function gpRow(r,i){
   const st=(r.finalStatus || r.returnStatus || r.status || '').toLowerCase(),
         sc=st.includes('closed')||st.includes('received')?'r':st.includes('overdue')?'o':'p';
@@ -667,9 +672,9 @@ function gpRow(r,i){
 <td>${r.authorisedBy || r.authorizedBy || '-'}</td>
 <td>${r.securityGuard || r.guard || '-'}</td>
 <td>${r.createdBy || '-'}</td>
-<td>${r.createdOn || '-'}</td>
+<td>${formatDT(r.createdOn)}</td>
 <td>${r.updatedBy || '-'}</td>
-<td>${r.updatedOn || '-'}</td>
+<td>${formatDT(r.updatedOn)}</td>
 
 <td style="color:#64748b;">${r.returnStatus || r.ret || '-'}</td>
 <td><span class="SP ${sc}">${(r.finalStatus || r.status || 'OPEN').toUpperCase()}</span></td>
