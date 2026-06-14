@@ -1159,7 +1159,19 @@ for(const m of materials){
 
 }
  const userEmail = "raazchoudhary765@gmail.com";
-const currentTime = new Date().toISOString();
+const now = new Date();
+
+const currentTime =
+  now.toLocaleDateString('en-GB', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric'
+  }) +
+  ' ' +
+  now.toLocaleTimeString('en-IN', {
+    hour: '2-digit',
+    minute: '2-digit'
+  });
 const data = {
   gpType: document.getElementById("gpType").value,
   gpNo: document.getElementById("gpNo").value,
