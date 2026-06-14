@@ -652,7 +652,7 @@ function formatDT(v){
 
   return new Date(v).toLocaleString('en-IN');
 }
-}
+
 function gpRow(r,i){
   const st=(r.finalStatus || r.returnStatus || r.status || '').toLowerCase(),
         sc=st.includes('closed')||st.includes('received')?'r':st.includes('overdue')?'o':'p';
