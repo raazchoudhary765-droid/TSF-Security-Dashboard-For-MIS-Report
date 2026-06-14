@@ -666,6 +666,10 @@ function gpRow(r,i){
 
 <td>${r.authorisedBy || r.authorizedBy || '-'}</td>
 <td>${r.securityGuard || r.guard || '-'}</td>
+<td>${r.createdBy || '-'}</td>
+<td>${r.createdOn || '-'}</td>
+<td>${r.updatedBy || '-'}</td>
+<td>${r.updatedOn || '-'}</td>
 
 <td style="color:#64748b;">${r.returnStatus || r.ret || '-'}</td>
 <td><span class="SP ${sc}">${(r.finalStatus || r.status || 'OPEN').toUpperCase()}</span></td>
@@ -674,11 +678,11 @@ function gpRow(r,i){
 
 function renderGPModal(rows){
   document.getElementById('dTH').innerHTML =
-'<tr><th>#</th><th>GP No.</th><th>Date</th><th>Unit</th><th>Type</th><th>Party Name</th><th>Driver Name</th><th>Vehicle No</th><th>Material</th><th>Qty</th><th>Authorised By</th><th>Security Guard</th><th>Return</th><th>Status</th></tr>';
+'<tr><th>#</th><th>GP No.</th><th>Date</th><th>Unit</th><th>Type</th><th>Party Name</th><th>Driver Name</th><th>Vehicle No</th><th>Material</th><th>Qty</th><th>Authorised By</th><th>Security Guard</th><th>Created By</th><th>Created On</th><th>Updated By</th><th>Updated On</th><th>Return</th><th>Status</th></tr>';
   document.getElementById('dTB').innerHTML =
     rows.length
       ? rows.map((r,i)=>gpRow(r,i)).join('')
-      : '<tr><td colspan="14" style="text-align:center">No Data</td></tr>';
+      : '<tr><td colspan="18" style="text-align:center">No Data</td></tr>';
 }
 
 function showGP(filter){
