@@ -1031,7 +1031,55 @@ if ("serviceWorker" in navigator) {
   });
 }
 // ===== LIVE GOOGLE SHEET API =====
+let CURRENT_USER = null;
 
+async function loginUser(){
+
+  const email = prompt("Enter Registered Email");
+
+  if(!email) return;
+
+  const res = await fetch(
+    "https://script.google.com/macros/s/AKfycbyvEGDLNwQwdC8TWkUcmySdJtH2MHEuq7qTjYJ53pGT1Qdas4ziNhNPfQPx6LpApX3Lfw/exec?action=getUserRole&email="
+    + encodeURIComponent(email)
+  );
+
+  const user = await res.json();
+
+  if(!user.success){
+    alert("❌ Access Denied");
+    return;
+  }
+
+  CURRENT_USER = user;
+
+  applyRolePermissions();
+
+  alert(
+    "✅ Welcome " +
+    user.name +
+    "\nRole : " +
+    user.role
+  );
+}
+ function applyRolePermissions(){
+
+  if(!CURRENT_USER) return;
+
+  const role = CURRENT_USER.role;
+
+  if(role === "Viewer"){
+
+    document.getElementById("bNew").style.display="none";
+    document.getElementById("bPDF").style.display="none";
+  }
+
+  if(role === "Entry"){
+
+    document.getElementById("bMIS").style.display="none";
+  }
+
+}
 async function loadLiveDashboard() {
   try {
     const res = await fetch(
@@ -1244,9 +1292,14 @@ const unit = document.getElementById("unit").value;
 
   document.getElementById("gpNo").value = gpNo;
 }
-window.addEventListener("load", () => {
+window.addEventListener("load", async () => {
+
+  await loginUser();
+
   loadLiveDashboard();
+
   fetchGPNo();
+
 });
 </script>
 </body>
