@@ -1158,7 +1158,9 @@ for(const m of materials){
   }
 
 }
-  const data = {
+ const userEmail = "raazchoudhary765@gmail.com";
+const currentTime = new Date().toISOString();
+const data = {
   gpType: document.getElementById("gpType").value,
   gpNo: document.getElementById("gpNo").value,
   date: document.getElementById("gpDate").value,
@@ -1171,8 +1173,15 @@ for(const m of materials){
   authorisedBy: document.getElementById("authorisedBy").value,
   securityGuard: document.getElementById("securityGuard").value,
 
+  createdBy: userEmail,
+  createdOn: currentTime,
+  updatedBy: userEmail,
+  updatedOn: currentTime,
+
   materials: materials
 };
+
+
   const res = await fetch(
     "https://script.google.com/macros/s/AKfycbyvEGDLNwQwdC8TWkUcmySdJtH2MHEuq7qTjYJ53pGT1Qdas4ziNhNPfQPx6LpApX3Lfw/exec",
     {
