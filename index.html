@@ -221,7 +221,22 @@ font-size:16px;
 <div>LIVE MONITORING</div>
 
 <div style="font-size:9px;color:#60a5fa;">
+ 
 ↻ AUTO REFRESH ACTIVE
+ </div>
+<div id="userProfile"
+     style="margin-top:8px;font-size:12px;line-height:1.6;text-align:right;">
+
+  <div id="userInfo">
+    👤 User
+  </div>
+
+  <div onclick="logoutUser()"
+       style="cursor:pointer;color:#f87171;">
+    🚪 Logout
+  </div>
+
+</div>
 </div>
 
 </div>
@@ -1032,6 +1047,8 @@ if ("serviceWorker" in navigator) {
 }
 // ===== LIVE GOOGLE SHEET API =====
 let CURRENT_USER = null;
+let currentUserName = '';
+let currentUserRole = '';
 
 async function loginUser(){
 
@@ -1053,14 +1070,20 @@ async function loginUser(){
 
   CURRENT_USER = user;
 
-  applyRolePermissions();
+currentUserName = user.name;
+currentUserRole = user.role;
 
-  alert(
-    "✅ Welcome " +
-    user.name +
-    "\nRole : " +
-    user.role
-  );
+document.getElementById("userInfo").innerHTML =
+  `👤 ${currentUserName} (${currentUserRole})`;
+
+applyRolePermissions();
+
+alert(
+  "✅ Welcome " +
+  user.name +
+  "\nRole : " +
+  user.role
+);
 }
  function applyRolePermissions(){
 
@@ -1078,6 +1101,13 @@ async function loginUser(){
 
     document.getElementById("bMIS").style.display="none";
   }
+
+}
+function logoutUser(){
+
+  CURRENT_USER = null;
+
+  location.reload();
 
 }
 async function loadLiveDashboard() {
