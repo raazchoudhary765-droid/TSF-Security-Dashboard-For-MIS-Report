@@ -10,7 +10,7 @@
 <link rel="icon" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-192.png">
  <meta name="mobile-web-app-capable" content="yes">
-  <title>TSF Security Dashboard</title>
+  <title>Hotel Clarks Amer Jaipur Security Dashboard</title>
 </head>
 <body>
 <style>
@@ -193,19 +193,72 @@ margin-bottom:12px;
 color:#f1f5f9;
 font-size:16px;
 }
+
+/* ===== HOTEL CLARKS AMER: PROFESSIONAL TABLE FORMATTING ===== */
+:root{--table-bg:#111c30;--table-head:#26364d;--table-border:#34465f;--table-text:#eaf1fb;--table-muted:#b7c5d9;--table-accent:#fbbf24;}
+/* Standardise every data table while preserving the existing dashboard logic */
+table{border-collapse:separate;border-spacing:0;width:100%;color:var(--table-text);font-size:12px;line-height:1.45;background:var(--table-bg);border:1px solid var(--table-border);border-radius:10px;overflow:hidden;}
+table th{position:sticky;top:0;z-index:2;background:linear-gradient(180deg,#30445f,#24344a);color:#ffdf8a;font-weight:800;text-transform:uppercase;letter-spacing:.35px;font-size:10px;padding:11px 12px;text-align:left;border-bottom:2px solid #d99a19;white-space:nowrap;}
+table td{padding:10px 12px;border-bottom:1px solid #2d3d53;border-right:1px solid rgba(71,85,105,.28);vertical-align:middle;overflow-wrap:anywhere;}
+table td:last-child,table th:last-child{border-right:0;}
+table tbody tr:nth-child(even){background:#152238;}
+table tbody tr:nth-child(odd){background:#101b2d;}
+table tbody tr:hover{background:#253650;transition:background .15s ease;}
+table tbody tr:last-child td{border-bottom:0;}
+table td input,table td select,table td textarea{width:100%;min-width:70px;max-width:100%;padding:8px 9px;border:1px solid #536780;border-radius:6px;background:#0b1423;color:#f8fafc;font:inherit;}
+table td input:focus,table td select:focus,table td textarea:focus{outline:2px solid #f59e0b;outline-offset:1px;border-color:#f59e0b;}
+table td button{border:1px solid #64748b;border-radius:6px;padding:7px 10px;cursor:pointer;font-weight:700;}
+/* Main records modal */
+.tscroll{width:100%;max-width:100%;overflow:auto;border:1px solid #34465f;border-radius:10px;background:#0f172a;}
+.DT{min-width:760px;margin:0;border:0;border-radius:0;}
+.DT th{background:#25364e;}
+.DT td{font-size:12px;}
+/* Gate-pass material table */
+#materialTable{min-width:420px;margin-top:8px;}
+#materialTable th{text-align:left;}
+#materialTable td{padding:8px;}
+/* Daily Security Report history */
+.dsrtable{min-width:760px;margin:0;border:0;border-radius:0;font-size:12px;}
+.dsrtable th{background:#26364d;color:#ffdf8a;padding:11px 12px;border-bottom:2px solid #d99a19;}
+.dsrtable td{padding:10px 12px;border-bottom:1px solid #34465f;}
+.dsrtable tbody tr:nth-child(even){background:#152238;}
+.dsrtable tbody tr:hover{background:#253650;}
+/* Dashboard/modal table layout */
+.MD .tscroll{max-height:62vh;}
+.MD .DT td{white-space:normal;}
+/* Inputs and action buttons inside table cells */
+.table-actions{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+/* Print/PDF-friendly table layout */
+@media print{
+ table{background:#fff!important;color:#111!important;border-collapse:collapse!important;border:1px solid #777!important;border-radius:0!important;font-size:9pt!important;}
+ table th{position:static!important;background:#e8edf3!important;color:#111!important;border:1px solid #777!important;padding:6px!important;white-space:normal!important;}
+ table td{background:#fff!important;color:#111!important;border:1px solid #999!important;padding:5px!important;}
+ table tbody tr:nth-child(even),table tbody tr:nth-child(odd),table tbody tr:hover{background:#fff!important;}
+ .tscroll{overflow:visible!important;max-height:none!important;border:0!important;}
+}
+@media(max-width:700px){
+ table{font-size:11px;}
+ table th{font-size:9px;padding:9px 8px;}
+ table td{padding:8px;}
+ .tscroll{border-radius:8px;}
+ .MD{max-width:calc(100vw - 16px)!important;}
+ .dsrtable{min-width:720px;}
+ #materialTable{min-width:400px;}
+}
+
 </style>
 <div id="loader">
   <div class="loaderBox">
-    <div class="loaderTitle">TOUCHSTONE FOUNDATION</div>
+    <div class="loaderTitle">HOTEL CLARKS AMER JAIPUR</div>
     <div class="loaderText">Loading Security Dashboard...</div>
   </div>
 </div>
 <div class="W">
   <div class="HDR">
     <div class="HDR-L">
-      <div class="SH"><img src="icon-192.png" alt="TSF Logo"></div>
+      <div class="SH"><img src="icon-192.png" alt="Hotel Clarks Amer Logo"></div>
       <div>
-        <div class="T1">Touchstone Foundation</div>
+        <div class="T1">Hotel Clarks Amer Jaipur</div>
         <div class="T2">SECURITY COMMAND CENTER — CSO EXECUTIVE VIEW</div>
         <div class="NP"><i class="ti ti-user-shield" style="font-size:13px;color:#fde68a;" aria-hidden="true"></i><span>Dashboard Prepared By —</span><strong>CSO &nbsp;Rajkumar Choudhary</strong></div>
       </div>
@@ -246,7 +299,7 @@ font-size:16px;
     <button class="QB B" id="bSrch"><i class="ti ti-search" aria-hidden="true"></i> Search GP</button>
     <button class="QB O" id="bMIS"><i class="ti ti-chart-bar" aria-hidden="true"></i> MIS Report</button>
     <button class="QB R" id="bPDF"><i class="ti ti-file-type-pdf" aria-hidden="true"></i> Export PDF</button>
-    <button class="QB P" id="bGmail"><i class="ti ti-brand-gmail" aria-hidden="true"></i> Send Gmail</button>
+    <button class="QB P" id="bGmail"><i class="ti ti-brand-gmail" aria-hidden="true"></i> Send Gmail</button><button class="QB B" id="bDailySecurity" style="border-color:#22d3ee;color:#cffafe;background:#164e63;">Daily Security Report</button>
   </div>
 
   <div class="MFB">
@@ -272,7 +325,7 @@ font-size:16px;
     <div class="ST" id="kpiT"><i class="ti ti-shield" aria-hidden="true"></i> Security KPIs — Full Year 2026</div>
     <div class="KG">
       <div class="KC go"><div class="KI"><i class="ti ti-currency-rupee" aria-hidden="true"></i></div><div class="KL">Total Cost</div><div class="KV" id="kv1">₹36.72L</div><div class="KS" id="ks1">₹3,672,023</div><button class="vb" onclick="showMIS()"><i class="ti ti-table" aria-hidden="true"></i> View MIS Data</button></div>
-      <div class="KC bl"><div class="KI"><i class="ti ti-users" aria-hidden="true"></i></div><div class="KL">TSF Man Days</div><div class="KV" id="kv2">365</div><div class="KS" id="ks2">Avg 30.4/month</div><button class="vb" onclick="showMIS()"><i class="ti ti-table" aria-hidden="true"></i> View MIS Data</button></div>
+      <div class="KC bl"><div class="KI"><i class="ti ti-users" aria-hidden="true"></i></div><div class="KL">Security Man Days</div><div class="KV" id="kv2">365</div><div class="KS" id="ks2">Avg 30.4/month</div><button class="vb" onclick="showMIS()"><i class="ti ti-table" aria-hidden="true"></i> View MIS Data</button></div>
       <div class="KC cy"><div class="KI"><i class="ti ti-building-community" aria-hidden="true"></i></div><div class="KL">SIS Man Days</div><div class="KV" id="kv3">4,075</div><div class="KS" id="ks3">Avg 339.6/month</div><button class="vb" onclick="showMIS()"><i class="ti ti-table" aria-hidden="true"></i> View MIS Data</button></div>
       <div class="KC go"><div class="KI"><i class="ti ti-alert-triangle" aria-hidden="true"></i></div><div class="KL">Staff Shortage</div><div class="KV" id="kv4">1,218</div><div class="KS"><span class="KB KBo" id="ks4">Peak 117 · Jan</span></div><button class="vb" onclick="showMIS()"><i class="ti ti-table" aria-hidden="true"></i> View MIS Data</button></div>
       <div class="KC re"><div class="KI"><i class="ti ti-urgent" aria-hidden="true"></i></div><div class="KL">Incidents</div><div class="KV" id="kv5">5</div><div class="KS"><span class="KB KBr" id="ks5">Feb Apr Jun Jul Dec</span></div><button class="vb" onclick="showMIS()"><i class="ti ti-table" aria-hidden="true"></i> View MIS Data</button></div>
@@ -280,7 +333,7 @@ font-size:16px;
 
     <div class="lp"><span class="ld2"></span> Gate Pass KPIs — Connected to Month Filter</div>
     <div class="KG">
-      <div class="KC gr lk"><div class="KI"><i class="ti ti-truck" aria-hidden="true"></i></div><div class="KL">Total Gate Passes</div><div class="KV" id="gv1">2,171</div><div class="KS" id="gs1">HKM+TSF+RKM</div><button class="vb" onclick="showGP('all')"><i class="ti ti-table" aria-hidden="true"></i> View All Records</button></div>
+      <div class="KC gr lk"><div class="KI"><i class="ti ti-truck" aria-hidden="true"></i></div><div class="KL">Total Gate Passes</div><div class="KV" id="gv1">2,171</div><div class="KS" id="gs1">RGP / NRGP only</div><button class="vb" onclick="showGP('all')"><i class="ti ti-table" aria-hidden="true"></i> View All Records</button></div>
       <div class="KC bl lk"><div class="KI"><i class="ti ti-package-export" aria-hidden="true"></i></div><div class="KL">Total RGP</div><div class="KV" id="gv2">1,026</div><div class="KS" id="gs2">Returnable GP</div><button class="vb" onclick="showGP('rgp')"><i class="ti ti-table" aria-hidden="true"></i> View RGP Records</button></div>
       <div class="KC cy lk"><div class="KI"><i class="ti ti-package" aria-hidden="true"></i></div><div class="KL">Total NRGP</div><div class="KV" id="gv3">1,145</div><div class="KS" id="gs3">Non-Returnable GP</div><button class="vb" onclick="showGP('nrgp')"><i class="ti ti-table" aria-hidden="true"></i> View NRGP Records</button></div>
       <div class="KC re lk"><div class="KI"><i class="ti ti-clock-x" aria-hidden="true"></i></div><div class="KL">Pending GP</div><div class="KV" id="gv4">129</div><div class="KS"><span class="KB KBr" id="gs4">Action needed</span></div><button class="vb" onclick="showGP('pending')"><i class="ti ti-table" aria-hidden="true"></i> View All Pending</button></div>
@@ -297,10 +350,10 @@ font-size:16px;
       <div class="CC"><div class="CT"><i class="ti ti-trending-up" aria-hidden="true"></i> Monthly Cost Trend (₹)</div><div class="LG"><span><span class="LD" style="background:#f59e0b;"></span>Total Cost</span></div><div style="position:relative;height:175px;"><canvas id="c1"></canvas></div></div>
       <div class="CC"><div class="CT"><i class="ti ti-chart-donut" aria-hidden="true"></i> RGP vs NRGP</div><div class="LG"><span><span class="LD" style="background:#3b82f6;"></span>RGP</span><span><span class="LD" style="background:#10b981;"></span>NRGP</span></div><div style="position:relative;height:155px;"><canvas id="c2"></canvas></div></div>
       <div class="CC"><div class="CT"><i class="ti ti-users-minus" aria-hidden="true"></i> Staff Shortage Trend</div><div class="LG"><span><span class="LD" style="background:#f59e0b;"></span>Normal</span><span><span class="LD" style="background:#ef4444;"></span>Critical ≥110</span></div><div style="position:relative;height:175px;"><canvas id="c3"></canvas></div></div>
-      <div class="CC"><div class="CT"><i class="ti ti-building" aria-hidden="true"></i> Unit-wise Gate Pass</div><div class="LG"><span><span class="LD" style="background:#3b82f6;"></span>HKM</span><span><span class="LD" style="background:#10b981;"></span>TSF</span><span><span class="LD" style="background:#f59e0b;"></span>RKM</span></div><div style="position:relative;height:175px;"><canvas id="c4"></canvas></div></div>
+      <div class="CC"><div class="CT"><i class="ti ti-building" aria-hidden="true"></i> RGP / NRGP Gate Pass</div><div class="LG"><span><span class="LD" style="background:#3b82f6;"></span>RGP</span><span><span class="LD" style="background:#10b981;"></span>NRGP</span></div><div style="position:relative;height:175px;"><canvas id="c4"></canvas></div></div>
     </div>
   </div>
-  <div class="FT"><span>TSF Security Command Center — v9.0</span><span>2,171 Gate Passes · 12 MIS Records · 2026</span><span id="HF"></span></div>
+  <div class="FT"><span>Hotel Clarks Amer Jaipur Security Dashboard</span><span>2,171 Gate Passes · 12 MIS Records · 2026</span><span id="HF"></span></div>
 </div>
 
 <!-- MODAL: VIEW DATA (GP + MIS) -->
@@ -321,11 +374,7 @@ font-size:16px;
 <!-- MODAL: NEW GP -->
 <div class="MB" id="mN"><div class="MD sm">
   <div class="MH"><span class="MT"><i class="ti ti-plus" aria-hidden="true"></i> New Gate Pass</span><button class="MX" onclick="closeM('mN')"><i class="ti ti-x" aria-hidden="true"></i></button></div>
-  <div class="FR"><div class="FG"><label>GP Type</label>
-<select id="gpType" onchange="fetchGPNo()">
-  <option>RGP – Returnable</option>
-  <option>NRGP – Non Returnable</option>
-</select></div><div class="FG"><label>Unit</label><select id="unit" onchange="fetchGPNo()"><option>HKM</option><option>TSF</option><option>RKM</option></select></div></div>
+  <div class="FR"><div class="FG"><label>GP Type</label><select id="gpType" onchange="fetchGPNo()"><option value="RGP">RGP – Returnable</option><option value="NRGP">NRGP – Non Returnable</option></select></div><div class="FG"><label>Hotel</label><input value="Hotel Clarks Amer Jaipur" readonly></div></div>
   <div class="FR"><div class="FG"><label>GP Number</label><input id="gpNo" placeholder="Auto-generated"/></div><div class="FG"><label>Date</label><input id="gpDate" type="date"/></div></div>
   <div class="FR"><div class="FG"><label>Out Time</label><input id="outTime" type="time"/></div><div class="FG"><label>Return Date</label><input id="returnDate" type="date"/></div></div>
   <div class="FG"><label>Party Name</label><input id="partyName" placeholder="Vendor / party name"/></div>
@@ -373,9 +422,8 @@ font-size:16px;
   <div class="MH"><span class="MT"><i class="ti ti-search" aria-hidden="true"></i> Search Gate Pass</span><button class="MX" onclick="closeM('mS')"><i class="ti ti-x" aria-hidden="true"></i></button></div>
   <div class="FG"><label>Search</label><input id="SQ" placeholder="GP No / Party / Material / Unit / Status..."/></div>
   <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;">
-    <button class="QB B" style="padding:5px 12px;font-size:11px;border-radius:6px;" onclick="setSQ('HKM')">HKM</button>
-    <button class="QB G" style="padding:5px 12px;font-size:11px;border-radius:6px;" onclick="setSQ('TSF')">TSF</button>
-    <button class="QB O" style="padding:5px 12px;font-size:11px;border-radius:6px;" onclick="setSQ('RKM')">RKM</button>
+    <button class="QB B" style="padding:5px 12px;font-size:11px;border-radius:6px;" onclick="setSQ('RGP')">RGP</button>
+    <button class="QB G" style="padding:5px 12px;font-size:11px;border-radius:6px;" onclick="setSQ('NRGP')">NRGP</button>
     <button class="QB R" style="padding:5px 12px;font-size:11px;border-radius:6px;" onclick="setSQ('pending')">Pending</button>
     <button class="QB G" style="padding:5px 12px;font-size:11px;border-radius:6px;" onclick="setSQ('received')">Received</button>
   </div>
@@ -390,11 +438,11 @@ font-size:16px;
     <div class="pit"><i class="ti ti-id-badge" aria-hidden="true"></i> CSO Details</div>
     <div class="pr"><div class="pi go"><i class="ti ti-user-shield" aria-hidden="true"></i></div><div class="pd"><div class="l">Authorised By</div><div class="v v-go">CSO Rajkumar Choudhary</div></div></div>
     <div class="pr"><div class="pi bl"><i class="ti ti-mail" aria-hidden="true"></i></div><div class="pd"><div class="l">Gmail ID</div><div class="v v-bl">raazchoudhary765@gmail.com</div></div></div>
-    <div class="pr"><div class="pi gr"><i class="ti ti-building-community" aria-hidden="true"></i></div><div class="pd"><div class="l">Organisation</div><div class="v v-gr">Touchstone Foundation</div></div></div>
+    <div class="pr"><div class="pi gr"><i class="ti ti-building-community" aria-hidden="true"></i></div><div class="pd"><div class="l">Hotel</div><div class="v v-gr">Hotel Clarks Amer Jaipur</div></div></div>
   </div>
   <div class="FG"><label>Report Type</label><select id="rT"><option value="ALL">All Gate Pass Register</option><option value="RGP">RGP Register</option><option value="NRGP">NRGP Register</option><option value="PENDING">Pending Register</option><option value="RECEIVED">Received Register</option></select></div>
   <div class="FR"><div class="FG"><label>From Date</label><input type="date"/></div><div class="FG"><label>To Date</label><input type="date"/></div></div>
-  <div class="FG"><label>Unit Filter</label><select><option>All Units</option><option>HKM Only</option><option>TSF Only</option><option>RKM Only</option></select></div>
+  <div class="FG"><label>Gate Pass Type</label><select id="pdfGPType"><option value="ALL">RGP + NRGP</option><option value="RGP">RGP Only</option><option value="NRGP">NRGP Only</option></select></div>
   <div class="IN"><i class="ti ti-info-circle" style="vertical-align:-2px;margin-right:5px;" aria-hidden="true"></i>Current filter: <strong id="pML">All Year</strong> — PDF download karein aur phir Gmail mein attach karke bhejein.</div>
   <div class="MF2">
     <button class="MBX ca" onclick="closeM('mP')">Cancel</button>
@@ -449,138 +497,138 @@ const MIS=[
 
 const GPM={
   JAN:{total:185,rgp:88,nrgp:97,pending:14,rows:[
-    {no:'HKM-101',date:'05-Jan-26',unit:'HKM',type:'RGP',party:'Sharma Hardware',material:'Lock & Chain',qty:'10',ret:'20-Jan-26',status:'received'},
-    {no:'HKM-102',date:'08-Jan-26',unit:'HKM',type:'RGP',party:'Vijay Enterprises',material:'CCTV Repair',qty:'02',ret:'—',status:'pending'},
-    {no:'TSF-101',date:'10-Jan-26',unit:'TSF',type:'NRGP',party:'Raj Supplies',material:'Cleaning Material',qty:'50',ret:'—',status:'received'},
-    {no:'TSF-102',date:'12-Jan-26',unit:'TSF',type:'RGP',party:'Mehta Electricals',material:'UPS Battery',qty:'04',ret:'28-Jan-26',status:'received'},
-    {no:'RKM-101',date:'15-Jan-26',unit:'RKM',type:'RGP',party:'Metro Repairs',material:'AC Compressor',qty:'01',ret:'—',status:'pending'},
-    {no:'HKM-103',date:'18-Jan-26',unit:'HKM',type:'NRGP',party:'Khandelwal Store',material:'Office Furniture',qty:'08',ret:'—',status:'received'},
-    {no:'TSF-103',date:'22-Jan-26',unit:'TSF',type:'NRGP',party:'Agarwal Traders',material:'Fire Extinguisher',qty:'05',ret:'—',status:'received'},
-    {no:'HKM-104',date:'25-Jan-26',unit:'HKM',type:'RGP',party:'Vijay Sankla',material:'Pillow Cover',qty:'20',ret:'—',status:'pending'},
-    {no:'TSF-104',date:'28-Jan-26',unit:'TSF',type:'RGP',party:'Arushi Enterprises',material:'Projector Repair',qty:'01',ret:'—',status:'pending'},
-    {no:'RKM-102',date:'30-Jan-26',unit:'RKM',type:'NRGP',party:'Verma Electronics',material:'PA System',qty:'02',ret:'—',status:'received'},
-    {no:'HKM-105',date:'31-Jan-26',unit:'HKM',type:'RGP',party:'Falguni Enterprises',material:'Water Pump',qty:'01',ret:'—',status:'pending'},
-    {no:'TSF-105',date:'31-Jan-26',unit:'TSF',type:'NRGP',party:'Shree Traders',material:'Stationery',qty:'30',ret:'—',status:'received'},
+    {no:'CLARKS-101',date:'05-Jan-26',unit:'CLARKS',type:'RGP',party:'Sharma Hardware',material:'Lock & Chain',qty:'10',ret:'20-Jan-26',status:'received'},
+    {no:'CLARKS-102',date:'08-Jan-26',unit:'CLARKS',type:'RGP',party:'Vijay Enterprises',material:'CCTV Repair',qty:'02',ret:'—',status:'pending'},
+    {no:'CLARKS-101',date:'10-Jan-26',unit:'CLARKS',type:'NRGP',party:'Raj Supplies',material:'Cleaning Material',qty:'50',ret:'—',status:'received'},
+    {no:'CLARKS-102',date:'12-Jan-26',unit:'CLARKS',type:'RGP',party:'Mehta Electricals',material:'UPS Battery',qty:'04',ret:'28-Jan-26',status:'received'},
+    {no:'CLARKS-101',date:'15-Jan-26',unit:'CLARKS',type:'RGP',party:'Metro Repairs',material:'AC Compressor',qty:'01',ret:'—',status:'pending'},
+    {no:'CLARKS-103',date:'18-Jan-26',unit:'CLARKS',type:'NRGP',party:'Khandelwal Store',material:'Office Furniture',qty:'08',ret:'—',status:'received'},
+    {no:'CLARKS-103',date:'22-Jan-26',unit:'CLARKS',type:'NRGP',party:'Agarwal Traders',material:'Fire Extinguisher',qty:'05',ret:'—',status:'received'},
+    {no:'CLARKS-104',date:'25-Jan-26',unit:'CLARKS',type:'RGP',party:'Vijay Sankla',material:'Pillow Cover',qty:'20',ret:'—',status:'pending'},
+    {no:'CLARKS-104',date:'28-Jan-26',unit:'CLARKS',type:'RGP',party:'Arushi Enterprises',material:'Projector Repair',qty:'01',ret:'—',status:'pending'},
+    {no:'CLARKS-102',date:'30-Jan-26',unit:'CLARKS',type:'NRGP',party:'Verma Electronics',material:'PA System',qty:'02',ret:'—',status:'received'},
+    {no:'CLARKS-105',date:'31-Jan-26',unit:'CLARKS',type:'RGP',party:'Falguni Enterprises',material:'Water Pump',qty:'01',ret:'—',status:'pending'},
+    {no:'CLARKS-105',date:'31-Jan-26',unit:'CLARKS',type:'NRGP',party:'Shree Traders',material:'Stationery',qty:'30',ret:'—',status:'received'},
   ]},
   FEB:{total:162,rgp:76,nrgp:86,pending:11,rows:[
-    {no:'HKM-201',date:'03-Feb-26',unit:'HKM',type:'RGP',party:'R.K Laundry',material:'Towel Batch',qty:'32',ret:'18-Feb-26',status:'received'},
-    {no:'HKM-202',date:'07-Feb-26',unit:'HKM',type:'RGP',party:'Vijay Sankla',material:'Pillow Cover',qty:'24',ret:'—',status:'pending'},
-    {no:'TSF-201',date:'10-Feb-26',unit:'TSF',type:'NRGP',party:'Shree Traders',material:'Stationery Items',qty:'100',ret:'—',status:'received'},
-    {no:'RKM-201',date:'14-Feb-26',unit:'RKM',type:'RGP',party:'Sharma Electronics',material:'Generator Part',qty:'02',ret:'28-Feb-26',status:'received'},
-    {no:'HKM-203',date:'20-Feb-26',unit:'HKM',type:'RGP',party:'Arushi Enterprises',material:'Projector Repair',qty:'01',ret:'—',status:'pending'},
-    {no:'TSF-202',date:'22-Feb-26',unit:'TSF',type:'NRGP',party:'Raj Enterprises',material:'Office Chairs',qty:'10',ret:'—',status:'received'},
-    {no:'HKM-204',date:'25-Feb-26',unit:'HKM',type:'RGP',party:'Khandelwal Store',material:'Iron Gate',qty:'02',ret:'—',status:'pending'},
-    {no:'TSF-203',date:'27-Feb-26',unit:'TSF',type:'RGP',party:'Mehta Electricals',material:'UPS Repair',qty:'02',ret:'—',status:'received'},
-    {no:'RKM-202',date:'28-Feb-26',unit:'RKM',type:'NRGP',party:'Verma Co.',material:'Safety Equipment',qty:'05',ret:'—',status:'received'},
+    {no:'CLARKS-201',date:'03-Feb-26',unit:'CLARKS',type:'RGP',party:'R.K Laundry',material:'Towel Batch',qty:'32',ret:'18-Feb-26',status:'received'},
+    {no:'CLARKS-202',date:'07-Feb-26',unit:'CLARKS',type:'RGP',party:'Vijay Sankla',material:'Pillow Cover',qty:'24',ret:'—',status:'pending'},
+    {no:'CLARKS-201',date:'10-Feb-26',unit:'CLARKS',type:'NRGP',party:'Shree Traders',material:'Stationery Items',qty:'100',ret:'—',status:'received'},
+    {no:'CLARKS-201',date:'14-Feb-26',unit:'CLARKS',type:'RGP',party:'Sharma Electronics',material:'Generator Part',qty:'02',ret:'28-Feb-26',status:'received'},
+    {no:'CLARKS-203',date:'20-Feb-26',unit:'CLARKS',type:'RGP',party:'Arushi Enterprises',material:'Projector Repair',qty:'01',ret:'—',status:'pending'},
+    {no:'CLARKS-202',date:'22-Feb-26',unit:'CLARKS',type:'NRGP',party:'Raj Enterprises',material:'Office Chairs',qty:'10',ret:'—',status:'received'},
+    {no:'CLARKS-204',date:'25-Feb-26',unit:'CLARKS',type:'RGP',party:'Khandelwal Store',material:'Iron Gate',qty:'02',ret:'—',status:'pending'},
+    {no:'CLARKS-203',date:'27-Feb-26',unit:'CLARKS',type:'RGP',party:'Mehta Electricals',material:'UPS Repair',qty:'02',ret:'—',status:'received'},
+    {no:'CLARKS-202',date:'28-Feb-26',unit:'CLARKS',type:'NRGP',party:'Verma Co.',material:'Safety Equipment',qty:'05',ret:'—',status:'received'},
   ]},
   MAR:{total:190,rgp:92,nrgp:98,pending:12,rows:[
-    {no:'HKM-301',date:'02-Mar-26',unit:'HKM',type:'RGP',party:'Falguni Enterprises',material:'Pump Repair',qty:'01',ret:'16-Mar-26',status:'received'},
-    {no:'TSF-301',date:'05-Mar-26',unit:'TSF',type:'NRGP',party:'Raj Enterprises',material:'Safety Equipment',qty:'20',ret:'—',status:'received'},
-    {no:'TSF-302',date:'10-Mar-26',unit:'TSF',type:'RGP',party:'Verma Electronics',material:'PA System Repair',qty:'01',ret:'—',status:'pending'},
-    {no:'RKM-301',date:'15-Mar-26',unit:'RKM',type:'RGP',party:'Metro Repairs',material:'AC Unit Repair',qty:'02',ret:'29-Mar-26',status:'received'},
-    {no:'HKM-302',date:'20-Mar-26',unit:'HKM',type:'RGP',party:'Sharma Hardware',material:'Grill Work',qty:'05',ret:'—',status:'pending'},
-    {no:'TSF-303',date:'25-Mar-26',unit:'TSF',type:'NRGP',party:'Agarwal Traders',material:'Cleaning Kit',qty:'30',ret:'—',status:'received'},
-    {no:'HKM-303',date:'28-Mar-26',unit:'HKM',type:'NRGP',party:'Khandelwal Store',material:'File Racks',qty:'08',ret:'—',status:'received'},
-    {no:'RKM-302',date:'30-Mar-26',unit:'RKM',type:'RGP',party:'Sharma Electronics',material:'Battery Set',qty:'04',ret:'—',status:'pending'},
+    {no:'CLARKS-301',date:'02-Mar-26',unit:'CLARKS',type:'RGP',party:'Falguni Enterprises',material:'Pump Repair',qty:'01',ret:'16-Mar-26',status:'received'},
+    {no:'CLARKS-301',date:'05-Mar-26',unit:'CLARKS',type:'NRGP',party:'Raj Enterprises',material:'Safety Equipment',qty:'20',ret:'—',status:'received'},
+    {no:'CLARKS-302',date:'10-Mar-26',unit:'CLARKS',type:'RGP',party:'Verma Electronics',material:'PA System Repair',qty:'01',ret:'—',status:'pending'},
+    {no:'CLARKS-301',date:'15-Mar-26',unit:'CLARKS',type:'RGP',party:'Metro Repairs',material:'AC Unit Repair',qty:'02',ret:'29-Mar-26',status:'received'},
+    {no:'CLARKS-302',date:'20-Mar-26',unit:'CLARKS',type:'RGP',party:'Sharma Hardware',material:'Grill Work',qty:'05',ret:'—',status:'pending'},
+    {no:'CLARKS-303',date:'25-Mar-26',unit:'CLARKS',type:'NRGP',party:'Agarwal Traders',material:'Cleaning Kit',qty:'30',ret:'—',status:'received'},
+    {no:'CLARKS-303',date:'28-Mar-26',unit:'CLARKS',type:'NRGP',party:'Khandelwal Store',material:'File Racks',qty:'08',ret:'—',status:'received'},
+    {no:'CLARKS-302',date:'30-Mar-26',unit:'CLARKS',type:'RGP',party:'Sharma Electronics',material:'Battery Set',qty:'04',ret:'—',status:'pending'},
   ]},
   APR:{total:175,rgp:84,nrgp:91,pending:10,rows:[
-    {no:'HKM-401',date:'04-Apr-26',unit:'HKM',type:'RGP',party:'Khandelwal Hardware',material:'Almirah Lock',qty:'06',ret:'—',status:'pending'},
-    {no:'TSF-401',date:'08-Apr-26',unit:'TSF',type:'NRGP',party:'Agarwal Traders',material:'Cleaning Supplies',qty:'50',ret:'—',status:'received'},
-    {no:'HKM-402',date:'12-Apr-26',unit:'HKM',type:'RGP',party:'Sharma Hardware',material:'Grill Work',qty:'05',ret:'26-Apr-26',status:'received'},
-    {no:'RKM-401',date:'18-Apr-26',unit:'RKM',type:'RGP',party:'Verma Co.',material:'Electrical Parts',qty:'10',ret:'—',status:'pending'},
-    {no:'TSF-402',date:'22-Apr-26',unit:'TSF',type:'RGP',party:'Mehta Electricals',material:'UPS Repair',qty:'02',ret:'—',status:'received'},
-    {no:'HKM-403',date:'28-Apr-26',unit:'HKM',type:'NRGP',party:'Raj Supplies',material:'Festival Items',qty:'15',ret:'—',status:'received'},
-    {no:'TSF-403',date:'29-Apr-26',unit:'TSF',type:'NRGP',party:'Shree Traders',material:'Uniform Cloth',qty:'20',ret:'—',status:'received'},
-    {no:'RKM-402',date:'30-Apr-26',unit:'RKM',type:'RGP',party:'Metro Repairs',material:'Pump Parts',qty:'03',ret:'—',status:'pending'},
+    {no:'CLARKS-401',date:'04-Apr-26',unit:'CLARKS',type:'RGP',party:'Khandelwal Hardware',material:'Almirah Lock',qty:'06',ret:'—',status:'pending'},
+    {no:'CLARKS-401',date:'08-Apr-26',unit:'CLARKS',type:'NRGP',party:'Agarwal Traders',material:'Cleaning Supplies',qty:'50',ret:'—',status:'received'},
+    {no:'CLARKS-402',date:'12-Apr-26',unit:'CLARKS',type:'RGP',party:'Sharma Hardware',material:'Grill Work',qty:'05',ret:'26-Apr-26',status:'received'},
+    {no:'CLARKS-401',date:'18-Apr-26',unit:'CLARKS',type:'RGP',party:'Verma Co.',material:'Electrical Parts',qty:'10',ret:'—',status:'pending'},
+    {no:'CLARKS-402',date:'22-Apr-26',unit:'CLARKS',type:'RGP',party:'Mehta Electricals',material:'UPS Repair',qty:'02',ret:'—',status:'received'},
+    {no:'CLARKS-403',date:'28-Apr-26',unit:'CLARKS',type:'NRGP',party:'Raj Supplies',material:'Festival Items',qty:'15',ret:'—',status:'received'},
+    {no:'CLARKS-403',date:'29-Apr-26',unit:'CLARKS',type:'NRGP',party:'Shree Traders',material:'Uniform Cloth',qty:'20',ret:'—',status:'received'},
+    {no:'CLARKS-402',date:'30-Apr-26',unit:'CLARKS',type:'RGP',party:'Metro Repairs',material:'Pump Parts',qty:'03',ret:'—',status:'pending'},
   ]},
   MAY:{total:180,rgp:86,nrgp:94,pending:11,rows:[
-    {no:'HKM-501',date:'03-May-26',unit:'HKM',type:'RGP',party:'R.K Laundry',material:'Blanket',qty:'15',ret:'17-May-26',status:'received'},
-    {no:'TSF-501',date:'06-May-26',unit:'TSF',type:'NRGP',party:'Raj Supplies',material:'Office Chairs',qty:'10',ret:'—',status:'received'},
-    {no:'TSF-502',date:'14-May-26',unit:'TSF',type:'RGP',party:'Mehta Electricals',material:'Generator Repair',qty:'01',ret:'28-May-26',status:'received'},
-    {no:'HKM-502',date:'20-May-26',unit:'HKM',type:'RGP',party:'Vijay Sankla',material:'Frill Washing',qty:'30',ret:'—',status:'pending'},
-    {no:'RKM-501',date:'25-May-26',unit:'RKM',type:'RGP',party:'Metro Repairs',material:'Fan Repair',qty:'03',ret:'—',status:'pending'},
-    {no:'HKM-503',date:'28-May-26',unit:'HKM',type:'NRGP',party:'Agarwal Traders',material:'Stationery',qty:'40',ret:'—',status:'received'},
-    {no:'TSF-503',date:'30-May-26',unit:'TSF',type:'RGP',party:'Verma Electronics',material:'Walkie Talkie',qty:'04',ret:'—',status:'received'},
+    {no:'CLARKS-501',date:'03-May-26',unit:'CLARKS',type:'RGP',party:'R.K Laundry',material:'Blanket',qty:'15',ret:'17-May-26',status:'received'},
+    {no:'CLARKS-501',date:'06-May-26',unit:'CLARKS',type:'NRGP',party:'Raj Supplies',material:'Office Chairs',qty:'10',ret:'—',status:'received'},
+    {no:'CLARKS-502',date:'14-May-26',unit:'CLARKS',type:'RGP',party:'Mehta Electricals',material:'Generator Repair',qty:'01',ret:'28-May-26',status:'received'},
+    {no:'CLARKS-502',date:'20-May-26',unit:'CLARKS',type:'RGP',party:'Vijay Sankla',material:'Frill Washing',qty:'30',ret:'—',status:'pending'},
+    {no:'CLARKS-501',date:'25-May-26',unit:'CLARKS',type:'RGP',party:'Metro Repairs',material:'Fan Repair',qty:'03',ret:'—',status:'pending'},
+    {no:'CLARKS-503',date:'28-May-26',unit:'CLARKS',type:'NRGP',party:'Agarwal Traders',material:'Stationery',qty:'40',ret:'—',status:'received'},
+    {no:'CLARKS-503',date:'30-May-26',unit:'CLARKS',type:'RGP',party:'Verma Electronics',material:'Walkie Talkie',qty:'04',ret:'—',status:'received'},
   ]},
   JUN:{total:178,rgp:85,nrgp:93,pending:10,rows:[
-    {no:'HKM-601',date:'02-Jun-26',unit:'HKM',type:'RGP',party:'Arushi Enterprises',material:'Projector Bulb',qty:'02',ret:'16-Jun-26',status:'received'},
-    {no:'TSF-601',date:'07-Jun-26',unit:'TSF',type:'NRGP',party:'Shree Traders',material:'Uniform Material',qty:'40',ret:'—',status:'received'},
-    {no:'RKM-601',date:'12-Jun-26',unit:'RKM',type:'RGP',party:'Sharma Electronics',material:'UPS Repair',qty:'02',ret:'—',status:'pending'},
-    {no:'HKM-602',date:'18-Jun-26',unit:'HKM',type:'RGP',party:'Vijay Sankla',material:'Curtain Cloth',qty:'15',ret:'—',status:'pending'},
-    {no:'TSF-602',date:'24-Jun-26',unit:'TSF',type:'NRGP',party:'Raj Enterprises',material:'Safety Gloves',qty:'25',ret:'—',status:'received'},
-    {no:'HKM-603',date:'28-Jun-26',unit:'HKM',type:'RGP',party:'Falguni Enterprises',material:'Pump Parts',qty:'02',ret:'—',status:'received'},
-    {no:'RKM-602',date:'30-Jun-26',unit:'RKM',type:'NRGP',party:'Verma Co.',material:'Electrical Cable',qty:'10',ret:'—',status:'received'},
+    {no:'CLARKS-601',date:'02-Jun-26',unit:'CLARKS',type:'RGP',party:'Arushi Enterprises',material:'Projector Bulb',qty:'02',ret:'16-Jun-26',status:'received'},
+    {no:'CLARKS-601',date:'07-Jun-26',unit:'CLARKS',type:'NRGP',party:'Shree Traders',material:'Uniform Material',qty:'40',ret:'—',status:'received'},
+    {no:'CLARKS-601',date:'12-Jun-26',unit:'CLARKS',type:'RGP',party:'Sharma Electronics',material:'UPS Repair',qty:'02',ret:'—',status:'pending'},
+    {no:'CLARKS-602',date:'18-Jun-26',unit:'CLARKS',type:'RGP',party:'Vijay Sankla',material:'Curtain Cloth',qty:'15',ret:'—',status:'pending'},
+    {no:'CLARKS-602',date:'24-Jun-26',unit:'CLARKS',type:'NRGP',party:'Raj Enterprises',material:'Safety Gloves',qty:'25',ret:'—',status:'received'},
+    {no:'CLARKS-603',date:'28-Jun-26',unit:'CLARKS',type:'RGP',party:'Falguni Enterprises',material:'Pump Parts',qty:'02',ret:'—',status:'received'},
+    {no:'CLARKS-602',date:'30-Jun-26',unit:'CLARKS',type:'NRGP',party:'Verma Co.',material:'Electrical Cable',qty:'10',ret:'—',status:'received'},
   ]},
   JUL:{total:172,rgp:82,nrgp:90,pending:10,rows:[
-    {no:'HKM-701',date:'04-Jul-26',unit:'HKM',type:'RGP',party:'Falguni Enterprises',material:'Water Pump',qty:'01',ret:'18-Jul-26',status:'received'},
-    {no:'TSF-701',date:'09-Jul-26',unit:'TSF',type:'NRGP',party:'Raj Enterprises',material:'CCTV System',qty:'04',ret:'—',status:'received'},
-    {no:'HKM-702',date:'15-Jul-26',unit:'HKM',type:'RGP',party:'Khandelwal Store',material:'Iron Gate',qty:'02',ret:'—',status:'pending'},
-    {no:'RKM-701',date:'20-Jul-26',unit:'RKM',type:'RGP',party:'Metro Repairs',material:'Cooling Fan',qty:'03',ret:'—',status:'pending'},
-    {no:'TSF-702',date:'26-Jul-26',unit:'TSF',type:'RGP',party:'Mehta Electricals',material:'Inverter',qty:'01',ret:'—',status:'received'},
-    {no:'HKM-703',date:'28-Jul-26',unit:'HKM',type:'NRGP',party:'Agarwal Traders',material:'Cleaning Kit',qty:'20',ret:'—',status:'received'},
-    {no:'RKM-702',date:'31-Jul-26',unit:'RKM',type:'RGP',party:'Sharma Electronics',material:'Generator Part',qty:'01',ret:'—',status:'received'},
+    {no:'CLARKS-701',date:'04-Jul-26',unit:'CLARKS',type:'RGP',party:'Falguni Enterprises',material:'Water Pump',qty:'01',ret:'18-Jul-26',status:'received'},
+    {no:'CLARKS-701',date:'09-Jul-26',unit:'CLARKS',type:'NRGP',party:'Raj Enterprises',material:'CCTV System',qty:'04',ret:'—',status:'received'},
+    {no:'CLARKS-702',date:'15-Jul-26',unit:'CLARKS',type:'RGP',party:'Khandelwal Store',material:'Iron Gate',qty:'02',ret:'—',status:'pending'},
+    {no:'CLARKS-701',date:'20-Jul-26',unit:'CLARKS',type:'RGP',party:'Metro Repairs',material:'Cooling Fan',qty:'03',ret:'—',status:'pending'},
+    {no:'CLARKS-702',date:'26-Jul-26',unit:'CLARKS',type:'RGP',party:'Mehta Electricals',material:'Inverter',qty:'01',ret:'—',status:'received'},
+    {no:'CLARKS-703',date:'28-Jul-26',unit:'CLARKS',type:'NRGP',party:'Agarwal Traders',material:'Cleaning Kit',qty:'20',ret:'—',status:'received'},
+    {no:'CLARKS-702',date:'31-Jul-26',unit:'CLARKS',type:'RGP',party:'Sharma Electronics',material:'Generator Part',qty:'01',ret:'—',status:'received'},
   ]},
   AUG:{total:168,rgp:80,nrgp:88,pending:10,rows:[
-    {no:'HKM-801',date:'02-Aug-26',unit:'HKM',type:'RGP',party:'Sharma Hardware',material:'Padlock Set',qty:'12',ret:'16-Aug-26',status:'received'},
-    {no:'TSF-801',date:'08-Aug-26',unit:'TSF',type:'NRGP',party:'Agarwal Traders',material:'Stationery',qty:'80',ret:'—',status:'received'},
-    {no:'HKM-802',date:'18-Aug-26',unit:'HKM',type:'RGP',party:'Vijay Sankla',material:'Curtain Cloth',qty:'20',ret:'—',status:'pending'},
-    {no:'RKM-801',date:'24-Aug-26',unit:'RKM',type:'RGP',party:'Verma Electronics',material:'Battery',qty:'04',ret:'—',status:'pending'},
-    {no:'TSF-802',date:'26-Aug-26',unit:'TSF',type:'RGP',party:'Mehta Electricals',material:'UPS Battery',qty:'03',ret:'—',status:'received'},
-    {no:'HKM-803',date:'28-Aug-26',unit:'HKM',type:'NRGP',party:'Raj Supplies',material:'Office Items',qty:'15',ret:'—',status:'received'},
-    {no:'RKM-802',date:'30-Aug-26',unit:'RKM',type:'NRGP',party:'Metro Repairs',material:'Safety Items',qty:'05',ret:'—',status:'received'},
+    {no:'CLARKS-801',date:'02-Aug-26',unit:'CLARKS',type:'RGP',party:'Sharma Hardware',material:'Padlock Set',qty:'12',ret:'16-Aug-26',status:'received'},
+    {no:'CLARKS-801',date:'08-Aug-26',unit:'CLARKS',type:'NRGP',party:'Agarwal Traders',material:'Stationery',qty:'80',ret:'—',status:'received'},
+    {no:'CLARKS-802',date:'18-Aug-26',unit:'CLARKS',type:'RGP',party:'Vijay Sankla',material:'Curtain Cloth',qty:'20',ret:'—',status:'pending'},
+    {no:'CLARKS-801',date:'24-Aug-26',unit:'CLARKS',type:'RGP',party:'Verma Electronics',material:'Battery',qty:'04',ret:'—',status:'pending'},
+    {no:'CLARKS-802',date:'26-Aug-26',unit:'CLARKS',type:'RGP',party:'Mehta Electricals',material:'UPS Battery',qty:'03',ret:'—',status:'received'},
+    {no:'CLARKS-803',date:'28-Aug-26',unit:'CLARKS',type:'NRGP',party:'Raj Supplies',material:'Office Items',qty:'15',ret:'—',status:'received'},
+    {no:'CLARKS-802',date:'30-Aug-26',unit:'CLARKS',type:'NRGP',party:'Metro Repairs',material:'Safety Items',qty:'05',ret:'—',status:'received'},
   ]},
   SEP:{total:165,rgp:78,nrgp:87,pending:9,rows:[
-    {no:'HKM-901',date:'03-Sep-26',unit:'HKM',type:'RGP',party:'R.K Laundry',material:'Towel Batch',qty:'28',ret:'17-Sep-26',status:'received'},
-    {no:'TSF-901',date:'07-Sep-26',unit:'TSF',type:'NRGP',party:'Raj Supplies',material:'Repair Tools',qty:'15',ret:'—',status:'received'},
-    {no:'RKM-901',date:'14-Sep-26',unit:'RKM',type:'RGP',party:'Verma Electronics',material:'Inverter Repair',qty:'01',ret:'—',status:'pending'},
-    {no:'HKM-902',date:'22-Sep-26',unit:'HKM',type:'RGP',party:'Sharma Hardware',material:'Wire Mesh',qty:'05',ret:'—',status:'pending'},
-    {no:'TSF-902',date:'25-Sep-26',unit:'TSF',type:'RGP',party:'Agarwal Traders',material:'CCTV Camera',qty:'02',ret:'—',status:'received'},
-    {no:'HKM-903',date:'28-Sep-26',unit:'HKM',type:'NRGP',party:'Khandelwal Store',material:'Filing Cabinet',qty:'03',ret:'—',status:'received'},
-    {no:'RKM-902',date:'30-Sep-26',unit:'RKM',type:'NRGP',party:'Verma Co.',material:'Safety Rope',qty:'10',ret:'—',status:'received'},
+    {no:'CLARKS-901',date:'03-Sep-26',unit:'CLARKS',type:'RGP',party:'R.K Laundry',material:'Towel Batch',qty:'28',ret:'17-Sep-26',status:'received'},
+    {no:'CLARKS-901',date:'07-Sep-26',unit:'CLARKS',type:'NRGP',party:'Raj Supplies',material:'Repair Tools',qty:'15',ret:'—',status:'received'},
+    {no:'CLARKS-901',date:'14-Sep-26',unit:'CLARKS',type:'RGP',party:'Verma Electronics',material:'Inverter Repair',qty:'01',ret:'—',status:'pending'},
+    {no:'CLARKS-902',date:'22-Sep-26',unit:'CLARKS',type:'RGP',party:'Sharma Hardware',material:'Wire Mesh',qty:'05',ret:'—',status:'pending'},
+    {no:'CLARKS-902',date:'25-Sep-26',unit:'CLARKS',type:'RGP',party:'Agarwal Traders',material:'CCTV Camera',qty:'02',ret:'—',status:'received'},
+    {no:'CLARKS-903',date:'28-Sep-26',unit:'CLARKS',type:'NRGP',party:'Khandelwal Store',material:'Filing Cabinet',qty:'03',ret:'—',status:'received'},
+    {no:'CLARKS-902',date:'30-Sep-26',unit:'CLARKS',type:'NRGP',party:'Verma Co.',material:'Safety Rope',qty:'10',ret:'—',status:'received'},
   ]},
   OCT:{total:170,rgp:82,nrgp:88,pending:11,rows:[
-    {no:'HKM-1001',date:'05-Oct-26',unit:'HKM',type:'RGP',party:'Arushi Enterprises',material:'Sound System',qty:'01',ret:'19-Oct-26',status:'received'},
-    {no:'TSF-1001',date:'09-Oct-26',unit:'TSF',type:'NRGP',party:'Shree Traders',material:'Festival Supplies',qty:'60',ret:'—',status:'received'},
-    {no:'HKM-1002',date:'17-Oct-26',unit:'HKM',type:'RGP',party:'Khandelwal Store',material:'Festoon Lights',qty:'10',ret:'—',status:'pending'},
-    {no:'RKM-1001',date:'22-Oct-26',unit:'RKM',type:'RGP',party:'Metro Repairs',material:'Generator Service',qty:'01',ret:'—',status:'pending'},
-    {no:'TSF-1002',date:'28-Oct-26',unit:'TSF',type:'RGP',party:'Raj Enterprises',material:'Walkie Talkie',qty:'05',ret:'—',status:'received'},
-    {no:'HKM-1003',date:'29-Oct-26',unit:'HKM',type:'NRGP',party:'Agarwal Traders',material:'Decoration Items',qty:'20',ret:'—',status:'received'},
-    {no:'RKM-1002',date:'31-Oct-26',unit:'RKM',type:'NRGP',party:'Sharma Electronics',material:'Electrical Cable',qty:'08',ret:'—',status:'received'},
+    {no:'CLARKS-1001',date:'05-Oct-26',unit:'CLARKS',type:'RGP',party:'Arushi Enterprises',material:'Sound System',qty:'01',ret:'19-Oct-26',status:'received'},
+    {no:'CLARKS-1001',date:'09-Oct-26',unit:'CLARKS',type:'NRGP',party:'Shree Traders',material:'Festival Supplies',qty:'60',ret:'—',status:'received'},
+    {no:'CLARKS-1002',date:'17-Oct-26',unit:'CLARKS',type:'RGP',party:'Khandelwal Store',material:'Festoon Lights',qty:'10',ret:'—',status:'pending'},
+    {no:'CLARKS-1001',date:'22-Oct-26',unit:'CLARKS',type:'RGP',party:'Metro Repairs',material:'Generator Service',qty:'01',ret:'—',status:'pending'},
+    {no:'CLARKS-1002',date:'28-Oct-26',unit:'CLARKS',type:'RGP',party:'Raj Enterprises',material:'Walkie Talkie',qty:'05',ret:'—',status:'received'},
+    {no:'CLARKS-1003',date:'29-Oct-26',unit:'CLARKS',type:'NRGP',party:'Agarwal Traders',material:'Decoration Items',qty:'20',ret:'—',status:'received'},
+    {no:'CLARKS-1002',date:'31-Oct-26',unit:'CLARKS',type:'NRGP',party:'Sharma Electronics',material:'Electrical Cable',qty:'08',ret:'—',status:'received'},
   ]},
   NOV:{total:163,rgp:77,nrgp:86,pending:10,rows:[
-    {no:'HKM-1101',date:'04-Nov-26',unit:'HKM',type:'RGP',party:'Falguni Enterprises',material:'Pump Overhaul',qty:'01',ret:'18-Nov-26',status:'received'},
-    {no:'TSF-1101',date:'08-Nov-26',unit:'TSF',type:'NRGP',party:'Raj Enterprises',material:'Security Equipment',qty:'05',ret:'—',status:'received'},
-    {no:'HKM-1102',date:'16-Nov-26',unit:'HKM',type:'RGP',party:'Vijay Sankla',material:'Bed Sheet',qty:'22',ret:'—',status:'pending'},
-    {no:'RKM-1101',date:'22-Nov-26',unit:'RKM',type:'RGP',party:'Sharma Electronics',material:'UPS Battery',qty:'04',ret:'—',status:'pending'},
-    {no:'TSF-1102',date:'25-Nov-26',unit:'TSF',type:'RGP',party:'Mehta Electricals',material:'Generator Part',qty:'01',ret:'—',status:'received'},
-    {no:'HKM-1103',date:'28-Nov-26',unit:'HKM',type:'NRGP',party:'Agarwal Traders',material:'Year End Stock',qty:'30',ret:'—',status:'received'},
-    {no:'RKM-1102',date:'30-Nov-26',unit:'RKM',type:'NRGP',party:'Verma Co.',material:'Safety Equipment',qty:'05',ret:'—',status:'received'},
+    {no:'CLARKS-1101',date:'04-Nov-26',unit:'CLARKS',type:'RGP',party:'Falguni Enterprises',material:'Pump Overhaul',qty:'01',ret:'18-Nov-26',status:'received'},
+    {no:'CLARKS-1101',date:'08-Nov-26',unit:'CLARKS',type:'NRGP',party:'Raj Enterprises',material:'Security Equipment',qty:'05',ret:'—',status:'received'},
+    {no:'CLARKS-1102',date:'16-Nov-26',unit:'CLARKS',type:'RGP',party:'Vijay Sankla',material:'Bed Sheet',qty:'22',ret:'—',status:'pending'},
+    {no:'CLARKS-1101',date:'22-Nov-26',unit:'CLARKS',type:'RGP',party:'Sharma Electronics',material:'UPS Battery',qty:'04',ret:'—',status:'pending'},
+    {no:'CLARKS-1102',date:'25-Nov-26',unit:'CLARKS',type:'RGP',party:'Mehta Electricals',material:'Generator Part',qty:'01',ret:'—',status:'received'},
+    {no:'CLARKS-1103',date:'28-Nov-26',unit:'CLARKS',type:'NRGP',party:'Agarwal Traders',material:'Year End Stock',qty:'30',ret:'—',status:'received'},
+    {no:'CLARKS-1102',date:'30-Nov-26',unit:'CLARKS',type:'NRGP',party:'Verma Co.',material:'Safety Equipment',qty:'05',ret:'—',status:'received'},
   ]},
   DEC:{total:163,rgp:76,nrgp:87,pending:11,rows:[
-    {no:'HKM-1201',date:'03-Dec-26',unit:'HKM',type:'RGP',party:'Sharma Hardware',material:'Year-end Store',qty:'20',ret:'—',status:'pending'},
-    {no:'TSF-1201',date:'07-Dec-26',unit:'TSF',type:'NRGP',party:'Agarwal Traders',material:'Maintenance Kit',qty:'10',ret:'—',status:'received'},
-    {no:'RKM-1201',date:'14-Dec-26',unit:'RKM',type:'RGP',party:'Verma Electronics',material:'Annual AMC Items',qty:'05',ret:'—',status:'received'},
-    {no:'HKM-1202',date:'20-Dec-26',unit:'HKM',type:'RGP',party:'Vijay Sankla',material:'Towel',qty:'18',ret:'—',status:'pending'},
-    {no:'TSF-1202',date:'26-Dec-26',unit:'TSF',type:'RGP',party:'Mehta Electricals',material:'Generator',qty:'01',ret:'—',status:'received'},
-    {no:'HKM-1203',date:'28-Dec-26',unit:'HKM',type:'NRGP',party:'Raj Supplies',material:'Annual Store',qty:'25',ret:'—',status:'received'},
-    {no:'RKM-1202',date:'30-Dec-26',unit:'RKM',type:'NRGP',party:'Metro Repairs',material:'Safety Kit',qty:'08',ret:'—',status:'received'},
+    {no:'CLARKS-1201',date:'03-Dec-26',unit:'CLARKS',type:'RGP',party:'Sharma Hardware',material:'Year-end Store',qty:'20',ret:'—',status:'pending'},
+    {no:'CLARKS-1201',date:'07-Dec-26',unit:'CLARKS',type:'NRGP',party:'Agarwal Traders',material:'Maintenance Kit',qty:'10',ret:'—',status:'received'},
+    {no:'CLARKS-1201',date:'14-Dec-26',unit:'CLARKS',type:'RGP',party:'Verma Electronics',material:'Annual AMC Items',qty:'05',ret:'—',status:'received'},
+    {no:'CLARKS-1202',date:'20-Dec-26',unit:'CLARKS',type:'RGP',party:'Vijay Sankla',material:'Towel',qty:'18',ret:'—',status:'pending'},
+    {no:'CLARKS-1202',date:'26-Dec-26',unit:'CLARKS',type:'RGP',party:'Mehta Electricals',material:'Generator',qty:'01',ret:'—',status:'received'},
+    {no:'CLARKS-1203',date:'28-Dec-26',unit:'CLARKS',type:'NRGP',party:'Raj Supplies',material:'Annual Store',qty:'25',ret:'—',status:'received'},
+    {no:'CLARKS-1202',date:'30-Dec-26',unit:'CLARKS',type:'NRGP',party:'Metro Repairs',material:'Safety Kit',qty:'08',ret:'—',status:'received'},
   ]},
 };
 
 // 129 PENDING RECORDS — complete
 const P129=[
-  {no:'5247',date:'18-Nov-21',unit:'HKM',type:'RGP',party:'Khandelwal Hardware Store',material:'Almirah Lock',qty:'06',ret:'—',status:'pending'},
-  {no:'5248',date:'18-Nov-21',unit:'HKM',type:'RGP',party:'Vijay Sankla',material:'Frill for Washing',qty:'61',ret:'—',status:'pending'},
-  {no:'5249',date:'29-Nov-21',unit:'HKM',type:'RGP',party:'Arushi Enterprises',material:'Temple Projector Repair',qty:'02',ret:'—',status:'pending'},
-  {no:'5250',date:'29-Nov-21',unit:'HKM',type:'RGP',party:'Vijay Sankla',material:'Frill for Washing',qty:'49',ret:'—',status:'pending'},
-  {no:'5254',date:'11-Nov-21',unit:'HKM',type:'RGP',party:'Vijay Sankla',material:'Pillow Cover',qty:'31',ret:'—',status:'pending'},
-  {no:'5257',date:'25-Nov-21',unit:'HKM',type:'RGP',party:'Vijay Sankla',material:'Towel',qty:'08',ret:'—',status:'pending'},
-  {no:'HKM-031',date:'2025',unit:'HKM',type:'RGP',party:'Mehta Electricals',material:'Generator Repair',qty:'01',ret:'—',status:'overdue'},
-  {no:'HKM-044',date:'2025',unit:'HKM',type:'RGP',party:'Rajesh Hardware',material:'Door Lock Set',qty:'10',ret:'—',status:'pending'},
-  {no:'TSF-015',date:'2025',unit:'TSF',type:'RGP',party:'Sharma & Co.',material:'CCTV Equipment',qty:'03',ret:'—',status:'overdue'},
-  {no:'RKM-007',date:'2025',unit:'RKM',type:'RGP',party:'Verma Electronics',material:'PA System Repair',qty:'01',ret:'—',status:'overdue'},
-  {no:'TSF-022',date:'2026',unit:'TSF',type:'RGP',party:'Agarwal Traders',material:'Fire Extinguisher',qty:'05',ret:'—',status:'pending'},
-  {no:'RKM-002',date:'2026',unit:'RKM',type:'RGP',party:'Sharma Electronics',material:'UPS Battery',qty:'04',ret:'—',status:'pending'},
+  {no:'5247',date:'18-Nov-21',unit:'CLARKS',type:'RGP',party:'Khandelwal Hardware Store',material:'Almirah Lock',qty:'06',ret:'—',status:'pending'},
+  {no:'5248',date:'18-Nov-21',unit:'CLARKS',type:'RGP',party:'Vijay Sankla',material:'Frill for Washing',qty:'61',ret:'—',status:'pending'},
+  {no:'5249',date:'29-Nov-21',unit:'CLARKS',type:'RGP',party:'Arushi Enterprises',material:'Temple Projector Repair',qty:'02',ret:'—',status:'pending'},
+  {no:'5250',date:'29-Nov-21',unit:'CLARKS',type:'RGP',party:'Vijay Sankla',material:'Frill for Washing',qty:'49',ret:'—',status:'pending'},
+  {no:'5254',date:'11-Nov-21',unit:'CLARKS',type:'RGP',party:'Vijay Sankla',material:'Pillow Cover',qty:'31',ret:'—',status:'pending'},
+  {no:'5257',date:'25-Nov-21',unit:'CLARKS',type:'RGP',party:'Vijay Sankla',material:'Towel',qty:'08',ret:'—',status:'pending'},
+  {no:'CLARKS-031',date:'2025',unit:'CLARKS',type:'RGP',party:'Mehta Electricals',material:'Generator Repair',qty:'01',ret:'—',status:'overdue'},
+  {no:'CLARKS-044',date:'2025',unit:'CLARKS',type:'RGP',party:'Rajesh Hardware',material:'Door Lock Set',qty:'10',ret:'—',status:'pending'},
+  {no:'CLARKS-015',date:'2025',unit:'CLARKS',type:'RGP',party:'Sharma & Co.',material:'CCTV Equipment',qty:'03',ret:'—',status:'overdue'},
+  {no:'CLARKS-007',date:'2025',unit:'CLARKS',type:'RGP',party:'Verma Electronics',material:'PA System Repair',qty:'01',ret:'—',status:'overdue'},
+  {no:'CLARKS-022',date:'2026',unit:'CLARKS',type:'RGP',party:'Agarwal Traders',material:'Fire Extinguisher',qty:'05',ret:'—',status:'pending'},
+  {no:'CLARKS-002',date:'2026',unit:'CLARKS',type:'RGP',party:'Sharma Electronics',material:'UPS Battery',qty:'04',ret:'—',status:'pending'},
 ];
 // Add pending from monthly data
 Object.entries(GPM).forEach(([m,d])=>{d.rows.filter(r=>r.status==='pending'||r.status==='overdue').forEach(r=>P129.push({...r}));});
@@ -595,7 +643,7 @@ const GR={x:{ticks:{color:'#94a3b8',font:{size:9},autoSkip:false,maxRotation:0},
 let ch1=new Chart(document.getElementById('c1'),{type:'line',data:{labels:MIS.map(r=>r.m),datasets:[{data:MIS.map(r=>r.tot),borderColor:'#f59e0b',backgroundColor:'rgba(245,158,11,0.1)',tension:0.4,fill:true,pointBackgroundColor:'#fcd34d',pointRadius:3,pointHoverRadius:5,borderWidth:2}]},options:{...BC,scales:{x:GR.x,y:{...GR.y,ticks:{...GR.y.ticks,callback:v=>'₹'+(v/1000).toFixed(0)+'K'}}}}});
 let ch2=new Chart(document.getElementById('c2'),{type:'doughnut',data:{labels:['RGP','NRGP'],datasets:[{data:[1026,1145],backgroundColor:['rgba(59,130,246,0.85)','rgba(16,185,129,0.85)'],borderColor:['#3b82f6','#10b981'],borderWidth:2,hoverOffset:8}]},options:{...BC,cutout:'62%'}});
 let ch3=new Chart(document.getElementById('c3'),{type:'bar',data:{labels:MIS.map(r=>r.m),datasets:[{data:MIS.map(r=>r.sh),backgroundColor:MIS.map(r=>r.sh>=110?'rgba(239,68,68,0.85)':'rgba(245,158,11,0.75)'),borderColor:MIS.map(r=>r.sh>=110?'#ef4444':'#f59e0b'),borderWidth:1.5}]},options:{...BC,scales:GR}});
-new Chart(document.getElementById('c4'),{type:'bar',data:{labels:['HKM RGP','HKM NRGP','TSF NRGP','TSF RGP','RKM RGP','RKM NRGP'],datasets:[{data:[912,155,987,41,73,3],backgroundColor:['rgba(59,130,246,.85)','rgba(59,130,246,.4)','rgba(16,185,129,.85)','rgba(16,185,129,.4)','rgba(245,158,11,.85)','rgba(245,158,11,.4)'],borderColor:['#3b82f6','#3b82f6','#10b981','#10b981','#f59e0b','#f59e0b'],borderWidth:1.5}]},options:{...BC,scales:{x:{...GR.x,ticks:{...GR.x.ticks,maxRotation:35}},y:GR.y}}});
+new Chart(document.getElementById('c4'),{type:'bar',data:{labels:['CLARKS RGP','CLARKS NRGP','CLARKS NRGP','CLARKS RGP','CLARKS RGP','CLARKS NRGP'],datasets:[{data:[912,155,987,41,73,3],backgroundColor:['rgba(59,130,246,.85)','rgba(59,130,246,.4)','rgba(16,185,129,.85)','rgba(16,185,129,.4)','rgba(245,158,11,.85)','rgba(245,158,11,.4)'],borderColor:['#3b82f6','#3b82f6','#10b981','#10b981','#f59e0b','#f59e0b'],borderWidth:1.5}]},options:{...BC,scales:{x:{...GR.x,ticks:{...GR.x.ticks,maxRotation:35}},y:GR.y}}});
 
 // ── CURRENT MONTH STATE ───────────────────────────────────────────────
 let CM='ALL';
@@ -631,7 +679,7 @@ function setM(btn){
 
   // GP KPIs — FULLY CONNECTED
   document.getElementById('gv1').textContent=fGP.total.toLocaleString('en-IN');
-  document.getElementById('gs1').textContent=CM==='ALL'?'HKM+TSF+RKM':CM+' 2026';
+  document.getElementById('gs1').textContent=CM==='ALL'?'RGP / NRGP only':CM+' 2026';
   document.getElementById('gv2').textContent=fGP.rgp.toLocaleString('en-IN');
   document.getElementById('gs2').textContent=CM==='ALL'?'Returnable GP':CM+' — RGP';
   document.getElementById('gv3').textContent=fGP.nrgp.toLocaleString('en-IN');
@@ -770,7 +818,7 @@ function showMIS(){
   document.getElementById('dMT').innerHTML=`<i class="ti ti-chart-bar"></i> MIS Report — ${lbl}`;
   document.getElementById('dPills').innerHTML=`
     <span class="mpill mpt">Cost: <b>₹${(tc/100000).toFixed(2)}L</b></span>
-    <span class="mpill mpr">TSF: <b>${ttd}d</b></span>
+    <span class="mpill mpr">CLARKS: <b>${ttd}d</b></span>
     <span class="mpill mpn">SIS: <b>${tsd}d</b></span>
     <span class="mpill mpp">Shortage: <b>${tsh}</b></span>
     <span class="mpill mpt" style="border-color:#f87171;color:#f87171;background:rgba(220,38,38,.15)">Inc: <b>${tinc}</b></span>
@@ -778,7 +826,7 @@ function showMIS(){
     <span class="mpill mpr">RGP: <b>${fGP.rgp}</b></span>
     <span class="mpill mpp">Pending: <b>${fGP.pending}</b></span>`;
   document.getElementById('dTabs').innerHTML='';
-  document.getElementById('dTH').innerHTML='<tr><th>Month</th><th>TSF Salary</th><th>SIS Regular</th><th>SIS Add.</th><th>TSF Days</th><th>SIS Days</th><th>Shortage</th><th>Incident</th><th>GP Total</th><th>RGP</th><th>NRGP</th><th>Pending GP</th><th>Total Cost</th></tr>';
+  document.getElementById('dTH').innerHTML='<tr><th>Month</th><th>CLARKS Salary</th><th>SIS Regular</th><th>SIS Add.</th><th>CLARKS Days</th><th>SIS Days</th><th>Shortage</th><th>Incident</th><th>GP Total</th><th>RGP</th><th>NRGP</th><th>Pending GP</th><th>Total Cost</th></tr>';
   const tb=document.getElementById('dTB'); tb.innerHTML='';
   fMIS.forEach(r=>{
     const gpd=GPM[r.m]||{total:0,rgp:0,nrgp:0,pending:0};
@@ -800,7 +848,7 @@ pdf.rect(0,0,297,25,'F');
 
 pdf.setTextColor(255,255,255);
 pdf.setFontSize(18);
-pdf.text("TOUCHSTONE FOUNDATION",14,12);
+pdf.text("HOTEL CLARKS AMER JAIPUR",14,12);
 
 pdf.setFontSize(10);
 pdf.text("Security Dashboard Register Report",14,20);
@@ -819,7 +867,7 @@ pdf.text(
 document.getElementById("kv1").innerText.replace("₹",""),
 20,95
 );
-pdf.text("TSF Days : " + document.getElementById("kv2").innerText,20,105);
+pdf.text("CLARKS Days : " + document.getElementById("kv2").innerText,20,105);
 pdf.text("SIS Days : " + document.getElementById("kv3").innerText,20,115);
 pdf.text("Staff Shortage : " + document.getElementById("kv4").innerText,20,125);
 pdf.text("Incidents : " + document.getElementById("kv5").innerText,20,135);
@@ -947,7 +995,7 @@ pageHeight - 12
 }
 
 
- pdf.save(`TSF_${m}.pdf`);
+ pdf.save(`CLARKS_${m}.pdf`);
 }
 function openGmail(s,b){window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent('raazchoudhary765@gmail.com')}&su=${encodeURIComponent(s)}&body=${encodeURIComponent(b)}`,'_blank');}
 
@@ -966,8 +1014,8 @@ document.getElementById('bGmail').addEventListener('click',()=>openM('mGm'));
 document.getElementById('dPDF').addEventListener('click',()=>dlPDF(CM==='ALL'?'ALL':CM));
 document.getElementById('dGmail').addEventListener('click',()=>{
   const lbl=CM==='ALL'?'Full Year 2026':CM+' 2026';
-  openGmail(`TSF Security Report — ${lbl} | CSO Rajkumar Choudhary`,
-    `Dear Team,\n\nPlease find the Security Report for ${lbl}.\n\nPrepared By: CSO Rajkumar Choudhary\nEmail: raazchoudhary765@gmail.com\n\n*Please attach the downloaded PDF before sending.*\n\nRegards,\nCSO Rajkumar Choudhary\nTouchstone Foundation`);
+  openGmail(`CLARKS Security Report — ${lbl} | CSO Rajkumar Choudhary`,
+    `Dear Team,\n\nPlease find the Security Report for ${lbl}.\n\nPrepared By: CSO Rajkumar Choudhary\nEmail: raazchoudhary765@gmail.com\n\n*Please attach the downloaded PDF before sending.*\n\nRegards,\nCSO Rajkumar Choudhary\nHotel Clarks Amer Jaipur`);
   toast('✓ Gmail window opening...');
 });
 
@@ -983,7 +1031,7 @@ document.getElementById('gPDFGmail').addEventListener('click',()=>{
   const rpt=document.getElementById('rT').value;
   const lbl=CM==='ALL'?'Full Year 2026':CM+' 2026';
   closeM('mP');
-  openGmail(`TSF — ${rpt} — ${lbl} | CSO Rajkumar Choudhary`,
+  openGmail(`CLARKS — ${rpt} — ${lbl} | CSO Rajkumar Choudhary`,
     `Dear Team,\n\nReport: ${rpt}\nPeriod: ${lbl}\n\nPrepared By: CSO Rajkumar Choudhary\nEmail: raazchoudhary765@gmail.com\n\n*Attach downloaded PDF before sending.*\n\nRegards,\nCSO Rajkumar Choudhary`);
   toast('✓ Gmail opening...');
 });
@@ -994,7 +1042,7 @@ document.getElementById('sGmail').addEventListener('click',()=>{
   const note=document.getElementById('gNote').value;
   const lbl=CM==='ALL'?'Full Year 2026':CM+' 2026';
   closeM('mGm');
-  openGmail(`TSF — ${rpt} — ${lbl} | CSO Rajkumar Choudhary`,
+  openGmail(`CLARKS — ${rpt} — ${lbl} | CSO Rajkumar Choudhary`,
     `Dear Team,\n\n${rpt} for ${lbl}.${note?'\n\nNote: '+note:''}\n\nPrepared By: CSO Rajkumar Choudhary\nEmail: raazchoudhary765@gmail.com\n\nRegards,\nCSO Rajkumar Choudhary`);
   toast('✓ Gmail opening...');
 });
@@ -1052,7 +1100,7 @@ async function loginUser(){
   if(!email) return;
 
   const res = await fetch(
-    "https://script.google.com/macros/s/AKfycbyvEGDLNwQwdC8TWkUcmySdJtH2MHEuq7qTjYJ53pGT1Qdas4ziNhNPfQPx6LpApX3Lfw/exec?action=getUserRole&email="
+    "https://script.google.com/macros/s/AKfycbxapoOVLPqNkRboKEjZunqABpcv7f8jYtdfLuNW0W06am6cfufAMW2Cw2oL8MnbjjLidw/exec?action=getUserRole&email="
     + encodeURIComponent(email)
   );
 
@@ -1108,7 +1156,7 @@ function logoutUser(){
 async function loadLiveDashboard() {
   try {
     const res = await fetch(
-      "https://script.google.com/macros/s/AKfycbyvEGDLNwQwdC8TWkUcmySdJtH2MHEuq7qTjYJ53pGT1Qdas4ziNhNPfQPx6LpApX3Lfw/exec"
+      "https://script.google.com/macros/s/AKfycbxapoOVLPqNkRboKEjZunqABpcv7f8jYtdfLuNW0W06am6cfufAMW2Cw2oL8MnbjjLidw/exec"
     );
 
     const data = await res.json();
@@ -1256,7 +1304,7 @@ const data = {
   date: document.getElementById("gpDate").value,
   returnDate: document.getElementById("returnDate").value,
   party: document.getElementById("partyName").value,
-  unit: document.getElementById("unit").value,
+  unit: "CLARKS",
   driverName: document.getElementById("driverName").value,
   vehicleNo: document.getElementById("vehicleNo").value,
 
@@ -1273,7 +1321,7 @@ const data = {
 
 
   const res = await fetch(
-    "https://script.google.com/macros/s/AKfycbyvEGDLNwQwdC8TWkUcmySdJtH2MHEuq7qTjYJ53pGT1Qdas4ziNhNPfQPx6LpApX3Lfw/exec",
+    "https://script.google.com/macros/s/AKfycbxapoOVLPqNkRboKEjZunqABpcv7f8jYtdfLuNW0W06am6cfufAMW2Cw2oL8MnbjjLidw/exec",
     {
       method: "POST",
       body: JSON.stringify(data)
@@ -1305,9 +1353,9 @@ table.rows[1].querySelector(".matQty").value = "";
  async function fetchGPNo(){
 
   const gpType = document.getElementById("gpType").value;
-const unit = document.getElementById("unit").value;
+const unit = "CLARKS";
   const res = await fetch(
-"https://script.google.com/macros/s/AKfycbyvEGDLNwQwdC8TWkUcmySdJtH2MHEuq7qTjYJ53pGT1Qdas4ziNhNPfQPx6LpApX3Lfw/exec?action=nextGPNo&gpType="
+"https://script.google.com/macros/s/AKfycbxapoOVLPqNkRboKEjZunqABpcv7f8jYtdfLuNW0W06am6cfufAMW2Cw2oL8MnbjjLidw/exec?action=nextGPNo&gpType="
 + encodeURIComponent(gpType)
 + "&unit="
 + encodeURIComponent(unit)
@@ -1326,6 +1374,28 @@ window.addEventListener("load", async () => {
   fetchGPNo();
 
 });
+</script>
+<style>
+.dsrgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.dsrf{display:flex;flex-direction:column;gap:4px;margin-bottom:8px}.dsrf label{font-size:10px;color:#fbbf24;font-weight:bold}.dsrf input,.dsrf textarea{background:#0f172a;color:#fff;border:1px solid #475569;border-radius:6px;padding:8px}.dsrf textarea{min-height:60px}.dsrwide{grid-column:1/-1}.dsrsec{color:#f59e0b;font-weight:bold;border-bottom:1px solid #475569;padding:9px 0;margin:8px 0}.dsrbtn{padding:9px 12px;background:#92400e;color:white;border:1px solid #f59e0b;border-radius:6px;cursor:pointer;margin:3px}.dsrbtn.blue{background:#1e3a8a;border-color:#60a5fa}.dsrbtn.green{background:#166534;border-color:#4ade80}.dsrtable{width:100%;border-collapse:collapse;font-size:11px}.dsrtable th,.dsrtable td{border-bottom:1px solid #475569;padding:7px;text-align:left}.dsrtable th{color:#fbbf24}@media(max-width:650px){.dsrgrid{grid-template-columns:1fr}.dsrwide{grid-column:auto}}#dsrPrint{display:none}@media print{body.dsrprinting *{visibility:hidden!important}body.dsrprinting #dsrPrint,body.dsrprinting #dsrPrint *{visibility:visible!important}body.dsrprinting #dsrPrint{display:block!important;position:absolute;inset:0;background:white!important;color:#111!important;padding:16px}body.dsrprinting #dsrPrint h1,body.dsrprinting #dsrPrint h2,body.dsrprinting #dsrPrint h3{color:#111!important}body.dsrprinting #dsrPrint table{border-collapse:collapse;width:100%}body.dsrprinting #dsrPrint td,body.dsrprinting #dsrPrint th{border:1px solid #777;padding:5px;color:#111!important}}
+</style>
+<div class="MB" id="dsrModal"><div class="MD" style="max-width:1150px"><div class="MH"><span class="MT">HOTEL CLARKS AMER JAIPUR — DAILY SECURITY REPORT</span><button class="MX" onclick="closeM('dsrModal')">×</button></div>
+<form id="dsrForm"><input type="hidden" id="dsrId"><div class="dsrsec">1. REPORT DETAILS & SHIFT INCHARGES</div><div class="dsrgrid">
+<div class="dsrf"><label>Report Date</label><input type="date" id="dsrDate" required></div><div class="dsrf"><label>Report Prepared By</label><input id="dsrPrepared" value="Raj Kumar"></div><div class="dsrf"><label>Morning Incharge</label><input id="dsrMorning"></div><div class="dsrf"><label>Afternoon Incharge</label><input id="dsrAfternoon"></div><div class="dsrf"><label>Night Incharge</label><input id="dsrNight"></div><div class="dsrf"><label>Night MOD</label><input id="dsrMOD"></div>
+</div><div class="dsrsec">2. SECURITY ROUNDS, INCIDENTS & FINDINGS</div><div class="dsrgrid"><div class="dsrf dsrwide"><label>Security Rounds</label><textarea id="dsrRounds"></textarea></div><div class="dsrf dsrwide"><label>Incidents</label><textarea id="dsrIncidents"></textarea></div><div class="dsrf dsrwide"><label>Observation & Findings</label><textarea id="dsrRemarks"></textarea></div><div class="dsrf dsrwide"><label>Action Taken</label><textarea id="dsrAction"></textarea></div><div class="dsrf dsrwide"><label>Pending Action / Support Required</label><textarea id="dsrPending"></textarea></div></div>
+<div class="dsrsec">3. ROOM OCCUPANCY, PAX & FUNCTIONS</div><div class="dsrgrid"><div class="dsrf"><label>Hotel Rooms Occupied</label><input type="number" min="0" id="dsrHotelRooms"></div><div class="dsrf"><label>Hotel PAX</label><input type="number" min="0" id="dsrHotelPax"></div><div class="dsrf"><label>Brijnest Rooms Occupied</label><input type="number" min="0" id="dsrBrijnestRooms"></div><div class="dsrf"><label>Brijnest PAX</label><input type="number" min="0" id="dsrBrijnestPax"></div><div class="dsrf"><label>Group / Function Name</label><input id="dsrGroup"></div><div class="dsrf"><label>Function PAX</label><input type="number" min="0" id="dsrFunctionPax"></div><div class="dsrf"><label>Venue</label><input id="dsrVenue"></div><div class="dsrf"><label>Function Type</label><input id="dsrFunctionType"></div><div class="dsrf"><label>Plates Used</label><input id="dsrPlates"></div><div class="dsrf"><label>Difference</label><input id="dsrDifference"></div><div class="dsrf dsrwide"><label>Bill Payee</label><input id="dsrBillPayee"></div></div>
+<div class="dsrsec">4. KITCHEN, CAFÉ, WASTAGE & PARKING</div><div class="dsrgrid"><div class="dsrf"><label>Gas Cylinders (fixed)</label><input id="dsrGas" value="112" readonly></div><div class="dsrf"><label>Breakfast PAX</label><input type="number" min="0" id="dsrBreakfastPax"></div><div class="dsrf"><label>Lunch PAX</label><input type="number" min="0" id="dsrLunchPax"></div><div class="dsrf"><label>Dinner PAX</label><input type="number" min="0" id="dsrDinnerPax"></div><div class="dsrf"><label>Café Lunch Waste (kg)</label><input type="number" min="0" step=".001" id="dsrLunchWaste"></div><div class="dsrf"><label>Café Dinner Waste (kg)</label><input type="number" min="0" step=".001" id="dsrDinnerWaste"></div><div class="dsrf"><label>Main Kitchen Waste (kg)</label><input type="number" min="0" step=".001" id="dsrKitchenWaste"></div><div class="dsrf"><label>Staff Kitchen Waste (kg)</label><input type="number" min="0" step=".001" id="dsrStaffKitchenWaste"></div><div class="dsrf"><label>Main Porch Vehicles</label><input type="number" min="0" id="dsrPorch"></div><div class="dsrf"><label>MDP Parking Vehicles</label><input type="number" min="0" id="dsrMDP"></div><div class="dsrf"><label>KTP Parking Vehicles</label><input type="number" min="0" id="dsrKTP"></div><div class="dsrf dsrwide"><label>Breakfast Menu / Actual Menu</label><textarea id="dsrMenu"></textarea></div><div class="dsrf dsrwide"><label>Site Observations</label><textarea id="dsrObservations" placeholder="Root Hall Ramp, Route Hall Pathway, Pump Room, KTP Area..."></textarea></div><div class="dsrf dsrwide"><label>Attach photos for PDF (local only)</label><input type="file" id="dsrPhotos" accept="image/*" multiple></div></div>
+<div><button class="dsrbtn green" type="submit">Save to Google Sheets</button><button class="dsrbtn" type="button" onclick="dsrNew()">New / Clear</button><button class="dsrbtn blue" type="button" onclick="dsrPDF()">Generate DSR PDF</button></div></form>
+<div class="dsrsec">DAILY / MONTHLY / YEARLY HISTORY</div><div class="dsrgrid"><div class="dsrf"><label>Period</label><select id="dsrPeriod" onchange="dsrHistory()"><option value="day">Daily</option><option value="month">Monthly</option><option value="year">Yearly</option><option value="all">All</option></select></div><div class="dsrf"><label>Filter Date</label><input type="date" id="dsrFilterDate" onchange="dsrHistory()"></div></div><button class="dsrbtn blue" type="button" onclick="dsrHistory()">Refresh History</button><div style="overflow:auto"><table class="dsrtable"><thead><tr><th>Date</th><th>Morning</th><th>Afternoon</th><th>Night</th><th>Incidents</th><th>Pending</th><th>Action</th></tr></thead><tbody id="dsrRows"></tbody></table></div></div></div><div id="dsrPrint"></div>
+<script>
+const CLARKS_API="https://script.google.com/macros/s/AKfycbxapoOVLPqNkRboKEjZunqABpcv7f8jYtdfLuNW0W06am6cfufAMW2Cw2oL8MnbjjLidw/exec";
+const DSR_KEYS=['Date','Prepared','Morning','Afternoon','Night','MOD','Rounds','Incidents','Remarks','Action','Pending','HotelRooms','HotelPax','BrijnestRooms','BrijnestPax','Group','FunctionPax','Venue','FunctionType','Plates','Difference','BillPayee','Gas','BreakfastPax','LunchPax','DinnerPax','LunchWaste','DinnerWaste','KitchenWaste','StaffKitchenWaste','Porch','MDP','KTP','Menu','Observations'];
+function dsrV(k){return document.getElementById('dsr'+k)?.value||''}function dsrData(){let o={id:document.getElementById('dsrId').value};DSR_KEYS.forEach(k=>o[k]=dsrV(k));o.Gas='112';return o}function dsrNew(){document.getElementById('dsrForm').reset();document.getElementById('dsrId').value='';let d=new Date().toISOString().slice(0,10);document.getElementById('dsrDate').value=d;document.getElementById('dsrFilterDate').value=d;document.getElementById('dsrPrepared').value='Raj Kumar';document.getElementById('dsrGas').value='112'}
+let dsrJsonpCounter=0;function dsrGet(action,params={}){return new Promise((resolve,reject)=>{const callback='__clarksDsrCb'+(++dsrJsonpCounter);const script=document.createElement('script');const url=new URL(CLARKS_API);url.searchParams.set('action',action);url.searchParams.set('callback',callback);Object.entries(params).forEach(([k,v])=>url.searchParams.set(k,v??''));const timer=setTimeout(()=>finish(new Error('Request timed out. Check Apps Script deployment and permissions.')),25000);function finish(err,data){clearTimeout(timer);try{delete window[callback]}catch(_){}script.remove();if(err)reject(err);else resolve(data)}window[callback]=(data)=>finish(null,data);script.onerror=()=>finish(new Error('Could not load Apps Script. Redeploy Code.gs and confirm the /exec URL.'));script.src=url.toString();document.body.appendChild(script)})}
+document.getElementById('dsrForm').addEventListener('submit',async e=>{e.preventDefault();let d=dsrData();if(!d.Date)return alert('Select report date');try{let r=await dsrGet('saveDSR',d);if(!r.success)throw Error(r.message||'Save failed');document.getElementById('dsrId').value=r.id||d.id;alert('Report saved to Google Sheets');dsrHistory()}catch(err){alert('Save failed: '+err.message+'\nEnsure updated Code.gs is deployed and the /exec URL is correct.')}});
+function escD(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+async function dsrHistory(){let date=document.getElementById('dsrFilterDate').value||dsrV('Date'),period=document.getElementById('dsrPeriod').value;try{let r=await dsrGet('getDSR',{date,period});let rows=r.rows||[];document.getElementById('dsrRows').innerHTML=rows.map(x=>`<tr><td>${escD(x.Date)}</td><td>${escD(x.Morning)}</td><td>${escD(x.Afternoon)}</td><td>${escD(x.Night)}</td><td>${escD(String(x.Incidents||'').slice(0,50))}</td><td>${escD(String(x.Pending||'').slice(0,50))}</td><td><button class="dsrbtn blue" onclick='dsrPrintRecord(${JSON.stringify(x).replace(/'/g,'&#39;')})'>PDF</button></td></tr>`).join('')||'<tr><td colspan="7">No records</td></tr>'}catch(e){document.getElementById('dsrRows').innerHTML='<tr><td colspan="7">Backend not connected. Update and redeploy Code.gs.</td></tr>'}}
+function dsrPDF(r){dsrPrintRecord(r||dsrData())}function dsrPrintRecord(r){let sections=[['Report Details',['Date','Prepared','Morning','Afternoon','Night','MOD']],['Security Rounds & Findings',['Rounds','Incidents','Remarks','Action','Pending']],['Room Occupancy & Functions',['HotelRooms','HotelPax','BrijnestRooms','BrijnestPax','Group','FunctionPax','Venue','FunctionType','Plates','Difference','BillPayee']],['Kitchen, Cafe & Parking',['Gas','BreakfastPax','LunchPax','DinnerPax','LunchWaste','DinnerWaste','KitchenWaste','StaffKitchenWaste','Porch','MDP','KTP','Menu','Observations']]];let labels={Date:'Report Date',Prepared:'Prepared By',Morning:'Morning Incharge',Afternoon:'Afternoon Incharge',Night:'Night Incharge',MOD:'Night MOD',Rounds:'Security Rounds',Incidents:'Incidents',Remarks:'Observation & Findings',Action:'Action Taken',Pending:'Pending Action',HotelRooms:'Hotel Rooms Occupied',HotelPax:'Hotel PAX',BrijnestRooms:'Brijnest Rooms Occupied',BrijnestPax:'Brijnest PAX',Group:'Function Name',FunctionPax:'Function PAX',Venue:'Venue',FunctionType:'Function Type',Plates:'Plates Used',Difference:'Difference',BillPayee:'Bill Payee',Gas:'Gas Cylinders',BreakfastPax:'Breakfast PAX',LunchPax:'Lunch PAX',DinnerPax:'Dinner PAX',LunchWaste:'Café Lunch Waste (kg)',DinnerWaste:'Café Dinner Waste (kg)',KitchenWaste:'Main Kitchen Waste (kg)',StaffKitchenWaste:'Staff Kitchen Waste (kg)',Porch:'Main Porch Vehicles',MDP:'MDP Parking Vehicles',KTP:'KTP Parking Vehicles',Menu:'Breakfast Menu',Observations:'Site Observations'};let h='<h1 style="text-align:center">HOTEL CLARKS AMER JAIPUR</h1><h2 style="text-align:center">DAILY SECURITY REPORT</h2>';sections.forEach(([t,ks])=>{h+='<h3>'+t+'</h3><table>'+ks.map(k=>'<tr><th style="width:30%;text-align:left">'+labels[k]+'</th><td>'+escD(r[k])+'</td></tr>').join('')+'</table>'});let files=[...(document.getElementById('dsrPhotos').files||[])];let print=()=>{let el=document.getElementById('dsrPrint');el.innerHTML=h;document.body.classList.add('dsrprinting');window.print();document.body.classList.remove('dsrprinting');el.style.display='none'};if(files.length)Promise.all(files.map(f=>new Promise(ok=>{let rd=new FileReader();rd.onload=()=>ok('<div style="page-break-before:always"><h3>Site Inspection Photo</h3><img style="max-width:100%;max-height:650px" src="'+rd.result+'"><p>'+escD(f.name)+'</p></div>');rd.readAsDataURL(f)}))).then(a=>{h+=a.join('');print()});else print()}
+document.getElementById('bDailySecurity').addEventListener('click',()=>{dsrNew();openM('dsrModal');dsrHistory()});document.addEventListener('DOMContentLoaded',dsrNew);
 </script>
 </body>
 </html>
