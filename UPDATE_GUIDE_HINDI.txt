@@ -1,0 +1,17 @@
+HOTEL CLARKS AMER DSR PWA v16 — UPDATE GUIDE
+
+Included changes:
+1. Shift Incharge and MOD dropdown names prefixed with Mr.
+2. Report Date appears in the top header and follows the Report Date picker.
+3. Separate Report Sent On Date picker is added at the bottom of DSR form and included in PDF.
+4. Staff Kitchen Waste (kg) removed from form, dashboard and PDF.
+5. PWA manifest, icons and service worker included; cache version bumped.
+6. Apps Script spreadsheet ID validation corrected.
+
+GitHub upload:
+- Upload/replace index.html, manifest.webmanifest, service-worker.js, icon-192.png, icon-512.png in repository root.
+- Keep Code.gs in Apps Script editor (not in GitHub only); replace Apps Script Code.gs with this file, save, run testConnection, then deploy a New version.
+- GitHub Pages URL must be opened using HTTPS; opening index.html from Downloads/file:// does NOT allow PWA installation.
+- After commit, open the HTTPS GitHub Pages site, Ctrl+Shift+R, then Chrome menu > Cast, save, and share > Install page as app (or Install app).
+
+Note: API connection and actual Google Sheets save have not been live-tested from this package.
